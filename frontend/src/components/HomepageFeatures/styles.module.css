@@ -6,6 +6,17 @@
 }
 
 .featureIcon {
-  font-size: 4rem;
   margin-bottom: 1rem;
+  display: flex;
+  justify-content: center;
+}
+
+.featureIcon img {
+  width: 64px;
+  height: 64px;
+  transition: transform 0.3s ease;
+}
+
+.featureIcon img:hover {
+  transform: scale(1.1);
 }

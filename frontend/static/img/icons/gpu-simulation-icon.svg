@@ -1,0 +1,47 @@
+<svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- GPU-Accelerated Simulation: GPU card with 3D world rendering -->
+
+  <!-- GPU Card body -->
+  <rect x="8" y="16" width="48" height="32" rx="3" fill="#1a1a1a"/>
+
+  <!-- GPU heatsink lines -->
+  <line x1="12" y1="20" x2="12" y2="44" stroke="#333" stroke-width="1"/>
+  <line x1="16" y1="20" x2="16" y2="44" stroke="#333" stroke-width="1"/>
+  <line x1="20" y1="20" x2="20" y2="44" stroke="#333" stroke-width="1"/>
+
+  <!-- GPU Chip (NVIDIA style) -->
+  <rect x="26" y="22" width="26" height="20" rx="2" fill="#222"/>
+  <rect x="30" y="26" width="18" height="12" rx="1" fill="#76b900" opacity="0.2"/>
+
+  <!-- 3D rendered cube inside GPU (simulation) -->
+  <path d="M39 28 L47 32 L47 38 L39 34 Z" fill="#76b900" opacity="0.8"/>
+  <path d="M39 28 L31 32 L31 38 L39 34 Z" fill="#76b900" opacity="0.5"/>
+  <path d="M31 32 L39 28 L47 32 L39 36 Z" fill="#76b900"/>
+
+  <!-- Processing indicators (parallel compute) -->
+  <circle cx="34" y="40" r="1.5" fill="#76b900">
+    <animate attributeName="opacity" values="1;0.3;1" dur="0.8s" repeatCount="indefinite"/>
+  </circle>
+  <circle cx="39" y="40" r="1.5" fill="#76b900">
+    <animate attributeName="opacity" values="0.3;1;0.3" dur="0.8s" repeatCount="indefinite"/>
+  </circle>
+  <circle cx="44" y="40" r="1.5" fill="#76b900">
+    <animate attributeName="opacity" values="1;0.3;1" dur="0.8s" repeatCount="indefinite" begin="0.2s"/>
+  </circle>
+
+  <!-- PCIe connector -->
+  <rect x="14" y="48" width="36" height="4" fill="#666"/>
+  <rect x="18" y="49" width="3" height="2" fill="#76b900"/>
+  <rect x="24" y="49" width="3" height="2" fill="#76b900"/>
+  <rect x="30" y="49" width="3" height="2" fill="#76b900"/>
+  <rect x="36" y="49" width="3" height="2" fill="#76b900"/>
+  <rect x="42" y="49" width="3" height="2" fill="#76b900"/>
+
+  <!-- Power indicator -->
+  <circle cx="14" cy="24" r="2" fill="#76b900"/>
+
+  <!-- Speed lines (acceleration) -->
+  <line x1="2" y1="28" x2="6" y2="28" stroke="#76b900" stroke-width="1.5" opacity="0.6"/>
+  <line x1="0" y1="32" x2="6" y2="32" stroke="#76b900" stroke-width="2" opacity="0.8"/>
+  <line x1="2" y1="36" x2="6" y2="36" stroke="#76b900" stroke-width="1.5" opacity="0.6"/>
+</svg>

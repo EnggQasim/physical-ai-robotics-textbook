@@ -13,26 +13,32 @@ import base64
 import json
 import os
 import sys
-from pathlib import Path
 from datetime import datetime
+from pathlib import Path
 
 try:
+    import io
+
     import google.generativeai as genai
     from PIL import Image
-    import io
 except ImportError:
     print("ERROR: Required packages not installed. Run:")
     print("  pip install google-generativeai pillow")
     sys.exit(1)
 
 
-# Default API key (can be overridden by environment variable)
-DEFAULT_API_KEY = "AIzaSyDQ3DaEOvDbnPw6xRI_s5R-vwyW-QqiU5g"
+# API key must be set via environment variable (per constitution Principle VI)
+# Set GEMINI_API_KEY in your environment or .env file
 
 
 def setup_gemini(api_key: str = None, model_name: str = None):
     """Configure the Gemini API."""
-    key = api_key or os.environ.get("GEMINI_API_KEY", DEFAULT_API_KEY)
+    key = api_key or os.environ.get("GEMINI_API_KEY")
+    if not key:
+        raise ValueError(
+            "GEMINI_API_KEY environment variable is required. "
+            "Set it in your environment or .env file."
+        )
     genai.configure(api_key=key)
     # Try different models in order of preference
     model = model_name or os.environ.get("GEMINI_MODEL", "gemini-2.0-flash")
@@ -128,7 +134,7 @@ Return ONLY valid SVG code, no explanations. Start with <svg and end with </svg>
                 return {
                     "status": "error",
                     "message": "Failed to generate valid SVG content",
-                    "raw_response": response.text[:500]
+                    "raw_response": response.text[:500],
                 }
 
         # Save as SVG
@@ -215,51 +221,52 @@ def main():
         description="Generate diagrams using Google Gemini API"
     )
     parser.add_argument(
-        "--prompt", "-p",
-        required=True,
-        help="Description of the diagram to generate"
+        "--prompt", "-p", required=True, help="Description of the diagram to generate"
     )
     parser.add_argument(
-        "--output", "-o",
+        "--output",
+        "-o",
         default="diagram.svg",
-        help="Output file path (default: diagram.svg)"
+        help="Output file path (default: diagram.svg)",
     )
     parser.add_argument(
-        "--style", "-s",
+        "--style",
+        "-s",
         choices=["technical", "workflow", "architecture", "animated", "simple"],
         default="technical",
-        help="Diagram style (default: technical)"
+        help="Diagram style (default: technical)",
     )
     parser.add_argument(
-        "--width", "-W",
+        "--width",
+        "-W",
         type=int,
         default=800,
-        help="Image width in pixels (default: 800)"
+        help="Image width in pixels (default: 800)",
     )
     parser.add_argument(
-        "--height", "-H",
+        "--height",
+        "-H",
         type=int,
         default=600,
-        help="Image height in pixels (default: 600)"
+        help="Image height in pixels (default: 600)",
     )
     parser.add_argument(
-        "--describe-only", "-d",
+        "--describe-only",
+        "-d",
         action="store_true",
-        help="Only generate description, no image"
+        help="Only generate description, no image",
+    )
+    parser.add_argument("--json", action="store_true", help="Output result as JSON")
+    parser.add_argument(
+        "--api-key",
+        "-k",
+        help="Gemini API key (overrides default and environment variable)",
     )
     parser.add_argument(
-        "--json",
-        action="store_true",
-        help="Output result as JSON"
-    )
-    parser.add_argument(
-        "--api-key", "-k",
-        help="Gemini API key (overrides default and environment variable)"
-    )
-    parser.add_argument(
-        "--model", "-m",
+        "--model",
+        "-m",
         default="gemini-2.0-flash",
-        help="Gemini model to use (default: gemini-2.0-flash)"
+        help="Gemini model to use (default: gemini-2.0-flash)",
     )
 
     args = parser.parse_args()

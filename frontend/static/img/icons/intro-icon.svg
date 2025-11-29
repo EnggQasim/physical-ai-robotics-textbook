@@ -1,0 +1,46 @@
+<svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Physical AI: Humanoid robot with AI brain -->
+
+  <!-- Outer glow circle - embodiment -->
+  <circle cx="32" cy="32" r="30" stroke="#76b900" stroke-width="2" fill="none" opacity="0.3"/>
+
+  <!-- Robot body -->
+  <rect x="22" y="28" width="20" height="24" rx="3" fill="#1a1a1a"/>
+
+  <!-- Robot head -->
+  <rect x="24" y="14" width="16" height="14" rx="3" fill="#1a1a1a"/>
+
+  <!-- Robot eyes - glowing -->
+  <circle cx="28" cy="20" r="2" fill="#76b900"/>
+  <circle cx="36" cy="20" r="2" fill="#76b900"/>
+
+  <!-- AI Brain in chest - glowing core -->
+  <circle cx="32" cy="38" r="6" fill="#76b900" opacity="0.3"/>
+  <circle cx="32" cy="38" r="4" fill="#76b900" opacity="0.6"/>
+  <circle cx="32" cy="38" r="2" fill="#76b900"/>
+
+  <!-- Neural connections from brain -->
+  <line x1="32" y1="32" x2="32" y2="34" stroke="#76b900" stroke-width="1"/>
+  <line x1="26" y1="36" x2="28" y2="38" stroke="#76b900" stroke-width="1"/>
+  <line x1="38" y1="36" x2="36" y2="38" stroke="#76b900" stroke-width="1"/>
+  <line x1="26" y1="42" x2="28" y2="40" stroke="#76b900" stroke-width="1"/>
+  <line x1="38" y1="42" x2="36" y2="40" stroke="#76b900" stroke-width="1"/>
+
+  <!-- Robot arms -->
+  <rect x="14" y="30" width="8" height="4" rx="1" fill="#1a1a1a"/>
+  <rect x="42" y="30" width="8" height="4" rx="1" fill="#1a1a1a"/>
+  <circle cx="12" cy="32" r="3" fill="#1a1a1a" stroke="#76b900" stroke-width="1"/>
+  <circle cx="52" cy="32" r="3" fill="#1a1a1a" stroke="#76b900" stroke-width="1"/>
+
+  <!-- Robot legs -->
+  <rect x="24" y="52" width="6" height="8" rx="1" fill="#1a1a1a"/>
+  <rect x="34" y="52" width="6" height="8" rx="1" fill="#1a1a1a"/>
+
+  <!-- Robot feet -->
+  <rect x="22" y="58" width="10" height="3" rx="1" fill="#1a1a1a"/>
+  <rect x="32" y="58" width="10" height="3" rx="1" fill="#1a1a1a"/>
+
+  <!-- Antenna -->
+  <line x1="32" y1="14" x2="32" y2="8" stroke="#1a1a1a" stroke-width="2"/>
+  <circle cx="32" cy="6" r="2" fill="#76b900"/>
+</svg>

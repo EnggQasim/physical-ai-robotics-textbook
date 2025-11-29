@@ -94,6 +94,11 @@ A learner prefers dark mode for reduced eye strain during extended study session
 - **FR-010**: System MUST display code blocks with copy-to-clipboard functionality
 - **FR-011**: System MUST support embedding images and diagrams within content
 - **FR-012**: System MUST generate a table of contents for each chapter based on headings
+- **FR-013**: System SHOULD support AI-generated diagrams using the image-generation skill for complex concepts
+- **FR-014**: AI-generated diagrams MUST use NVIDIA green theme (#76b900) and be stored in `/static/img/generated/`
+- **FR-015**: System MUST display conceptual SVG icons for modules and features on the landing page
+- **FR-016**: Module icons MUST visually represent the core concept of each module (e.g., ROS2 pub/sub, GPU simulation, AI brain)
+- **FR-017**: Icons MUST use `useBaseUrl` hook for proper path resolution with Docusaurus baseUrl
 
 ### Content Requirements
 
@@ -118,6 +123,11 @@ A learner prefers dark mode for reduced eye strain during extended study session
 - Default Docusaurus styling will be used with minimal customization
 - Search will use Docusaurus local search plugin (no external service needed)
 - Content depth is introductory-to-intermediate, suitable for developers new to robotics
+- AI-generated diagrams will use Google Gemini API via the image-generation skill
+- Diagram generation requires `google-generativeai` and `pillow` Python packages
+- **Icons will be hand-crafted SVG** for precise conceptual representation
+- **Icons stored in `/static/img/icons/`** with naming convention `<name>-icon.svg`
+- **React components use `useBaseUrl` hook** for icon path resolution
 
 ## Success Criteria *(mandatory)*
 
@@ -125,9 +135,9 @@ A learner prefers dark mode for reduced eye strain during extended study session
 
 - **SC-001**: Book contains at least 4 complete chapters with minimum 2000 words each
 - **SC-002**: Site loads completely within 3 seconds on standard broadband connection
-- **SC-003**: All pages pass Lighthouse accessibility score of 90+
+- **SC-003**: All pages pass Lighthouse accessibility score of 85+ (per constitution Principle V)
 - **SC-004**: Search returns relevant results for any key term within 2 seconds
 - **SC-005**: Site is fully functional on Chrome, Firefox, Safari, and Edge browsers
 - **SC-006**: 100% of internal links resolve correctly (no 404 errors)
-- **SC-007**: Site works offline after initial load (service worker caching)
+- **SC-007**: ~~Site works offline after initial load (service worker caching)~~ REMOVED - PWA not in MVP scope
 - **SC-008**: Mobile usability score of 90+ on Google PageSpeed Insights

@@ -1,0 +1,52 @@
+<svg width="800" height="600" viewBox="0 0 800 600" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <style>
+    text {
+      font-family: Arial, sans-serif;
+    }
+  </style>
+  <defs>
+    <marker id="arrowhead" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#666666"/>
+    </marker>
+  </defs>
+
+  <!-- Background -->
+  <rect width="800" height="600" fill="#ffffff"/>
+
+  <!-- Robot Head -->
+  <rect x="350" y="100" width="100" height="100" rx="10" fill="#1a1a1a"/>
+
+  <!-- Neural Network Nodes (Head) -->
+  <circle cx="375" cy="125" r="5" fill="#76b900"/>
+  <circle cx="425" cy="125" r="5" fill="#76b900"/>
+  <circle cx="375" cy="175" r="5" fill="#76b900"/>
+  <circle cx="425" cy="175" r="5" fill="#76b900"/>
+
+  <!-- Robot Body -->
+  <rect x="300" y="200" width="200" height="200" rx="10" fill="#1a1a1a"/>
+
+  <!-- Neural Network Nodes (Body) -->
+  <circle cx="350" cy="250" r="5" fill="#76b900"/>
+  <circle cx="450" cy="250" r="5" fill="#76b900"/>
+  <circle cx="350" cy="350" r="5" fill="#76b900"/>
+  <circle cx="450" cy="350" r="5" fill="#76b900"/>
+
+  <!-- Robot Legs -->
+  <rect x="250" y="400" width="100" height="100" rx="10" fill="#1a1a1a"/>
+  <rect x="450" y="400" width="100" height="100" rx="10" fill="#1a1a1a"/>
+
+    <!-- Connectors between nodes -->
+    <line x1="375" y1="130" x2="375" y2="170" stroke="#666666" stroke-width="2" marker-end="url(#arrowhead)" />
+    <line x1="425" y1="130" x2="425" y2="170" stroke="#666666" stroke-width="2" marker-end="url(#arrowhead)" />
+    <line x1="375" y1="180" x2="350" y2="245" stroke="#666666" stroke-width="2" marker-end="url(#arrowhead)" />
+    <line x1="425" y1="180" x2="450" y2="245" stroke="#666666" stroke-width="2" marker-end="url(#arrowhead)" />
+    <line x1="350" y1="255" x2="350" y2="345" stroke="#666666" stroke-width="2" marker-end="url(#arrowhead)" />
+    <line x1="450" y1="255" x2="450" y2="345" stroke="#666666" stroke-width="2" marker-end="url(#arrowhead)" />
+
+  <!-- Labels -->
+  <text x="100" y="50" font-size="20" fill="#1a1a1a">Physical AI Logo</text>
+  <text x="360" y="90" font-size="12" fill="#666666" text-anchor="middle">Head</text>
+  <text x="400" y="220" font-size="12" fill="#666666" text-anchor="middle">Body</text>
+  <text x="350" y="420" font-size="12" fill="#666666" text-anchor="middle">Legs</text>
+
+</svg>
