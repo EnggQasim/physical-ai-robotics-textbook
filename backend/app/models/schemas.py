@@ -20,11 +20,24 @@ class Source(BaseModel):
     relevance_score: float = Field(..., description="Similarity score")
 
 
+class ImageResult(BaseModel):
+    """Image search result."""
+
+    id: str = Field(..., description="Image identifier")
+    url: str = Field(..., description="Image URL")
+    title: str = Field(..., description="Image title")
+    alt_text: str = Field(..., description="Alt text for accessibility")
+    chapter: str = Field(..., description="Chapter containing the image")
+    section: str = Field(..., description="Section containing the image")
+    score: float = Field(..., description="Relevance score")
+
+
 class ChatResponse(BaseModel):
     """Chat response with sources."""
 
     answer: str = Field(..., description="AI-generated answer")
     sources: List[Source] = Field(default_factory=list, description="Source citations")
+    images: List[ImageResult] = Field(default_factory=list, description="Relevant images")
     is_grounded: bool = Field(True, description="Whether answer is from book content")
 
 

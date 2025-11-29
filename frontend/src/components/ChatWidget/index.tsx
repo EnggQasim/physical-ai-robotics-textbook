@@ -9,10 +9,21 @@ interface Source {
   relevance_score: number;
 }
 
+interface ImageResult {
+  id: string;
+  url: string;
+  title: string;
+  alt_text: string;
+  chapter: string;
+  section: string;
+  score: number;
+}
+
 interface Message {
   role: 'user' | 'assistant';
   content: string;
   sources?: Source[];
+  images?: ImageResult[];
   selectedText?: string;
 }
 
@@ -145,6 +156,7 @@ export default function ChatWidget(): JSX.Element {
           role: 'assistant',
           content: data.answer,
           sources: data.sources,
+          images: data.images,
         },
       ]);
     } catch (error) {
@@ -257,6 +269,27 @@ export default function ChatWidget(): JSX.Element {
                 <div className={styles.messageContent}>
                   {msg.content}
                 </div>
+                {msg.images && msg.images.length > 0 && (
+                  <div className={styles.imagesContainer}>
+                    <span className={styles.sourcesLabel}>Related Diagrams:</span>
+                    {msg.images.map((image, iidx) => (
+                      <a
+                        key={iidx}
+                        href={image.url}
+                        className={styles.imageCard}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        <img
+                          src={image.url}
+                          alt={image.alt_text}
+                          className={styles.imagePreview}
+                        />
+                        <span className={styles.imageTitle}>{image.title}</span>
+                      </a>
+                    ))}
+                  </div>
+                )}
                 {msg.sources && msg.sources.length > 0 && (
                   <div className={styles.sources}>
                     <span className={styles.sourcesLabel}>Sources:</span>

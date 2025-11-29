@@ -164,6 +164,46 @@
   word-break: break-word;
 }
 
+/* Images Container */
+.imagesContainer {
+  margin-top: 12px;
+  padding-top: 8px;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.imageCard {
+  display: block;
+  background: var(--ifm-background-surface-color, #fff);
+  border-radius: 8px;
+  padding: 8px;
+  margin-top: 8px;
+  text-decoration: none;
+  border: 1px solid var(--ifm-color-emphasis-200);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.imageCard:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.imagePreview {
+  width: 100%;
+  max-height: 120px;
+  object-fit: contain;
+  border-radius: 4px;
+  background: var(--ifm-color-emphasis-100);
+}
+
+.imageTitle {
+  display: block;
+  margin-top: 6px;
+  font-size: 0.8rem;
+  color: #76b900;
+  font-weight: 500;
+  text-align: center;
+}
+
 /* Sources */
 .sources {
   margin-top: 8px;

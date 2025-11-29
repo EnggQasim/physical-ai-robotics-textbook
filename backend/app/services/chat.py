@@ -3,7 +3,8 @@ from openai import OpenAI
 from typing import List, Dict, Any
 from app.config import get_settings
 from app.services.vector_store import get_vector_store
-from app.models.schemas import Source, ChatResponse
+from app.services.image_search import get_image_search_service
+from app.models.schemas import Source, ImageResult, ChatResponse
 
 
 SYSTEM_PROMPT = """You are an AI assistant for the Physical AI & Humanoid Robotics textbook.
@@ -31,6 +32,7 @@ class ChatService:
         self.client = OpenAI(api_key=settings.openai_api_key)
         self.model = settings.chat_model
         self.vector_store = get_vector_store()
+        self.image_search = get_image_search_service()
 
     def generate_response(
         self,
@@ -41,11 +43,35 @@ class ChatService:
         # Search for relevant content
         search_results = self.vector_store.search(query=message, limit=5)
 
+        # Search for relevant images
+        image_results = self.image_search.search_images(query=message, limit=3)
+        images = [
+            ImageResult(
+                id=img["id"],
+                url=img["url"],
+                title=img["title"],
+                alt_text=img["alt_text"],
+                chapter=img["chapter"],
+                section=img["section"],
+                score=img["score"],
+            )
+            for img in image_results
+        ]
+
         # Check if we have relevant content
         if not search_results or all(r["score"] < 0.5 for r in search_results):
+            # Even if no text results, return images if available
+            if images:
+                return ChatResponse(
+                    answer="I found some relevant diagrams that might help. Here are the visual resources related to your question:",
+                    sources=[],
+                    images=images,
+                    is_grounded=True,
+                )
             return ChatResponse(
                 answer="I can only answer questions about Physical AI and Robotics topics covered in this textbook. Your question doesn't seem to match the content I have available.",
                 sources=[],
+                images=[],
                 is_grounded=False,
             )
 
@@ -95,6 +121,7 @@ class ChatService:
         return ChatResponse(
             answer=answer,
             sources=sources,
+            images=images,
             is_grounded=True,
         )
 

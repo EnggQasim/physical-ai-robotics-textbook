@@ -15,10 +15,10 @@
 | Frontend Widget | 6 tasks (6 complete) |
 | US1: Ask Questions | 4 tasks (4 complete) |
 | US2: Selected Text | 2 tasks (2 complete) |
-| US3: Image Search | 2 tasks (0 complete) |
+| US3: Image Search | 2 tasks (2 complete) |
 | US4: Conversation | 2 tasks (2 complete) |
-| **Completed** | **26 tasks** |
-| **Remaining** | **2 tasks** (image search) |
+| **Completed** | **28 tasks** |
+| **Remaining** | **0 tasks** |
 
 ## User Story Mapping
 
@@ -94,8 +94,8 @@
 
 > Multimodal image search capability
 
-- [ ] T025 [P] Implement CLIP image embeddings for diagrams
-- [ ] T026 Add image search to chat responses
+- [x] T025 [P] Implement image embeddings for diagrams (text-based semantic search)
+- [x] T026 Add image search to chat responses
 
 ---
 
@@ -125,7 +125,7 @@ Before marking feature complete:
 - [x] Chat widget accessible from every book page
 - [x] Questions answered with source citations
 - [x] Text selection triggers "Ask AI" button
-- [ ] Image search returns relevant diagrams
+- [x] Image search returns relevant diagrams
 - [x] Mobile responsive (tested on 375px)
 - [x] Error states handled gracefully
 - [x] Backend deployed and healthy
