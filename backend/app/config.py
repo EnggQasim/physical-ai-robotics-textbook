@@ -17,7 +17,7 @@ class Settings(BaseSettings):
     qdrant_use_memory: bool = False
 
     # CORS
-    cors_origins: str = "http://localhost:3000,https://enggqasim.github.io,https://enggqasim-physical-ai-textbook-api.hf.space"
+    cors_origins: str = "http://localhost:3000,https://enggqasim.github.io,https://mqasim077-physical-ai-textbook-api.hf.space"
 
     # Embedding model
     embedding_model: str = "text-embedding-3-small"
