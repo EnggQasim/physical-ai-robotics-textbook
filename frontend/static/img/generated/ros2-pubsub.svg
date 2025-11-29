@@ -1,0 +1,35 @@
+<svg viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <marker id="arrowhead" viewBox="0 0 10 10" refX="5" refY="5"
+            markerWidth="6" markerHeight="6"
+            orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#666666" />
+    </marker>
+  </defs>
+
+  <!-- Publisher Box -->
+  <rect x="50" y="200" width="200" height="150" fill="#ffffff" stroke="#1a1a1a" stroke-width="2" rx="10" ry="10"/>
+  <text x="150" y="230" text-anchor="middle" font-family="Arial, sans-serif" font-size="18" fill="#1a1a1a">Publisher</text>
+  <rect x="80" y="250" width="140" height="70" fill="#76b900" stroke="#1a1a1a" stroke-width="1" rx="5" ry="5"/>
+  <text x="150" y="290" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" fill="#ffffff">Publish Data</text>
+
+  <!-- Topic Box -->
+  <rect x="300" y="200" width="200" height="150" fill="#ffffff" stroke="#1a1a1a" stroke-width="2" rx="10" ry="10"/>
+  <text x="400" y="230" text-anchor="middle" font-family="Arial, sans-serif" font-size="18" fill="#1a1a1a">Topic</text>
+  <text x="400" y="280" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" fill="#666666">/my_topic</text>
+
+  <!-- Subscriber Box -->
+  <rect x="550" y="200" width="200" height="150" fill="#ffffff" stroke="#1a1a1a" stroke-width="2" rx="10" ry="10"/>
+  <text x="650" y="230" text-anchor="middle" font-family="Arial, sans-serif" font-size="18" fill="#1a1a1a">Subscriber</text>
+  <rect x="580" y="250" width="140" height="70" fill="#76b900" stroke="#1a1a1a" stroke-width="1" rx="5" ry="5"/>
+  <text x="650" y="290" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" fill="#ffffff">Receive Data</text>
+
+  <!-- Arrows -->
+  <line x1="250" y="275" x2="300" y="275" stroke="#666666" stroke-width="2" marker-end="url(#arrowhead)" />
+  <line x1="500" y="275" x2="550" y="275" stroke="#666666" stroke-width="2" marker-end="url(#arrowhead)" />
+
+  <!-- Legend -->
+  <text x="400" y="50" text-anchor="middle" font-family="Arial, sans-serif" font-size="24" fill="#1a1a1a">ROS2 Publisher/Subscriber</text>
+
+  <text x="100" y="450" font-family="Arial, sans-serif" font-size="14" fill="#666666">Data Flow</text>
+</svg>
