@@ -208,3 +208,10 @@ Wait for consent; never auto-create ADRs. Group related decisions (stacks, authe
 
 ## Code Standards
 See `.specify/memory/constitution.md` for code quality, testing, performance, security, and architecture principles.
+
+## Active Technologies
+- TypeScript/JavaScript (Node.js 18+) + Docusaurus 3.x, React 18, Tailwind CSS (001-docusaurus-book)
+- N/A (static site, content in markdown files) (001-docusaurus-book)
+
+## Recent Changes
+- 001-docusaurus-book: Added TypeScript/JavaScript (Node.js 18+) + Docusaurus 3.x, React 18, Tailwind CSS
