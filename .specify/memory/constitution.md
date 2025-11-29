@@ -1,360 +1,163 @@
-# Physical AI & Humanoid Robotics Textbook - Constitution
+<!-- Sync Impact Report
+Version change: 2.0.0 → 2.1.0
+Modified principles: II (Content-Before-Enhancement), IV (Grounded AI Responses)
+Added sections: Demo Requirements
+Removed sections: None
+Templates requiring updates: ✅ None
+Rationale: Improved flexibility for hackathon workflow and demo preparation
+-->
 
-## Project Overview
-
-An AI-native technical textbook for teaching Physical AI & Humanoid Robotics, built with Docusaurus and deployed to GitHub Pages. The book features:
-- **Multimodal RAG Chatbot** (text + image search)
-- **AI Podcast Generation** (NotebookLM-style using Higgs Audio)
-- **AI-Generated Diagrams & GIFs** (using Gemini)
-- **User Authentication** with personalization
-- **Multilingual Support** (Urdu translation)
-
-**Hackathon Deadline**: Sunday, Nov 30, 2025 at 06:00 PM
+# Physical AI Textbook Constitution
 
 ## Core Principles
 
-### I. MVP-First Development
-- Ship working features over perfect features
-- 4-5 core chapters covering essential Physical AI concepts
-- Every feature must be demonstrable in 90-second demo video
-- Prioritize: Core Book → RAG Chatbot → Podcast → Diagrams → Auth → Personalization → Urdu
+### I. Deadline-First Delivery (NON-NEGOTIABLE)
+All submitted work MUST be demonstrable by **November 30, 2025 at 6:00 PM PKT**.
+- Features not demo-ready by deadline MUST be excluded from final submission
+- Demo video MUST be under 90 seconds
+- Incomplete features MUST NOT break working features
+- Priority order MUST be followed: Book Content → RAG Chatbot → Bonus Features
 
-### II. Modular Architecture
-- Clear separation: Frontend (Docusaurus) / Backend (FastAPI) / AI Services
-- Each component independently deployable and testable
-- API-first design for all backend services
-- Reusable components across features (auth, AI, i18n, media generation)
+### II. Content-Before-Enhancement
+Book content MUST exist before any enhancement features begin implementation.
+- Minimum 2 complete chapters MUST be written (content ready, not necessarily deployed) before RAG chatbot development starts
+- Minimum 3 complete chapters MUST exist before podcast/diagram generation begins
+- Each chapter MUST have: title, learning objectives, main content (2000+ words), code examples, summary
+- Content structure MUST support chunking for RAG retrieval (clear headings, semantic sections)
+- RAG indexing MAY proceed with draft content for development/testing purposes
 
-### III. AI-Native Content
-- Book content optimized for RAG retrieval
-- Structured markdown with semantic sections
-- Images properly tagged for multimodal search
-- AI-generated diagrams and animations for complex concepts
-- Podcast summaries for each chapter/module
-- Content chunks designed for conversational AI
+### III. Testable Acceptance Criteria
+Every feature MUST have measurable acceptance criteria defined BEFORE implementation begins.
+- Each user story MUST include Given/When/Then scenarios
+- Each requirement MUST be verifiable without subjective judgment
+- Success criteria MUST use quantifiable metrics (time, count, percentage, score)
+- Edge cases MUST be documented with expected behavior
 
-### IV. Rich Media Learning
-- Conceptual diagrams generated via Gemini for visual learners
-- Animated GIFs for workflow explanations
-- Audio podcasts for auditory learners
-- Multiple modalities to enhance understanding
+### IV. Grounded AI Responses
+All AI-generated responses MUST be grounded in indexed content.
+- Chatbot answers MUST cite source chapter/section for every claim
+- For questions directly covered in the book, chatbot MUST answer from book content only
+- For related topics not explicitly in the book, chatbot MAY provide brief context while directing user to relevant chapters (e.g., "While [topic] isn't covered in detail, Chapter 3 discusses related concepts...")
+- For completely unrelated topics, chatbot MUST respond: "I can only answer questions about Physical AI and Robotics topics covered in this textbook."
+- Personalized content MUST preserve factual accuracy from original
+- Translations MUST maintain technical term accuracy (provide original term in parentheses)
 
-### V. User-Centric Personalization
-- Collect user background at signup (software/hardware experience)
-- Adapt content complexity based on user profile
-- Support content translation (Urdu) on-demand
-- Remember user preferences across sessions
+### V. Accessibility-First
+All user-facing content MUST meet accessibility standards.
+- Pages MUST pass Lighthouse accessibility score of 85+
+- All images MUST have descriptive alt text
+- All interactive elements MUST be keyboard navigable
+- Color contrast MUST meet WCAG AA standards
+- Mobile responsiveness MUST work on screens 320px and wider
 
-### VI. Spec-Driven Development
-- All features documented before implementation
-- Use Spec-Kit Plus workflow: specify → plan → tasks → implement
-- Create PHRs for all significant decisions
-- Suggest ADRs for architectural choices
+### VI. Security Boundaries
+All sensitive data MUST be protected from exposure.
+- API keys and secrets MUST NEVER appear in code or version control
+- All secrets MUST be loaded from environment variables
+- User passwords MUST be hashed (never stored in plaintext)
+- AI endpoints MUST implement rate limiting (max 10 requests/minute per IP for anonymous users)
+- All user input MUST be validated before processing
 
-### VII. Testable Deliverables
-- Each user story independently testable
-- Clear acceptance criteria for all features
-- Integration tests for RAG accuracy
-- E2E tests for critical user flows
+### VII. Spec-Driven Development
+All features MUST follow the Spec-Kit Plus workflow.
+- Every feature MUST have a specification before planning begins
+- Every plan MUST be approved before implementation begins
+- Every significant decision MUST be recorded as PHR or ADR
+- Constitution MUST be consulted when resolving conflicts between requirements
 
-## Technology Stack
+## Quality Standards
 
-### Frontend (Book)
-- **Framework**: Docusaurus 3.x
-- **Styling**: Tailwind CSS (via Docusaurus plugin)
-- **Deployment**: GitHub Pages
-- **Auth UI**: Custom React components with Better-Auth
-- **I18n**: Docusaurus i18n with dynamic Urdu translation
-- **Media Player**: Custom audio player for podcasts
+### Response Time Requirements
+| Operation | Maximum Time |
+|-----------|--------------|
+| Page load (initial) | 3 seconds |
+| Page navigation | 1 second |
+| Search results | 2 seconds |
+| Chatbot response (streaming start) | 3 seconds |
+| Chatbot response (complete) | 10 seconds |
+| Image search results | 5 seconds |
 
-### Backend (API)
-- **Framework**: FastAPI (Python 3.11+)
-- **Authentication**: Better-Auth integration
-- **Database**: Neon Serverless PostgreSQL
-- **Vector DB**: Qdrant Cloud (Free Tier)
-- **Deployment**: Vercel/Railway/Render
+### Content Quality Requirements
+- Each chapter: minimum 2,000 words of educational content
+- Code examples: must be syntactically correct and include comments
+- Technical accuracy: all robotics/AI concepts must be factually correct
+- Internal links: 100% must resolve (no 404 errors)
 
-### AI Services
-- **Chat SDK**: OpenAI Agents SDK / ChatKit SDK
-- **Embeddings**: OpenAI text-embedding-3-small (text) + CLIP (images)
-- **LLM**: GPT-4o-mini for chat, GPT-4o for personalization
-- **Translation**: OpenAI GPT for Urdu translation
-- **Podcast**: Higgs Audio V2 (multi-speaker dialogue generation)
-- **Diagrams**: Google Gemini (image generation for diagrams/GIFs)
+### AI Quality Requirements
+- RAG relevance: 90% of answers must correctly address the question
+- Source accuracy: 95% of cited sources must contain relevant information
+- Hallucination rate: less than 5% of responses may contain unsupported claims
 
-### Infrastructure
-- **Version Control**: GitHub
-- **CI/CD**: GitHub Actions
-- **Environment**: dotenv for secrets
-- **Media Storage**: GitHub LFS or Cloudinary (for generated audio/images)
-- **Monitoring**: Console logging (MVP)
+## Constraints
 
-## Project Structure
+### Hard Constraints (Cannot Be Violated)
+- Hackathon deadline: November 30, 2025, 6:00 PM PKT
+- Deployment target: GitHub Pages (static site) + Backend API (separate host)
+- Free tier services only: Qdrant Cloud, Neon PostgreSQL
+- Demo video: maximum 90 seconds
 
-```text
-book-project/
-├── .specify/                    # Spec-Kit Plus configuration
-│   ├── memory/
-│   │   └── constitution.md      # This file
-│   └── templates/
-├── .claude/
-│   ├── commands/                # Slash commands
-│   ├── agents/                  # Custom subagents (bonus)
-│   └── skills/                  # Reusable skills (bonus)
-├── specs/                       # Feature specifications
-│   ├── docusaurus-book/
-│   ├── rag-chatbot/
-│   ├── podcast-generator/       # NEW: Higgs Audio integration
-│   ├── diagram-generator/       # NEW: Gemini diagram/GIF generation
-│   ├── auth-system/
-│   ├── personalization/
-│   └── urdu-translation/
-├── history/
-│   ├── prompts/                 # PHR records
-│   └── adr/                     # Architecture decisions
-├── docs/                        # Docusaurus book content
-│   ├── intro.md
-│   ├── module-1-ros2/
-│   ├── module-2-simulation/
-│   ├── module-3-nvidia-isaac/
-│   └── module-4-vla/
-├── backend/                     # FastAPI backend
-│   ├── src/
-│   │   ├── api/
-│   │   ├── models/
-│   │   ├── services/
-│   │   │   ├── rag/             # RAG service
-│   │   │   ├── podcast/         # Higgs Audio service
-│   │   │   ├── diagram/         # Gemini diagram service
-│   │   │   ├── auth/            # Better-Auth service
-│   │   │   └── personalization/ # Content adaptation
-│   │   └── core/
-│   └── tests/
-├── frontend/                    # Docusaurus site
-│   ├── docs/                    # Book chapters
-│   ├── src/
-│   │   ├── components/
-│   │   │   ├── ChatBot/         # RAG chatbot widget
-│   │   │   ├── PodcastPlayer/   # Audio player component
-│   │   │   ├── DiagramViewer/   # Generated diagram display
-│   │   │   └── Auth/            # Login/signup forms
-│   │   ├── pages/
-│   │   └── theme/
-│   ├── static/
-│   │   ├── audio/               # Generated podcasts
-│   │   └── diagrams/            # Generated images/GIFs
-│   └── docusaurus.config.js
-└── scripts/                     # Utility scripts
-    ├── generate-podcast.py      # Podcast generation script
-    └── generate-diagrams.py     # Diagram generation script
-```
+### Soft Constraints (May Be Adjusted with Justification)
+- Chapter count: 4-5 chapters (minimum 4)
+- Book topic: Physical AI & Humanoid Robotics curriculum
+- Language: English primary, Urdu translation as bonus
 
-## Feature Priority (Scoring Strategy)
+## Development Workflow
 
-| Priority | Feature | Points | Status |
-|----------|---------|--------|--------|
-| P1 | Docusaurus Book (4-5 chapters) | Base | Required |
-| P1 | RAG Chatbot (text + image) | Base | Required |
-| P2 | AI Podcast (Higgs Audio) | Bonus* | Differentiator |
-| P2 | AI Diagrams/GIFs (Gemini) | Bonus* | Differentiator |
-| P3 | Better-Auth (signup/signin) | +50 | Bonus |
-| P4 | Content Personalization | +50 | Bonus |
-| P5 | Urdu Translation | +50 | Bonus |
-| P6 | Claude Code Agents/Skills | +50 | Bonus |
+### Feature Implementation Order
+1. **P1 - Required (Base 100 points)**
+   - Docusaurus Book with 4-5 chapters
+   - RAG Chatbot with text search
+   - Image/diagram search capability
 
-*Podcast and Diagrams are differentiators that will impress judges beyond the scoring rubric.
+2. **P2 - Differentiators (Impress Judges)**
+   - AI Podcast generation (Higgs Audio)
+   - AI Diagram/GIF generation (Gemini)
 
-**Maximum Possible**: 100 (base) + 200 (bonus) + Differentiator Impact
+3. **P3 - Bonus Features (+50 points each)**
+   - User authentication (Better-Auth)
+   - Content personalization
+   - Urdu translation
+   - Claude Code agents/skills
 
-## Key Entities
+### Definition of Done
+A feature is "done" when:
+- [ ] All acceptance scenarios pass
+- [ ] No console errors in browser
+- [ ] Lighthouse accessibility score ≥ 85
+- [ ] Works on Chrome, Firefox, Safari
+- [ ] Works on mobile viewport (375px)
+- [ ] Error states handled gracefully
+- [ ] Documented in relevant spec file
 
-### User
-- id, email, password_hash
-- name, background (software_level, hardware_level, prior_robotics)
-- preferences (language, content_level, audio_enabled)
-- created_at, updated_at
-
-### Chapter
-- id, slug, title, module
-- content_markdown, content_html
-- images[] (for multimodal RAG)
-- podcast_url (generated audio)
-- diagrams[] (generated visuals)
-- reading_time, difficulty_level
-
-### Embedding
-- id, chapter_id, chunk_text, chunk_type (text/image)
-- vector (1536 dimensions for text, 512 for CLIP)
-- metadata (section, page, image_alt)
-
-### Podcast
-- id, chapter_id, audio_url
-- duration, speakers[] (host, expert)
-- transcript, generated_at
-
-### Diagram
-- id, chapter_id, image_url
-- type (conceptual/workflow/gif)
-- alt_text, prompt_used
-- generated_at
-
-### ChatSession
-- id, user_id (nullable for anonymous)
-- messages[], context_chunks[]
-- created_at
-
-## API Contracts (Core)
-
-### RAG Chatbot
-```
-POST /api/chat
-  Request: { message: string, session_id?: string, selected_text?: string }
-  Response: { response: string, sources: ChunkRef[], session_id: string }
-
-POST /api/chat/image-search
-  Request: { query: string, image_url?: string }
-  Response: { results: ImageResult[], relevance_scores: float[] }
-```
-
-### Podcast Generation
-```
-POST /api/podcast/generate
-  Request: { chapter_id: string, style?: "conversational" | "lecture" }
-  Response: { podcast_id: string, status: "processing" }
-
-GET /api/podcast/{podcast_id}
-  Response: { audio_url: string, duration: number, transcript: string }
-
-GET /api/podcast/chapter/{chapter_id}
-  Response: { podcasts: Podcast[] }
-```
-
-### Diagram Generation
-```
-POST /api/diagram/generate
-  Request: {
-    concept: string,
-    type: "conceptual" | "workflow" | "gif",
-    chapter_id?: string
-  }
-  Response: { diagram_id: string, status: "processing" }
-
-GET /api/diagram/{diagram_id}
-  Response: { image_url: string, alt_text: string, type: string }
-```
-
-### Authentication
-```
-POST /api/auth/signup
-  Request: { email, password, name, background: UserBackground }
-  Response: { user: User, token: string }
-
-POST /api/auth/signin
-  Request: { email, password }
-  Response: { user: User, token: string }
-```
-
-### Personalization
-```
-POST /api/personalize/chapter
-  Request: { chapter_id: string, user_id: string }
-  Response: { personalized_content: string, adaptations: string[] }
-```
-
-### Translation
-```
-POST /api/translate/urdu
-  Request: { chapter_id: string, content: string }
-  Response: { translated_content: string, cached: boolean }
-```
-
-## Quality Gates
-
-### Code Quality
-- Type hints for all Python functions
-- JSDoc for React components
-- No hardcoded secrets (use .env)
-- Consistent naming: snake_case (Python), camelCase (JS/TS)
-
-### Performance
-- RAG response < 3 seconds
-- Page load < 2 seconds
-- Chatbot streaming for better UX
-- Podcast generation < 60 seconds per chapter
-- Diagram generation < 30 seconds
-- Cache generated media (podcasts, diagrams)
-- Cache translated content
-
-### Security
-- JWT tokens for authentication
-- Rate limiting on AI endpoints
-- Input validation on all endpoints
-- CORS configured for frontend domain
-
-## AI Generation Guidelines
-
-### Podcast Generation (Higgs Audio)
-- Two-speaker format: Host (curious learner) + Expert (teacher)
-- 5-10 minutes per chapter
-- Conversational, engaging tone
-- Include key concepts and examples
-- Store as MP3, serve via CDN
-
-### Diagram Generation (Gemini)
-- **Conceptual Diagrams**: Architecture, system overview
-- **Workflow Diagrams**: Step-by-step processes (ROS2 nodes, SLAM pipeline)
-- **Animated GIFs**: Motion concepts (robot kinematics, path planning)
-- Use consistent visual style across book
-- Generate alt-text for accessibility
-- Store as PNG/GIF, optimize for web
-
-### Content for Generation
-Each chapter should specify:
-```yaml
-podcast:
-  key_concepts: [concept1, concept2]
-  target_duration: 8 # minutes
-
-diagrams:
-  - type: conceptual
-    description: "ROS2 node communication architecture"
-  - type: workflow
-    description: "SLAM pipeline from sensor to map"
-  - type: gif
-    description: "Bipedal walking gait cycle animation"
-```
-
-## Reusable Intelligence (Bonus Points)
-
-### Claude Code Subagents
-1. **book-content-writer**: Generates book chapter content with proper structure
-2. **rag-indexer**: Indexes content for vector search (text + images)
-3. **code-example-generator**: Creates robotics code examples (Python, ROS2)
-4. **podcast-script-writer**: Writes dialogue scripts for Higgs Audio
-5. **diagram-prompt-engineer**: Crafts optimal prompts for Gemini diagrams
-
-### Claude Code Skills
-1. **docusaurus-page**: Creates new Docusaurus pages with frontmatter
-2. **api-endpoint**: Scaffolds FastAPI endpoints with validation
-3. **rag-query**: Tests RAG queries against content
-4. **podcast-generate**: Triggers podcast generation for a chapter
-5. **diagram-generate**: Triggers diagram generation with prompts
+### Demo Requirements
+The final demo submission MUST meet these criteria:
+- Demo video MUST be 90 seconds or less (judges will only watch first 90 seconds)
+- Demo MUST show: book navigation, chatbot Q&A with source citations, at least one working bonus feature
+- Demo MUST NOT require login to demonstrate core features (book + chatbot)
+- Demo SHOULD have pre-cached responses for reliability (live API calls may timeout)
+- Demo MUST include: GitHub repo link, deployed book URL, demo video link
+- Presenter MUST be prepared to answer questions about implementation choices
 
 ## Governance
 
-- Constitution is the source of truth for all decisions
-- Amendments require explicit documentation
-- All architectural decisions must be recorded as ADRs
-- PHRs capture implementation history
+### Constitution Authority
+- This Constitution supersedes all other project documentation when conflicts arise
+- Feature specifications MUST NOT contradict Constitutional principles
+- When in doubt, deadline-first principle takes precedence
 
-**Version**: 1.1.0 | **Ratified**: 2025-11-29 | **Last Amended**: 2025-11-29
+### Amendment Process
+1. Document proposed change with rationale
+2. Assess impact on existing features
+3. Update version number following semver:
+   - MAJOR: Principle removed or fundamentally changed
+   - MINOR: New principle or section added
+   - PATCH: Clarification or wording improvement
+4. Update LAST_AMENDED_DATE
+5. Commit with message: `docs(constitution): <change summary>`
 
-## Changelog
+### Compliance Verification
+- All PRs MUST be checked against Constitutional principles
+- Spec reviews MUST verify testability of acceptance criteria
+- Final submission MUST pass all Quality Standards
 
-### v1.1.0 (2025-11-29)
-- Added Podcast Generation feature (Higgs Audio V2)
-- Added AI Diagram/GIF Generation feature (Gemini)
-- Updated project structure for new services
-- Added new API contracts for podcast and diagram endpoints
-- Defined AI generation guidelines
-- Added new subagents and skills for content generation
+**Version**: 2.1.0 | **Ratified**: 2025-11-29 | **Last Amended**: 2025-11-29
