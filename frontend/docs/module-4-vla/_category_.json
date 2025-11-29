@@ -1,0 +1,11 @@
+{
+  "label": "Vision-Language-Action",
+  "position": 5,
+  "description": "Connect language models to robot actions with VLA architectures",
+  "collapsed": false,
+  "link": {
+    "type": "generated-index",
+    "title": "Vision-Language-Action",
+    "description": "Build intelligent robots that understand natural language commands and act accordingly."
+  }
+}

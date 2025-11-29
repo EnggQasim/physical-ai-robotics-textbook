@@ -1,0 +1,11 @@
+{
+  "label": "NVIDIA Isaac Platform",
+  "position": 4,
+  "description": "Leverage NVIDIA Isaac for GPU-accelerated robotics simulation and AI",
+  "collapsed": false,
+  "link": {
+    "type": "generated-index",
+    "title": "NVIDIA Isaac Platform",
+    "description": "Explore Isaac Sim, Isaac ROS, and GPU-accelerated robotics development."
+  }
+}

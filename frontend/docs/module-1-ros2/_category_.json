@@ -1,0 +1,11 @@
+{
+  "label": "ROS2 Fundamentals",
+  "position": 2,
+  "description": "Learn the Robot Operating System 2 - the foundation of modern robotics",
+  "collapsed": false,
+  "link": {
+    "type": "generated-index",
+    "title": "ROS2 Fundamentals",
+    "description": "Master ROS2 concepts: nodes, topics, services, actions, and Python integration with rclpy."
+  }
+}

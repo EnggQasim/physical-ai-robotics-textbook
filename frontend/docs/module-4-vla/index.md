@@ -1,0 +1,280 @@
+---
+sidebar_position: 1
+title: "Vision-Language-Action Models"
+description: "Introduction to multimodal AI models for robotics"
+---
+
+# Vision-Language-Action Models
+
+Welcome to Module 4. **Vision-Language-Action (VLA)** models represent the cutting edge of robotics AI, enabling robots to understand natural language commands and visual scenes to generate appropriate actions.
+
+## Learning Objectives
+
+- Understand the VLA architecture and capabilities
+- Implement voice command interfaces for robots
+- Integrate large language models with robot control
+- Build end-to-end natural language robot systems
+
+## What are VLA Models?
+
+VLA models combine three modalities:
+
+```text
+┌─────────────────────────────────────────────────────────────┐
+│                    VLA Model Architecture                    │
+├─────────────────────────────────────────────────────────────┤
+│                                                              │
+│   ┌─────────────┐   ┌─────────────┐   ┌─────────────────┐  │
+│   │   Vision    │   │  Language   │   │     Action      │  │
+│   │   Encoder   │   │   Encoder   │   │    Decoder      │  │
+│   └──────┬──────┘   └──────┬──────┘   └────────┬────────┘  │
+│          │                 │                    │           │
+│          │    ┌────────────────────────┐       │           │
+│          └────►   Multimodal Fusion    ◄───────┘           │
+│               │      Transformer       │                    │
+│               └───────────┬────────────┘                    │
+│                           │                                 │
+│                    ┌──────▼──────┐                          │
+│                    │   Robot     │                          │
+│                    │   Actions   │                          │
+│                    └─────────────┘                          │
+└─────────────────────────────────────────────────────────────┘
+```
+
+### The Three Modalities
+
+| Modality | Input | Purpose |
+|----------|-------|---------|
+| **Vision** | Camera images, depth maps | Scene understanding |
+| **Language** | Text commands, speech | Task specification |
+| **Action** | Robot trajectories | Motor control output |
+
+## Why VLA Models Matter
+
+Traditional robotics requires explicit programming for every task. VLA models enable:
+
+### 1. Natural Language Control
+
+```text
+Human: "Pick up the red cup and place it next to the laptop"
+Robot: [Identifies red cup] → [Plans grasp] → [Executes pickup] →
+       [Locates laptop] → [Plans placement] → [Places cup]
+```
+
+### 2. Zero-Shot Generalization
+
+Robots can perform tasks they weren't explicitly trained for:
+
+- **Trained**: "Pick up the apple"
+- **Generalized**: "Pick up the orange" (never seen during training)
+
+### 3. Semantic Understanding
+
+Understanding context and relationships:
+
+```text
+"Put the fork to the LEFT of the plate"
+"Move the robot arm AWAY from the person"
+"Stack the blocks from LARGEST to SMALLEST"
+```
+
+## Key VLA Model Architectures
+
+### RT-2 (Robotics Transformer 2)
+
+Google's RT-2 uses a vision-language model backbone:
+
+```text
+┌─────────────────────────────────────────────────────────────┐
+│                          RT-2                                │
+├─────────────────────────────────────────────────────────────┤
+│  Input: Image + "Pick up the can"                           │
+│                                                              │
+│  ┌─────────────────────────────────────────────────────────┐│
+│  │         PaLI-X / PaLM-E (Vision-Language Model)        ││
+│  └─────────────────────────────────────────────────────────┘│
+│                           │                                  │
+│  Output: Action tokens → [x: 0.3, y: -0.1, z: 0.5, ...]    │
+└─────────────────────────────────────────────────────────────┘
+```
+
+### OpenVLA
+
+Open-source VLA model for research:
+
+- **7B parameter model** fine-tuned from Llama 2
+- **Trained on Open X-Embodiment** dataset
+- **Supports multiple robot platforms**
+
+### PaLM-E
+
+Google's embodied multimodal language model:
+
+- **562B parameters** combining PaLM with ViT
+- **Grounded in physical world** understanding
+- **Can reason about robot actions**
+
+## VLA Pipeline Overview
+
+```text
+┌─────────────────────────────────────────────────────────────┐
+│                    VLA Robot System                          │
+├─────────────────────────────────────────────────────────────┤
+│                                                              │
+│  ┌─────────────┐      ┌─────────────┐      ┌─────────────┐ │
+│  │   Speech    │      │   Camera    │      │   Robot     │ │
+│  │   Input     │      │   Feed      │      │   State     │ │
+│  └──────┬──────┘      └──────┬──────┘      └──────┬──────┘ │
+│         │                    │                    │        │
+│         ▼                    ▼                    ▼        │
+│  ┌─────────────┐      ┌─────────────┐      ┌─────────────┐ │
+│  │   Speech    │      │   Vision    │      │   State     │ │
+│  │   to Text   │      │   Encoder   │      │   Encoder   │ │
+│  │  (Whisper)  │      │   (ViT)     │      │             │ │
+│  └──────┬──────┘      └──────┬──────┘      └──────┬──────┘ │
+│         │                    │                    │        │
+│         └────────────────────┼────────────────────┘        │
+│                              ▼                             │
+│                   ┌─────────────────────┐                  │
+│                   │     VLA Model       │                  │
+│                   │  (Action Decoder)   │                  │
+│                   └──────────┬──────────┘                  │
+│                              │                             │
+│                              ▼                             │
+│                   ┌─────────────────────┐                  │
+│                   │   Action Executor   │                  │
+│                   │   (Robot Control)   │                  │
+│                   └─────────────────────┘                  │
+└─────────────────────────────────────────────────────────────┘
+```
+
+## Hardware Requirements
+
+### Training VLA Models
+
+| Component | Minimum | Recommended |
+|-----------|---------|-------------|
+| GPU | 8× A100 40GB | 8× H100 80GB |
+| RAM | 512 GB | 1 TB |
+| Storage | 10 TB NVMe | 50 TB NVMe |
+
+### Inference/Deployment
+
+| Platform | Model Size | Performance |
+|----------|------------|-------------|
+| Jetson AGX Orin | 7B (quantized) | ~5 Hz |
+| RTX 4090 | 7B | ~15 Hz |
+| A100 | 7B | ~30 Hz |
+
+## Integration with ROS2
+
+VLA models integrate with ROS2 for robot control:
+
+```python title="vla_controller.py"
+#!/usr/bin/env python3
+import rclpy
+from rclpy.node import Node
+from sensor_msgs.msg import Image
+from geometry_msgs.msg import Twist
+from std_msgs.msg import String
+
+class VLAController(Node):
+    """ROS2 node for VLA-based robot control."""
+
+    def __init__(self):
+        super().__init__('vla_controller')
+
+        # Subscribe to camera
+        self.image_sub = self.create_subscription(
+            Image, '/camera/image_raw', self.image_callback, 10
+        )
+
+        # Subscribe to voice commands
+        self.command_sub = self.create_subscription(
+            String, '/voice_command', self.command_callback, 10
+        )
+
+        # Publish velocity commands
+        self.cmd_pub = self.create_publisher(Twist, '/cmd_vel', 10)
+
+        # State
+        self.current_image = None
+        self.current_command = None
+
+        # VLA model (loaded separately)
+        self.vla_model = None  # Initialize your VLA model here
+
+        self.get_logger().info('VLA Controller initialized')
+
+    def image_callback(self, msg):
+        self.current_image = msg
+
+    def command_callback(self, msg):
+        self.current_command = msg.data
+        self.execute_vla()
+
+    def execute_vla(self):
+        """Run VLA inference and execute action."""
+        if self.current_image is None or self.current_command is None:
+            return
+
+        # Run VLA model
+        # action = self.vla_model.predict(self.current_image, self.current_command)
+
+        # Convert to robot command
+        cmd = Twist()
+        # cmd.linear.x = action['linear_x']
+        # cmd.angular.z = action['angular_z']
+        self.cmd_pub.publish(cmd)
+
+def main():
+    rclpy.init()
+    node = VLAController()
+    rclpy.spin(node)
+    rclpy.shutdown()
+```
+
+## Module Structure
+
+This module covers:
+
+1. **[Voice Commands](./voice-commands)** - Speech recognition for robot control
+2. **[LLM Integration](./llm-integration)** - Connecting language models to robots
+
+## Applications
+
+VLA models enable new robotics applications:
+
+| Application | Description |
+|-------------|-------------|
+| **Home Assistance** | "Clean the living room" → autonomous cleaning |
+| **Warehouse** | "Fetch item #12345 from shelf B3" |
+| **Manufacturing** | "Assemble the components in order" |
+| **Healthcare** | "Hand me the surgical instrument" |
+| **Agriculture** | "Harvest the ripe tomatoes" |
+
+## Challenges and Limitations
+
+### Current Limitations
+
+1. **Inference Speed**: Large models are slow for real-time control
+2. **Safety**: Language understanding errors can cause unsafe actions
+3. **Generalization**: Still struggles with truly novel scenarios
+4. **Data Requirements**: Needs massive robot interaction datasets
+
+### Active Research Areas
+
+- **Efficient architectures** for real-time inference
+- **Safety constraints** in action generation
+- **Few-shot learning** for new tasks
+- **Sim-to-real transfer** for VLA models
+
+## Summary
+
+- **VLA models** combine vision, language, and action
+- **Natural language** enables intuitive robot control
+- **Zero-shot generalization** allows handling new tasks
+- **Integration with ROS2** enables deployment on real robots
+- **Current limitations** include speed and safety concerns
+
+**Next**: [Voice Commands](./voice-commands) - Build speech interfaces for robots.

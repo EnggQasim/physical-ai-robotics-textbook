@@ -1,0 +1,11 @@
+{
+  "label": "Robot Simulation",
+  "position": 3,
+  "description": "Learn robot simulation with Gazebo and URDF robot descriptions",
+  "collapsed": false,
+  "link": {
+    "type": "generated-index",
+    "title": "Robot Simulation",
+    "description": "Build and simulate robots using Gazebo, URDF, and physics simulation."
+  }
+}
