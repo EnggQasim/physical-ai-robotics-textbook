@@ -1,0 +1,126 @@
+# Tasks: 006-personalization
+
+**Feature**: Content Personalization
+**Branch**: `006-personalization`
+**Date**: 2025-11-30
+**Spec**: [spec.md](./spec.md)
+**Dependency**: Requires 005-auth-system
+
+## Summary
+
+| Metric | Value |
+|--------|-------|
+| Total Tasks | 20 |
+| Setup Phase | 3 tasks |
+| Backend Core | 5 tasks |
+| Frontend Components | 5 tasks |
+| US1: Background | 2 tasks |
+| US2: Difficulty | 2 tasks |
+| US3: Recommendations | 2 tasks |
+| US4: Progress | 1 task |
+| **Completed** | **0 tasks** |
+| **Remaining** | **20 tasks** |
+
+## User Story Mapping
+
+| User Story | Priority | Tasks | Independent Test |
+|------------|----------|-------|------------------|
+| US1: Set Background | P1 | T006-T009 | Complete onboarding, verify saved |
+| US2: Personalized Difficulty | P1 | T010-T013 | Compare content for different levels |
+| US3: Recommendations | P2 | T014-T015 | Complete chapters, verify recommendations |
+| US4: Progress Tracking | P2 | T016 | Read sections, verify progress updates |
+| US5: Update Preferences | P3 | T017 | Change preferences, verify content updates |
+
+---
+
+## Phase 1: Setup
+
+> Project initialization and dependencies
+
+- [ ] T001 Create user preferences database table
+- [ ] T002 Create reading progress database table
+- [ ] T003 Create personalized content variations table
+
+---
+
+## Phase 2: Backend Core
+
+> Personalization service implementation
+
+- [ ] T004 Create Pydantic schemas for preferences and progress
+- [ ] T005 Implement user preferences API endpoints
+- [ ] T006 Implement reading progress tracking API
+- [ ] T007 Create recommendation engine service
+- [ ] T008 Implement simplified content generation (GPT-4o)
+
+---
+
+## Phase 3: Frontend Components
+
+> Personalization UI
+
+- [ ] T009 Create OnboardingModal component (role, level selection)
+- [ ] T010 Create SimplifiedToggle component for content switching
+- [ ] T011 Create ProgressIndicator component for sidebar
+- [ ] T012 Create RecommendedNext component for chapter end
+- [ ] T013 Add preference management to Profile page
+
+---
+
+## Phase 4: User Story 1 - Set Background (P1)
+
+> First-time user onboarding
+
+- [ ] T014 Trigger onboarding modal on first sign-in
+- [ ] T015 Save preferences and close modal on completion
+
+---
+
+## Phase 5: User Story 2 - Personalized Difficulty (P1)
+
+> Content adaptation based on level
+
+- [ ] T016 Pre-write simplified explanations for key concepts
+- [ ] T017 Implement content switching based on user level
+
+---
+
+## Phase 6: User Story 3 - Recommendations (P2)
+
+> Personalized next content suggestions
+
+- [ ] T018 Generate recommendations based on role and progress
+- [ ] T019 Display recommendations at chapter end
+
+---
+
+## Phase 7: User Story 4 - Progress Tracking (P2)
+
+> Chapter completion tracking
+
+- [ ] T020 Track time on page and mark sections as viewed
+
+---
+
+## Phase 8: Deployment
+
+> Production deployment
+
+- [ ] T021 Deploy personalization service
+- [ ] T022 Verify onboarding flow on production
+- [ ] T023 Test progress sync across devices
+
+---
+
+## Validation Checklist
+
+Before marking feature complete:
+
+- [ ] Onboarding modal appears on first sign-in
+- [ ] User role and level saved correctly
+- [ ] Simplified toggle switches content instantly
+- [ ] Progress indicators show in sidebar
+- [ ] Recommendations relevant to user role
+- [ ] Preferences can be updated in settings
+- [ ] Anonymous users see default content
+- [ ] Progress syncs correctly
