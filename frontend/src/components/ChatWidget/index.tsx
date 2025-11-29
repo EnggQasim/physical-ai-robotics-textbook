@@ -167,6 +167,13 @@ export default function ChatWidget(): JSX.Element {
     }
   };
 
+  // Reset conversation
+  const handleNewChat = () => {
+    setMessages([]);
+    setSelectedText('');
+    setInput('');
+  };
+
   return (
     <>
       {/* Selection Popup - Ask AI Button */}
@@ -209,8 +216,22 @@ export default function ChatWidget(): JSX.Element {
       {isOpen && (
         <div className={styles.chatWindow}>
           <div className={styles.chatHeader}>
-            <h3>AI Assistant</h3>
-            <span>Ask about Physical AI & Robotics</span>
+            <div className={styles.chatHeaderContent}>
+              <h3>AI Assistant</h3>
+              <span>Ask about Physical AI & Robotics</span>
+            </div>
+            {messages.length > 0 && (
+              <button
+                className={styles.newChatButton}
+                onClick={handleNewChat}
+                aria-label="Start new chat"
+                title="New Chat"
+              >
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <path d="M12 5v14M5 12h14"></path>
+                </svg>
+              </button>
+            )}
           </div>
 
           <div className={styles.messagesContainer}>

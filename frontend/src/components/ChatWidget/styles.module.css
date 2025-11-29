@@ -54,7 +54,14 @@
   background: linear-gradient(135deg, #76b900, #5a8f00);
   color: white;
   padding: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.chatHeaderContent {
   text-align: center;
+  flex: 1;
 }
 
 .chatHeader h3 {
@@ -66,6 +73,26 @@
 .chatHeader span {
   font-size: 0.85rem;
   opacity: 0.9;
+}
+
+/* New Chat Button */
+.newChatButton {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s, transform 0.2s;
+}
+
+.newChatButton:hover {
+  background: rgba(255, 255, 255, 0.3);
+  transform: scale(1.1);
 }
 
 /* Messages Container */
