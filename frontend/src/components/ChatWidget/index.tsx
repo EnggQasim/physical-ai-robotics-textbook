@@ -17,7 +17,7 @@ interface Message {
 
 const API_URL = process.env.NODE_ENV === 'development'
   ? 'http://localhost:8000'
-  : 'https://physical-ai-api.onrender.com'; // Update with actual deployed URL
+  : 'https://enggqasim-physical-ai-textbook-api.hf.space'; // Hugging Face Spaces URL
 
 export default function ChatWidget(): JSX.Element {
   const [isOpen, setIsOpen] = useState(false);
