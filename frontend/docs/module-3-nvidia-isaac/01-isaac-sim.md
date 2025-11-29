@@ -8,6 +8,9 @@ description: "Creating photorealistic robot simulations with NVIDIA Isaac Sim"
 
 **Isaac Sim** is NVIDIA's robotics simulation platform built on Omniverse. It provides photorealistic rendering, accurate physics, and seamless ROS2 integration.
 
+![NVIDIA Isaac Platform Architecture](/img/generated/isaac/isaac-platform.svg)
+*Figure: NVIDIA Isaac Platform - Isaac Sim, Isaac ROS, Isaac Perceptor, and Isaac Manipulator components.*
+
 ## Learning Objectives
 
 - Navigate the Isaac Sim interface

@@ -8,6 +8,9 @@ description: "Setting up and using Gazebo for robot simulation"
 
 In this section, you'll learn to create simulation worlds, add sensors, and integrate with ROS2.
 
+![Gazebo Simulation Architecture](/img/generated/simulation/gazebo-architecture.svg)
+*Figure: Gazebo Architecture - Physics engine, rendering, sensors, and ROS2 integration layers.*
+
 ## Learning Objectives
 
 - Create custom Gazebo worlds

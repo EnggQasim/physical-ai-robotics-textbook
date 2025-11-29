@@ -110,7 +110,7 @@ Every ROS2 node follows this lifecycle:
 - **Subscribers** receive messages from a topic
 - **Multiple-to-multiple**: Any number of publishers and subscribers
 
-![ROS2 Publisher-Subscriber Pattern](/img/generated/ros2-pubsub.svg)
+![ROS2 Publisher-Subscriber Pattern](/img/generated/ros2/pubsub-diagram.svg)
 *Figure: ROS2 Publisher-Subscriber Communication Pattern - Publishers send data to a named topic, and subscribers receive data from that topic.*
 
 ### Topic Characteristics

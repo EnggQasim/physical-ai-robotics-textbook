@@ -27,12 +27,8 @@ While topics are great for continuous data streams, many robotics tasks require 
 
 Services provide **synchronous request-response** communication:
 
-```text
-┌──────────────┐                            ┌──────────────┐
-│    Client    │ ──── Request ────────────► │    Server    │
-│              │ ◄─── Response ───────────  │              │
-└──────────────┘                            └──────────────┘
-```
+![ROS2 Service-Client Communication](/img/generated/ros2/service-diagram.svg)
+*Figure: ROS2 Service-Client Pattern - A client sends a request to a service server and waits for the response.*
 
 ### Service Characteristics
 

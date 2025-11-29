@@ -1,0 +1,80 @@
+<svg viewBox="0 0 900 400" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <marker id="flowArrow" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#76b900"/>
+    </marker>
+    <linearGradient id="greenGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#76b900"/>
+      <stop offset="100%" style="stop-color:#5a8f00"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="900" height="400" fill="#fafafa"/>
+
+  <!-- Title -->
+  <text x="450" y="35" text-anchor="middle" font-family="Arial, sans-serif" font-size="22" font-weight="bold" fill="#1a1a1a">Vision-Language-Action (VLA) Pipeline</text>
+
+  <!-- Vision Input -->
+  <rect x="30" y="80" width="150" height="140" rx="12" fill="#fff" stroke="#76b900" stroke-width="3"/>
+  <rect x="30" y="80" width="150" height="35" rx="12" fill="url(#greenGrad)"/>
+  <text x="105" y="105" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#fff">Vision</text>
+  <circle cx="105" cy="150" r="30" fill="#e8f5e9" stroke="#76b900" stroke-width="2"/>
+  <text x="105" y="145" text-anchor="middle" font-family="Arial, sans-serif" font-size="20">📷</text>
+  <text x="105" y="200" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#666">RGB-D Camera</text>
+  <text x="105" y="212" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#666">Scene Understanding</text>
+
+  <!-- Language Input -->
+  <rect x="30" y="240" width="150" height="130" rx="12" fill="#fff" stroke="#76b900" stroke-width="3"/>
+  <rect x="30" y="240" width="150" height="35" rx="12" fill="url(#greenGrad)"/>
+  <text x="105" y="265" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#fff">Language</text>
+  <circle cx="105" cy="305" r="30" fill="#e8f5e9" stroke="#76b900" stroke-width="2"/>
+  <text x="105" y="300" text-anchor="middle" font-family="Arial, sans-serif" font-size="20">🎤</text>
+  <text x="105" y="355" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#666">Voice Command</text>
+  <text x="105" y="367" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#666">"Pick up the red cup"</text>
+
+  <!-- Multimodal Encoder -->
+  <rect x="230" y="120" width="160" height="200" rx="12" fill="#fff" stroke="#76b900" stroke-width="3"/>
+  <rect x="230" y="120" width="160" height="35" rx="12" fill="url(#greenGrad)"/>
+  <text x="310" y="145" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" font-weight="bold" fill="#fff">Multimodal</text>
+  <text x="310" y="180" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#666">Vision Encoder</text>
+  <text x="310" y="195" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#999">(ViT/CLIP)</text>
+  <line x1="250" y1="210" x2="370" y2="210" stroke="#ddd" stroke-width="1"/>
+  <text x="310" y="235" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#666">Language Encoder</text>
+  <text x="310" y="250" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#999">(Whisper/BERT)</text>
+  <line x1="250" y1="265" x2="370" y2="265" stroke="#ddd" stroke-width="1"/>
+  <text x="310" y="290" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#666">Cross-Attention</text>
+  <text x="310" y="305" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#999">Fusion Layer</text>
+
+  <!-- LLM Reasoning -->
+  <rect x="440" y="120" width="160" height="200" rx="12" fill="#fff" stroke="#76b900" stroke-width="3"/>
+  <rect x="440" y="120" width="160" height="35" rx="12" fill="url(#greenGrad)"/>
+  <text x="520" y="145" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" font-weight="bold" fill="#fff">LLM Reasoning</text>
+  <text x="520" y="180" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#666">Task Planning</text>
+  <text x="520" y="210" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#666">Object Grounding</text>
+  <text x="520" y="240" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#666">Action Sequencing</text>
+  <rect x="460" y="260" width="120" height="45" rx="6" fill="#e8f5e9" stroke="#76b900"/>
+  <text x="520" y="280" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#1a1a1a">GPT-4V / LLaVA</text>
+  <text x="520" y="295" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#666">RT-2 / PaLM-E</text>
+
+  <!-- Action Output -->
+  <rect x="650" y="120" width="160" height="200" rx="12" fill="#fff" stroke="#76b900" stroke-width="3"/>
+  <rect x="650" y="120" width="160" height="35" rx="12" fill="url(#greenGrad)"/>
+  <text x="730" y="145" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" font-weight="bold" fill="#fff">Action</text>
+  <circle cx="730" cy="195" r="35" fill="#e8f5e9" stroke="#76b900" stroke-width="2"/>
+  <text x="730" y="190" text-anchor="middle" font-family="Arial, sans-serif" font-size="24">🤖</text>
+  <text x="730" y="250" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#666">Trajectory Generation</text>
+  <text x="730" y="265" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#666">Motion Control</text>
+  <rect x="670" y="280" width="120" height="30" rx="6" fill="#76b900"/>
+  <text x="730" y="300" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" font-weight="bold" fill="#fff">Execute Action</text>
+
+  <!-- Flow Arrows -->
+  <line x1="180" y1="150" x2="225" y2="180" stroke="#76b900" stroke-width="3" marker-end="url(#flowArrow)"/>
+  <line x1="180" y1="305" x2="225" y2="260" stroke="#76b900" stroke-width="3" marker-end="url(#flowArrow)"/>
+  <line x1="390" y1="220" x2="435" y2="220" stroke="#76b900" stroke-width="3" marker-end="url(#flowArrow)"/>
+  <line x1="600" y1="220" x2="645" y2="220" stroke="#76b900" stroke-width="3" marker-end="url(#flowArrow)"/>
+
+  <!-- Bottom Label -->
+  <rect x="200" y="350" width="500" height="35" rx="8" fill="#e8f5e9" stroke="#76b900" stroke-width="1"/>
+  <text x="450" y="373" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#1a1a1a">End-to-End: Natural Language → Robot Actions (10-100ms latency)</text>
+</svg>

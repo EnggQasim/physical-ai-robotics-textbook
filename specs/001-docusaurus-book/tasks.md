@@ -16,11 +16,11 @@
 | US2: Search | 2 tasks (2 complete) |
 | US3: Mobile | 2 tasks (2 complete) |
 | US4: Dark Mode | 2 tasks (2 complete) |
-| Visual Assets | 17 tasks (11 icons complete, 6 diagrams pending) |
+| Visual Assets | 17 tasks (17 complete) |
 | Polish Phase | 2 tasks (2 complete) |
 | Parallel Opportunities | 28 tasks marked [P] |
-| **Completed** | **47 tasks** |
-| **Remaining** | **6 tasks** (AI diagrams - optional) |
+| **Completed** | **53 tasks** |
+| **Remaining** | **0 tasks** |
 
 ## User Story Mapping
 
@@ -137,12 +137,12 @@
 
 ### AI-Generated Diagrams (Gemini API)
 
-- [ ] T035 [P] Generate ROS2 pub/sub diagram using `/sp.diagram ROS2 publisher subscriber communication`
-- [ ] T036 [P] Generate ROS2 services diagram using `/sp.diagram ROS2 service client server communication`
-- [ ] T037 [P] Generate Gazebo simulation architecture using `/sp.diagram --style architecture Gazebo simulation components`
-- [ ] T038 [P] Generate Isaac Sim platform diagram using `/sp.diagram --style architecture NVIDIA Isaac Sim platform layers`
-- [ ] T039 [P] Generate VLA pipeline diagram using `/sp.diagram --style workflow Voice to robot action VLA pipeline`
-- [ ] T040 Embed generated diagrams in corresponding chapters with alt text and captions
+- [x] T035 [P] Generate ROS2 pub/sub diagram using `/sp.diagram ROS2 publisher subscriber communication`
+- [x] T036 [P] Generate ROS2 services diagram using `/sp.diagram ROS2 service client server communication`
+- [x] T037 [P] Generate Gazebo simulation architecture using `/sp.diagram --style architecture Gazebo simulation components`
+- [x] T038 [P] Generate Isaac Sim platform diagram using `/sp.diagram --style architecture NVIDIA Isaac Sim platform layers`
+- [x] T039 [P] Generate VLA pipeline diagram using `/sp.diagram --style workflow Voice to robot action VLA pipeline`
+- [x] T040 Embed generated diagrams in corresponding chapters with alt text and captions
 
 ### Hand-Crafted SVG Icons (image-generation skill)
 
@@ -244,7 +244,7 @@ Before marking feature complete:
 - [x] All 4 chapters have 2000+ words each
 - [x] All code examples have syntax highlighting
 - [x] All images have alt text
-- [ ] AI-generated diagrams embedded in relevant chapters
+- [x] AI-generated diagrams embedded in relevant chapters
 - [x] Module icons display on landing page with conceptual meaning
 - [x] Feature icons display in HomepageFeatures section
 - [x] Icons use `useBaseUrl` hook for proper path resolution

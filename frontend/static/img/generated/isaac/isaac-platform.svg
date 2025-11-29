@@ -1,0 +1,87 @@
+<svg viewBox="0 0 800 550" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <marker id="arrowGreen" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#76b900"/>
+    </marker>
+    <linearGradient id="nvidiaGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#76b900"/>
+      <stop offset="100%" style="stop-color:#5a8f00"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="800" height="550" fill="#fafafa"/>
+
+  <!-- Title -->
+  <text x="400" y="35" text-anchor="middle" font-family="Arial, sans-serif" font-size="22" font-weight="bold" fill="#1a1a1a">NVIDIA Isaac Platform Architecture</text>
+
+  <!-- Isaac Sim Layer -->
+  <rect x="50" y="60" width="700" height="100" rx="12" fill="#fff" stroke="#76b900" stroke-width="3"/>
+  <rect x="50" y="60" width="700" height="35" rx="12" fill="url(#nvidiaGrad)"/>
+  <text x="400" y="85" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#fff">Isaac Sim (Omniverse)</text>
+
+  <rect x="70" y="105" width="130" height="45" rx="6" fill="#e8f5e9" stroke="#76b900"/>
+  <text x="135" y="133" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#1a1a1a">PhysX 5.0</text>
+
+  <rect x="220" y="105" width="130" height="45" rx="6" fill="#e8f5e9" stroke="#76b900"/>
+  <text x="285" y="133" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#1a1a1a">RTX Rendering</text>
+
+  <rect x="370" y="105" width="130" height="45" rx="6" fill="#e8f5e9" stroke="#76b900"/>
+  <text x="435" y="133" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#1a1a1a">USD Scene</text>
+
+  <rect x="520" y="105" width="130" height="45" rx="6" fill="#e8f5e9" stroke="#76b900"/>
+  <text x="585" y="133" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#1a1a1a">Synthetic Data</text>
+
+  <rect x="670" y="105" width="70" height="45" rx="6" fill="#e8f5e9" stroke="#76b900"/>
+  <text x="705" y="133" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#1a1a1a">Python API</text>
+
+  <!-- Isaac ROS Layer -->
+  <rect x="50" y="180" width="700" height="100" rx="12" fill="#fff" stroke="#76b900" stroke-width="3"/>
+  <rect x="50" y="180" width="700" height="35" rx="12" fill="url(#nvidiaGrad)"/>
+  <text x="400" y="205" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#fff">Isaac ROS</text>
+
+  <rect x="70" y="225" width="150" height="45" rx="6" fill="#e8f5e9" stroke="#76b900"/>
+  <text x="145" y="248" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#1a1a1a">Visual SLAM</text>
+  <text x="145" y="262" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#666">cuVSLAM</text>
+
+  <rect x="240" y="225" width="150" height="45" rx="6" fill="#e8f5e9" stroke="#76b900"/>
+  <text x="315" y="248" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#1a1a1a">Object Detection</text>
+  <text x="315" y="262" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#666">DOPE/FoundationPose</text>
+
+  <rect x="410" y="225" width="150" height="45" rx="6" fill="#e8f5e9" stroke="#76b900"/>
+  <text x="485" y="248" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#1a1a1a">Depth Estimation</text>
+  <text x="485" y="262" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#666">ESS/Bi3D</text>
+
+  <rect x="580" y="225" width="160" height="45" rx="6" fill="#e8f5e9" stroke="#76b900"/>
+  <text x="660" y="248" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#1a1a1a">Image Processing</text>
+  <text x="660" y="262" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#666">NITROS Accelerated</text>
+
+  <!-- Isaac Perceptor Layer -->
+  <rect x="50" y="300" width="340" height="90" rx="12" fill="#fff" stroke="#76b900" stroke-width="3"/>
+  <rect x="50" y="300" width="340" height="35" rx="12" fill="url(#nvidiaGrad)"/>
+  <text x="220" y="325" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#fff">Isaac Perceptor</text>
+  <text x="220" y="355" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#666">3D Reconstruction</text>
+  <text x="220" y="375" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#666">Multi-Camera Fusion</text>
+
+  <!-- Isaac Manipulator Layer -->
+  <rect x="410" y="300" width="340" height="90" rx="12" fill="#fff" stroke="#76b900" stroke-width="3"/>
+  <rect x="410" y="300" width="340" height="35" rx="12" fill="url(#nvidiaGrad)"/>
+  <text x="580" y="325" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#fff">Isaac Manipulator</text>
+  <text x="580" y="355" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#666">Motion Planning (cuMotion)</text>
+  <text x="580" y="375" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#666">Grasp Planning</text>
+
+  <!-- Hardware Layer -->
+  <rect x="50" y="410" width="700" height="80" rx="12" fill="#1a1a1a" stroke="#76b900" stroke-width="3"/>
+  <text x="400" y="445" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#76b900">Hardware: Jetson AGX Orin / RTX GPU</text>
+  <text x="400" y="470" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#999">CUDA Cores | Tensor Cores | DLA Engines</text>
+
+  <!-- Connection Lines -->
+  <line x1="400" y1="160" x2="400" y2="180" stroke="#76b900" stroke-width="2" marker-end="url(#arrowGreen)"/>
+  <line x1="220" y1="280" x2="220" y2="300" stroke="#76b900" stroke-width="2" marker-end="url(#arrowGreen)"/>
+  <line x1="580" y1="280" x2="580" y2="300" stroke="#76b900" stroke-width="2" marker-end="url(#arrowGreen)"/>
+  <line x1="220" y1="390" x2="220" y2="410" stroke="#76b900" stroke-width="2" marker-end="url(#arrowGreen)"/>
+  <line x1="580" y1="390" x2="580" y2="410" stroke="#76b900" stroke-width="2" marker-end="url(#arrowGreen)"/>
+
+  <!-- Legend -->
+  <text x="400" y="520" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#666">All components GPU-accelerated with CUDA &amp; TensorRT optimization</text>
+</svg>

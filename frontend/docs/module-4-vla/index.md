@@ -8,6 +8,9 @@ description: "Introduction to multimodal AI models for robotics"
 
 Welcome to Module 4. **Vision-Language-Action (VLA)** models represent the cutting edge of robotics AI, enabling robots to understand natural language commands and visual scenes to generate appropriate actions.
 
+![VLA Pipeline Overview](/img/generated/vla/vla-pipeline.svg)
+*Figure: Vision-Language-Action Pipeline - From visual input and voice commands through multimodal fusion to robot actions.*
+
 ## Learning Objectives
 
 - Understand the VLA architecture and capabilities
