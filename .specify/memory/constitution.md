@@ -1,10 +1,10 @@
 <!-- Sync Impact Report
-Version change: 2.0.0 → 2.1.0
+Version change: 2.1.0 → 2.2.0
 Modified principles: II (Content-Before-Enhancement), IV (Grounded AI Responses)
-Added sections: Demo Requirements
+Added sections: Demo Requirements, VIII (Visual Learning with AI)
 Removed sections: None
 Templates requiring updates: ✅ None
-Rationale: Improved flexibility for hackathon workflow and demo preparation
+Rationale: Added Gemini Nano for conceptual diagram/GIF generation to enhance learning
 -->
 
 # Physical AI Textbook Constitution
@@ -64,6 +64,29 @@ All features MUST follow the Spec-Kit Plus workflow.
 - Every plan MUST be approved before implementation begins
 - Every significant decision MUST be recorded as PHR or ADR
 - Constitution MUST be consulted when resolving conflicts between requirements
+
+### VIII. Visual Learning with AI (Gemini Nano)
+Complex concepts SHOULD be enhanced with AI-generated visual explanations.
+- Gemini Nano SHOULD be used to generate conceptual diagrams, workflows, and logical diagrams
+- GIF animations MAY be generated to illustrate dynamic processes (e.g., ROS2 message flow, robot kinematics)
+- Visual content generation triggers:
+  - Complex algorithms or data structures
+  - System architectures and component interactions
+  - State machines and workflow sequences
+  - Robot motion and sensor data flows
+  - Neural network architectures and AI pipelines
+- Generated visuals MUST:
+  - Include descriptive alt text for accessibility
+  - Be stored in `/static/img/generated/` directory
+  - Follow consistent styling (NVIDIA green theme #76b900)
+  - Be optimized for web (max 500KB for images, 2MB for GIFs)
+- Visual generation workflow:
+  1. Identify difficult concept requiring visualization
+  2. Generate prompt describing desired diagram/workflow
+  3. Use Gemini Nano to create SVG/PNG or animated GIF
+  4. Review for technical accuracy
+  5. Add to relevant chapter with caption and alt text
+- Fallback: ASCII diagrams in code blocks when image generation unavailable
 
 ## Quality Standards
 
@@ -160,4 +183,4 @@ The final demo submission MUST meet these criteria:
 - Spec reviews MUST verify testability of acceptance criteria
 - Final submission MUST pass all Quality Standards
 
-**Version**: 2.1.0 | **Ratified**: 2025-11-29 | **Last Amended**: 2025-11-29
+**Version**: 2.2.0 | **Ratified**: 2025-11-29 | **Last Amended**: 2025-11-30
