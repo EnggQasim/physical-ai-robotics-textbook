@@ -246,3 +246,53 @@
   opacity: 0.5;
   cursor: not-allowed;
 }
+
+/* Selection Popup - Ask AI Button */
+.selectionPopup {
+  position: fixed;
+  transform: translate(-50%, -100%);
+  background: linear-gradient(135deg, #76b900, #5a8f00);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 8px 14px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+  z-index: 1001;
+  animation: popIn 0.15s ease-out;
+  white-space: nowrap;
+}
+
+.selectionPopup::after {
+  content: '';
+  position: absolute;
+  bottom: -6px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 0;
+  border-left: 6px solid transparent;
+  border-right: 6px solid transparent;
+  border-top: 6px solid #5a8f00;
+}
+
+.selectionPopup:hover {
+  transform: translate(-50%, -100%) scale(1.05);
+  box-shadow: 0 6px 20px rgba(118, 185, 0, 0.4);
+}
+
+@keyframes popIn {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -90%);
+  }
+  100% {
+    opacity: 1;
+    transform: translate(-50%, -100%);
+  }
+}

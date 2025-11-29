@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect, useCallback } from 'react';
 import styles from './styles.module.css';
 
 interface Source {
@@ -13,6 +13,14 @@ interface Message {
   role: 'user' | 'assistant';
   content: string;
   sources?: Source[];
+  selectedText?: string;
+}
+
+interface SelectionPopup {
+  visible: boolean;
+  x: number;
+  y: number;
+  text: string;
 }
 
 const API_URL = process.env.NODE_ENV === 'development'
@@ -24,7 +32,15 @@ export default function ChatWidget(): JSX.Element {
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState('');
   const [isLoading, setIsLoading] = useState(false);
+  const [selectedText, setSelectedText] = useState('');
+  const [selectionPopup, setSelectionPopup] = useState<SelectionPopup>({
+    visible: false,
+    x: 0,
+    y: 0,
+    text: '',
+  });
   const messagesEndRef = useRef<HTMLDivElement>(null);
+  const inputRef = useRef<HTMLInputElement>(null);
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
@@ -33,6 +49,67 @@ export default function ChatWidget(): JSX.Element {
   useEffect(() => {
     scrollToBottom();
   }, [messages]);
+
+  // Handle text selection
+  const handleTextSelection = useCallback(() => {
+    const selection = window.getSelection();
+    const text = selection?.toString().trim();
+
+    if (text && text.length > 0 && text.length < 500) {
+      const range = selection?.getRangeAt(0);
+      const rect = range?.getBoundingClientRect();
+
+      if (rect) {
+        setSelectionPopup({
+          visible: true,
+          x: rect.left + rect.width / 2,
+          y: rect.top - 10,
+          text: text,
+        });
+      }
+    } else {
+      setSelectionPopup(prev => ({ ...prev, visible: false }));
+    }
+  }, []);
+
+  // Listen for text selection
+  useEffect(() => {
+    const handleMouseUp = () => {
+      setTimeout(handleTextSelection, 10);
+    };
+
+    const handleMouseDown = (e: MouseEvent) => {
+      const target = e.target as HTMLElement;
+      if (!target.closest(`.${styles.selectionPopup}`)) {
+        setSelectionPopup(prev => ({ ...prev, visible: false }));
+      }
+    };
+
+    document.addEventListener('mouseup', handleMouseUp);
+    document.addEventListener('mousedown', handleMouseDown);
+
+    return () => {
+      document.removeEventListener('mouseup', handleMouseUp);
+      document.removeEventListener('mousedown', handleMouseDown);
+    };
+  }, [handleTextSelection]);
+
+  // Ask about selected text
+  const askAboutSelection = () => {
+    const text = selectionPopup.text;
+    setSelectedText(text);
+    setSelectionPopup(prev => ({ ...prev, visible: false }));
+    setIsOpen(true);
+
+    // Clear any existing selection
+    window.getSelection()?.removeAllRanges();
+
+    // Focus input and set a prompt
+    setTimeout(() => {
+      inputRef.current?.focus();
+      setInput(`Explain this: "${text.substring(0, 100)}${text.length > 100 ? '...' : ''}"`);
+    }, 100);
+  };
 
   const sendMessage = async () => {
     if (!input.trim() || isLoading) return;
@@ -92,6 +169,24 @@ export default function ChatWidget(): JSX.Element {
 
   return (
     <>
+      {/* Selection Popup - Ask AI Button */}
+      {selectionPopup.visible && (
+        <button
+          className={styles.selectionPopup}
+          style={{
+            left: `${selectionPopup.x}px`,
+            top: `${selectionPopup.y}px`,
+          }}
+          onClick={askAboutSelection}
+          aria-label="Ask AI about selected text"
+        >
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+          </svg>
+          Ask AI
+        </button>
+      )}
+
       {/* Chat Toggle Button */}
       <button
         className={styles.chatToggle}
@@ -175,11 +270,12 @@ export default function ChatWidget(): JSX.Element {
 
           <div className={styles.inputContainer}>
             <input
+              ref={inputRef}
               type="text"
               value={input}
               onChange={e => setInput(e.target.value)}
               onKeyPress={handleKeyPress}
-              placeholder="Ask a question..."
+              placeholder={selectedText ? "Ask about the selected text..." : "Ask a question..."}
               disabled={isLoading}
               className={styles.input}
             />
