@@ -1,0 +1,39 @@
+<svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- NVIDIA Isaac: GPU chip with AI neural pathways -->
+
+  <!-- GPU Chip body -->
+  <rect x="16" y="16" width="32" height="32" rx="4" fill="#1a1a1a"/>
+
+  <!-- GPU pins (sides) -->
+  <rect x="12" y="22" width="4" height="4" fill="#666"/>
+  <rect x="12" y="30" width="4" height="4" fill="#666"/>
+  <rect x="12" y="38" width="4" height="4" fill="#666"/>
+  <rect x="48" y="22" width="4" height="4" fill="#666"/>
+  <rect x="48" y="30" width="4" height="4" fill="#666"/>
+  <rect x="48" y="38" width="4" height="4" fill="#666"/>
+  <rect x="22" y="12" width="4" height="4" fill="#666"/>
+  <rect x="30" y="12" width="4" height="4" fill="#666"/>
+  <rect x="38" y="12" width="4" height="4" fill="#666"/>
+  <rect x="22" y="48" width="4" height="4" fill="#666"/>
+  <rect x="30" y="48" width="4" height="4" fill="#666"/>
+  <rect x="38" y="48" width="4" height="4" fill="#666"/>
+
+  <!-- Neural network inside chip -->
+  <circle cx="26" cy="26" r="3" fill="#76b900"/>
+  <circle cx="38" cy="26" r="3" fill="#76b900"/>
+  <circle cx="32" cy="32" r="4" fill="#76b900"/>
+  <circle cx="26" cy="38" r="3" fill="#76b900"/>
+  <circle cx="38" cy="38" r="3" fill="#76b900"/>
+
+  <!-- Neural connections -->
+  <line x1="26" y1="26" x2="32" y2="32" stroke="#76b900" stroke-width="1.5"/>
+  <line x1="38" y1="26" x2="32" y2="32" stroke="#76b900" stroke-width="1.5"/>
+  <line x1="26" y1="38" x2="32" y2="32" stroke="#76b900" stroke-width="1.5"/>
+  <line x1="38" y1="38" x2="32" y2="32" stroke="#76b900" stroke-width="1.5"/>
+  <line x1="26" y1="26" x2="38" y2="38" stroke="#76b900" stroke-width="1" opacity="0.5"/>
+  <line x1="38" y1="26" x2="26" y2="38" stroke="#76b900" stroke-width="1" opacity="0.5"/>
+
+  <!-- AI "pulse" effect -->
+  <circle cx="32" cy="32" r="8" stroke="#76b900" stroke-width="1" fill="none" opacity="0.4"/>
+  <circle cx="32" cy="32" r="12" stroke="#76b900" stroke-width="0.5" fill="none" opacity="0.2"/>
+</svg>

@@ -1,0 +1,37 @@
+<svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- VLA: Vision + Language + Action in a cycle -->
+
+  <!-- Central triangle connecting V-L-A -->
+  <path d="M32 10 L54 50 L10 50 Z" fill="none" stroke="#1a1a1a" stroke-width="1" stroke-dasharray="2,2"/>
+
+  <!-- VISION (top) - Eye -->
+  <circle cx="32" cy="12" r="10" fill="#1a1a1a"/>
+  <circle cx="32" cy="12" r="6" fill="#fff"/>
+  <circle cx="32" cy="12" r="3" fill="#76b900"/>
+  <circle cx="33" cy="11" r="1" fill="#fff"/>
+
+  <!-- LANGUAGE (bottom-left) - Speech bubble -->
+  <path d="M6 44 Q6 36 14 36 L22 36 Q30 36 30 44 L30 50 Q30 54 26 54 L14 54 L8 58 L10 54 Q6 54 6 50 Z" fill="#1a1a1a"/>
+  <line x1="10" y1="42" x2="26" y2="42" stroke="#76b900" stroke-width="2"/>
+  <line x1="10" y1="46" x2="22" y2="46" stroke="#76b900" stroke-width="2"/>
+  <line x1="10" y1="50" x2="18" y2="50" stroke="#76b900" stroke-width="2"/>
+
+  <!-- ACTION (bottom-right) - Robot arm -->
+  <rect x="44" y="38" width="14" height="8" rx="2" fill="#1a1a1a"/>
+  <rect x="50" y="32" width="6" height="6" rx="1" fill="#1a1a1a"/>
+  <rect x="52" y="26" width="4" height="6" rx="1" fill="#1a1a1a"/>
+  <circle cx="54" cy="24" r="3" fill="#76b900"/>
+  <!-- Gripper -->
+  <path d="M52 22 L50 18 M56 22 L58 18" stroke="#1a1a1a" stroke-width="2" stroke-linecap="round"/>
+
+  <!-- Flow arrows (V → L → A → V cycle) -->
+  <path d="M22 16 Q14 26 16 34" stroke="#76b900" stroke-width="2" fill="none" marker-end="url(#arrow2)"/>
+  <path d="M30 52 L42 48" stroke="#76b900" stroke-width="2" marker-end="url(#arrow2)"/>
+  <path d="M54 32 Q50 20 38 14" stroke="#76b900" stroke-width="2" fill="none" marker-end="url(#arrow2)"/>
+
+  <defs>
+    <marker id="arrow2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto">
+      <path d="M0 0 L10 5 L0 10 Z" fill="#76b900"/>
+    </marker>
+  </defs>
+</svg>

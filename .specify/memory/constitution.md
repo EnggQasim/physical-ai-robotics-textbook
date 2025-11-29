@@ -65,28 +65,109 @@ All features MUST follow the Spec-Kit Plus workflow.
 - Every significant decision MUST be recorded as PHR or ADR
 - Constitution MUST be consulted when resolving conflicts between requirements
 
-### VIII. Visual Learning with AI (Gemini Nano)
-Complex concepts SHOULD be enhanced with AI-generated visual explanations.
-- Gemini Nano SHOULD be used to generate conceptual diagrams, workflows, and logical diagrams
-- GIF animations MAY be generated to illustrate dynamic processes (e.g., ROS2 message flow, robot kinematics)
-- Visual content generation triggers:
-  - Complex algorithms or data structures
-  - System architectures and component interactions
-  - State machines and workflow sequences
-  - Robot motion and sensor data flows
-  - Neural network architectures and AI pipelines
+### VIII. Visual Learning with AI (Gemini API + Claude Skills)
+Complex concepts SHOULD be enhanced with AI-generated visual explanations using Claude skills.
+
+**Skills Available**:
+| Skill | Location | Purpose |
+|-------|----------|---------|
+| image-generation | `.claude/skills/image-generation.md` | Static diagrams, icons, logos |
+| generate-gif-image | `.claude/skills/generate-gif-image.md` | Animated GIFs for dynamic concepts |
+
+**Generator Scripts**:
+- `.specify/scripts/python/gemini_image.py` - SVG/PNG diagram generation
+- `.specify/scripts/python/gemini_gif.py` - Animated GIF generation
+
+#### Capabilities
+- **AI-Generated Diagrams** (Gemini API): Technical diagrams, workflows, architecture
+- **Hand-Crafted SVG Icons**: Module icons, feature icons, logos, branding assets
+- **Animated GIFs** (Gemini 2.5 Flash): Process animations, data flows, state transitions
+
+#### Visual Content Types
+| Type | Method | Output Location |
+|------|--------|-----------------|
+| Technical diagrams | Gemini API | `/static/img/generated/` |
+| Workflow diagrams | Gemini API | `/static/img/generated/` |
+| Module icons | Hand-crafted SVG | `/static/img/icons/` |
+| Feature icons | Hand-crafted SVG | `/static/img/icons/` |
+| Site logo | Hand-crafted SVG | `/static/img/logo.svg` |
+| Process animations | Gemini GIF API | `/static/img/animations/` |
+| Data flow animations | Gemini GIF API | `/static/img/animations/` |
+
+#### Visual Content Triggers
+
+**Static Visuals (Diagrams/Icons)**:
+- Complex algorithms or data structures
+- System architectures and component interactions
+- Module/feature representation (icons with conceptual meaning)
+- Site branding (logo, navigation icons)
+
+**Animated Visuals (GIFs)** - Use when showing:
+- State machines and workflow sequences
+- Robot motion and sensor data flows
+- ROS2 communication patterns (pub/sub message flow)
+- Data pipelines and processing steps
+- Learning loops and training cycles
+- Simulation physics steps
+- Any concept where MOVEMENT helps understanding
+
+#### Requirements
 - Generated visuals MUST:
   - Include descriptive alt text for accessibility
-  - Be stored in `/static/img/generated/` directory
-  - Follow consistent styling (NVIDIA green theme #76b900)
-  - Be optimized for web (max 500KB for images, 2MB for GIFs)
-- Visual generation workflow:
-  1. Identify difficult concept requiring visualization
-  2. Generate prompt describing desired diagram/workflow
-  3. Use Gemini Nano to create SVG/PNG or animated GIF
-  4. Review for technical accuracy
-  5. Add to relevant chapter with caption and alt text
-- Fallback: ASCII diagrams in code blocks when image generation unavailable
+  - Follow consistent styling (NVIDIA green theme #76b900, dark #1a1a1a)
+  - Be optimized for web (SVG preferred, max 500KB for raster images)
+  - Use `useBaseUrl` hook in React components for proper path resolution
+- Icons MUST:
+  - Be 64x64 viewBox for consistency
+  - Visually represent the concept they depict
+  - Include hover animations for interactivity
+- Animated GIFs MUST:
+  - Be max 2MB file size for fast loading
+  - Loop seamlessly (end connects to start)
+  - Use 10-15 fps for smooth motion
+  - Be 800x600 or 600x400 dimensions
+  - Have descriptive alt text explaining the animation sequence
+  - Include static fallback for slow connections
+
+#### Diagram Styles (Gemini API)
+- `technical`: System components, data structures (default)
+- `workflow`: Step-by-step processes
+- `architecture`: High-level system design
+- `simple`: Basic introductory concepts
+
+#### Animation Styles (GIF Generation)
+- `loop`: Continuous processes (e.g., ROS2 message publishing)
+- `sequence`: Step-by-step procedures (e.g., robot boot sequence)
+- `flow`: Data/message movement (e.g., topic message flow)
+- `transition`: State changes (e.g., FSM transitions)
+- `cycle`: Repeating patterns (e.g., control loop iterations)
+
+#### Icon Design Patterns (Hand-Crafted)
+- **Module Icon**: Core concept symbol + context (e.g., ROS2: nodes + topic + arrows)
+- **Feature Icon**: Abstract representation (e.g., GPU: chip + 3D rendering)
+- **Concept Icon**: Metaphor or analogy (e.g., AI Brain: neural network)
+- **Logo**: Brand identity + concept (e.g., Robot head + neural network)
+
+#### Visual Generation Workflow
+
+**Decision Tree**:
+1. Is the concept about MOVEMENT or FLOW? → Use **generate-gif-image** skill
+2. Is it a MODULE or FEATURE icon? → Use **image-generation** skill (hand-crafted SVG)
+3. Is it a static technical concept? → Use **image-generation** skill (Gemini API)
+
+**For Static Diagrams/Icons**:
+1. Run `/sp.diagram <concept>` or use image-generation skill
+2. For icons: Create hand-crafted SVG with conceptual elements
+3. Review for technical accuracy
+4. Add to chapter with markdown: `![Alt](/img/generated/file.svg)`
+
+**For Animated GIFs**:
+1. Run `python .specify/scripts/python/gemini_gif.py --prompt "<concept>" --style <style>`
+2. Review animation for clarity and smooth looping
+3. Add to chapter with markdown: `![Animation: <description>](/img/animations/file.gif)`
+4. Always include static fallback image
+
+- Fallback: ASCII diagrams in code blocks when API unavailable or quota exceeded
 
 ## Quality Standards
 

@@ -28,10 +28,11 @@ Build a Docusaurus 3.x static site for the Physical AI & Humanoid Robotics textb
 | I. Deadline-First Delivery | ✅ PASS | Static site is fastest to ship; Docusaurus has quick setup |
 | II. Content-Before-Enhancement | ✅ PASS | This IS the content - P1 priority, no dependencies |
 | III. Testable Acceptance Criteria | ✅ PASS | Spec has Given/When/Then scenarios |
-| IV. Grounded AI Responses | ⬜ N/A | No AI in this feature |
+| IV. Grounded AI Responses | ⬜ N/A | No chatbot in this feature |
 | V. Accessibility-First | ✅ PASS | Lighthouse 85+ required in success criteria |
-| VI. Security Boundaries | ⬜ N/A | No user data, no secrets in static site |
+| VI. Security Boundaries | ✅ PASS | Gemini API key loaded from environment variable |
 | VII. Spec-Driven Development | ✅ PASS | Full spec exists before planning |
+| VIII. Visual Learning with AI | ✅ PASS | image-generation skill implements AI diagrams with Gemini API |
 
 **Gate Status**: ✅ PASSED - All applicable principles satisfied
 
@@ -112,4 +113,102 @@ tests/
 | Styling | Tailwind CSS | Utility-first, small bundle, easy customization |
 | Testing | Playwright + Lighthouse | E2E for UX, Lighthouse for accessibility |
 | Hosting | GitHub Pages | Free, fast, reliable, GitHub Actions integration |
+| Diagram Generation | Google Gemini API | AI-powered SVG generation for complex concepts |
+
+## Claude Code Skills
+
+### image-generation Skill
+
+**Purpose**: Generate conceptual diagrams and icons for visualizing complex concepts and enhancing UI.
+
+**Location**: `.claude/skills/image-generation.md`
+
+**Slash Command**: `/sp.diagram <concept>`
+
+**Components**:
+- `.claude/skills/image-generation.md` - Skill documentation
+- `.claude/commands/sp.diagram.md` - Slash command definition
+- `.specify/scripts/python/gemini_image.py` - Python generator script (for AI diagrams)
+
+#### Capabilities
+
+| Capability | Method | Output Location |
+|------------|--------|-----------------|
+| Technical diagrams | Gemini API | `/static/img/generated/` |
+| Workflow diagrams | Gemini API | `/static/img/generated/` |
+| Module icons | Hand-crafted SVG | `/static/img/icons/` |
+| Feature icons | Hand-crafted SVG | `/static/img/icons/` |
+| Site logo | Hand-crafted SVG | `/static/img/logo.svg` |
+
+#### Usage Examples
+
+**AI-Generated Diagrams (Gemini API)**:
+```bash
+# Generate ROS2 pub/sub diagram
+/sp.diagram ROS2 publisher subscriber communication pattern
+
+# Generate architecture diagram
+/sp.diagram --style architecture NVIDIA Isaac platform components
+
+# Generate workflow diagram
+/sp.diagram --style workflow Gazebo simulation launch sequence
+```
+
+**Hand-Crafted Icons** (requested via natural language):
+```
+Create an icon for the ROS2 module showing publisher-subscriber communication
+Create a feature icon for GPU-accelerated simulation
+Create a site logo showing Physical AI concept
+```
+
+#### Diagram Styles (Gemini API)
+| Style | Use Case |
+|-------|----------|
+| technical | System components, data structures (default) |
+| workflow | Step-by-step processes |
+| architecture | High-level system design |
+| simple | Basic introductory concepts |
+
+#### Icon Design Patterns (Hand-Crafted SVG)
+| Pattern | Visual Elements | Example |
+|---------|----------------|---------|
+| Module Icon | Core concept symbol + context | ROS2: nodes + topic + arrows |
+| Feature Icon | Abstract representation | GPU: chip + 3D rendering |
+| Concept Icon | Metaphor or analogy | AI Brain: neural network |
+| Logo | Brand identity + concept | Robot head + neural network |
+
+#### Icons Created
+| Icon | File | Key Visual Elements |
+|------|------|---------------------|
+| ROS2 Fundamentals | `ros2-icon.svg` | Publisher → Topic → Subscriber with arrows |
+| Robot Simulation | `simulation-icon.svg` | 3D cube + grid floor + robot |
+| NVIDIA Isaac | `isaac-icon.svg` | GPU chip + neural network + pulse |
+| VLA Models | `vla-icon.svg` | Eye + Speech bubble + Robot arm cycle |
+| Physical AI Intro | `intro-icon.svg` | Humanoid robot + AI brain core |
+| Industry Tools | `industry-tools-icon.svg` | Gear + wrench + network nodes |
+| GPU Simulation | `gpu-simulation-icon.svg` | GPU card + 3D rendering + speed lines |
+| Cutting-Edge AI | `cutting-edge-ai-icon.svg` | Brain + neural connections + pulse |
+
+#### Output Locations
+- **AI Diagrams**: `frontend/static/img/generated/`
+  - `ros2/` - ROS2 related diagrams
+  - `simulation/` - Gazebo/simulation diagrams
+  - `isaac/` - NVIDIA Isaac diagrams
+  - `vla/` - Vision-Language-Action diagrams
+- **Icons**: `frontend/static/img/icons/`
+- **Logo**: `frontend/static/img/logo.svg`
+
+#### Theme Colors
+- Primary: `#76b900` (NVIDIA green)
+- Dark: `#1a1a1a`
+- Light: `#ffffff`
+- Gray: `#666666`
+
+#### React Integration
+Icons must use `useBaseUrl` hook for proper path resolution:
+```tsx
+import useBaseUrl from '@docusaurus/useBaseUrl';
+const iconUrl = useBaseUrl('/img/icons/ros2-icon.svg');
+<img src={iconUrl} alt="ROS2" width="64" height="64" />
+```
 

@@ -9,24 +9,27 @@
 
 | Metric | Value |
 |--------|-------|
-| Total Tasks | 32 |
-| Setup Phase | 6 tasks |
-| Foundational Phase | 4 tasks |
-| US1: Browse Content | 14 tasks |
-| US2: Search | 2 tasks |
-| US3: Mobile | 2 tasks |
-| US4: Dark Mode | 2 tasks |
-| Polish Phase | 2 tasks |
-| Parallel Opportunities | 12 tasks marked [P] |
+| Total Tasks | 53 |
+| Setup Phase | 6 tasks (6 complete) |
+| Foundational Phase | 4 tasks (4 complete) |
+| US1: Browse Content | 18 tasks (18 complete) |
+| US2: Search | 2 tasks (2 complete) |
+| US3: Mobile | 2 tasks (2 complete) |
+| US4: Dark Mode | 2 tasks (2 complete) |
+| Visual Assets | 17 tasks (11 icons complete, 6 diagrams pending) |
+| Polish Phase | 2 tasks (1 complete, 1 pending) |
+| Parallel Opportunities | 28 tasks marked [P] |
+| **Completed** | **46 tasks** |
+| **Remaining** | **7 tasks** (6 AI diagrams + 1 deployment) |
 
 ## User Story Mapping
 
 | User Story | Priority | Tasks | Independent Test |
 |------------|----------|-------|------------------|
-| US1: Browse Book Content | P1 | T007-T020 | Navigate all chapters, verify content displays |
-| US2: Search Within Book | P2 | T021-T022 | Type keywords, verify results link correctly |
-| US3: Mobile View | P2 | T023-T024 | Test on 375px viewport, verify responsive layout |
-| US4: Dark Mode | P3 | T025-T026 | Toggle theme, verify preference persists |
+| US1: Browse Book Content | P1 | T007-T028 | Navigate all chapters, verify content displays |
+| US2: Search Within Book | P2 | T029-T030 | Type keywords, verify results link correctly |
+| US3: Mobile View | P2 | T031-T032 | Test on 320px viewport, verify responsive layout |
+| US4: Dark Mode | P3 | T033-T034 | Toggle theme, verify preference persists |
 
 ---
 
@@ -34,12 +37,12 @@
 
 > Project initialization and tooling setup
 
-- [ ] T001 Create Docusaurus project with TypeScript template in `frontend/` directory
-- [ ] T002 Install search plugin `@easyops-cn/docusaurus-search-local` in `frontend/package.json`
-- [ ] T003 Install Tailwind CSS plugin `docusaurus-tailwindcss` in `frontend/package.json`
-- [ ] T004 Create Tailwind configuration in `frontend/tailwind.config.js`
-- [ ] T005 Create GitHub Actions workflow in `.github/workflows/deploy.yml`
-- [ ] T006 Verify local development server runs at `http://localhost:3000`
+- [x] T001 Create Docusaurus project with TypeScript template in `frontend/` directory
+- [x] T002 Install search plugin `@easyops-cn/docusaurus-search-local` in `frontend/package.json`
+- [x] T003 Install Tailwind CSS plugin `docusaurus-tailwindcss` in `frontend/package.json`
+- [x] T004 Create Tailwind configuration in `frontend/tailwind.config.js`
+- [x] T005 Create GitHub Actions workflow in `.github/workflows/deploy.yml`
+- [x] T006 Verify local development server runs at `http://localhost:3000`
 
 ---
 
@@ -47,10 +50,10 @@
 
 > Blocking prerequisites for all user stories
 
-- [ ] T007 Configure `frontend/docusaurus.config.ts` with project metadata (title, tagline, URLs)
-- [ ] T008 Configure Prism syntax highlighting for Python, C++, YAML, Bash in `frontend/docusaurus.config.ts`
-- [ ] T009 Create image directories `frontend/static/img/module-1/` through `module-4/`
-- [ ] T010 Create chapter folder structure in `frontend/docs/` (intro, module-1-ros2, module-2-simulation, module-3-nvidia-isaac, module-4-vla)
+- [x] T007 Configure `frontend/docusaurus.config.ts` with project metadata (title, tagline, URLs)
+- [x] T008 Configure Prism syntax highlighting for Python, C++, YAML, Bash in `frontend/docusaurus.config.ts`
+- [x] T009 Create image directories `frontend/static/img/module-1/` through `module-4/`
+- [x] T010 Create chapter folder structure in `frontend/docs/` (intro, module-1-ros2, module-2-simulation, module-3-nvidia-isaac, module-4-vla)
 
 ---
 
@@ -62,36 +65,36 @@
 
 ### Content Structure
 
-- [ ] T011 [P] [US1] Create introduction chapter in `frontend/docs/intro.md` with Physical AI overview (1500+ words)
-- [ ] T012 [P] [US1] Create `frontend/docs/module-1-ros2/_category_.json` with label "ROS2 Fundamentals" and position 2
-- [ ] T013 [P] [US1] Create `frontend/docs/module-2-simulation/_category_.json` with label "Robot Simulation" and position 3
-- [ ] T014 [P] [US1] Create `frontend/docs/module-3-nvidia-isaac/_category_.json` with label "NVIDIA Isaac Platform" and position 4
-- [ ] T015 [P] [US1] Create `frontend/docs/module-4-vla/_category_.json` with label "Vision-Language-Action" and position 5
+- [x] T011 [P] [US1] Create introduction chapter in `frontend/docs/intro.md` with Physical AI overview (1500+ words)
+- [x] T012 [P] [US1] Create `frontend/docs/module-1-ros2/_category_.json` with label "ROS2 Fundamentals" and position 2
+- [x] T013 [P] [US1] Create `frontend/docs/module-2-simulation/_category_.json` with label "Robot Simulation" and position 3
+- [x] T014 [P] [US1] Create `frontend/docs/module-3-nvidia-isaac/_category_.json` with label "NVIDIA Isaac Platform" and position 4
+- [x] T015 [P] [US1] Create `frontend/docs/module-4-vla/_category_.json` with label "Vision-Language-Action" and position 5
 
 ### Module 1: ROS2 Fundamentals (2500+ words, 8 code examples)
 
-- [ ] T016 [US1] Create `frontend/docs/module-1-ros2/index.md` with chapter overview and learning objectives
-- [ ] T017 [US1] Create `frontend/docs/module-1-ros2/01-nodes-topics.md` with ROS2 nodes and topics explanation
-- [ ] T018 [US1] Create `frontend/docs/module-1-ros2/02-services-actions.md` with ROS2 services and actions
-- [ ] T019 [US1] Create `frontend/docs/module-1-ros2/03-python-rclpy.md` with Python integration examples
+- [x] T016 [US1] Create `frontend/docs/module-1-ros2/index.md` with chapter overview and learning objectives
+- [x] T017 [US1] Create `frontend/docs/module-1-ros2/01-nodes-topics.md` with ROS2 nodes and topics explanation
+- [x] T018 [US1] Create `frontend/docs/module-1-ros2/02-services-actions.md` with ROS2 services and actions
+- [x] T019 [US1] Create `frontend/docs/module-1-ros2/03-python-rclpy.md` with Python integration examples
 
 ### Module 2: Robot Simulation (2000+ words, 5 code examples)
 
-- [ ] T020 [US1] Create `frontend/docs/module-2-simulation/index.md` with simulation overview
-- [ ] T021 [US1] Create `frontend/docs/module-2-simulation/01-gazebo-basics.md` with Gazebo introduction
-- [ ] T022 [US1] Create `frontend/docs/module-2-simulation/02-urdf-robots.md` with URDF robot descriptions
+- [x] T020 [US1] Create `frontend/docs/module-2-simulation/index.md` with simulation overview
+- [x] T021 [US1] Create `frontend/docs/module-2-simulation/01-gazebo-basics.md` with Gazebo introduction
+- [x] T022 [US1] Create `frontend/docs/module-2-simulation/02-urdf-robots.md` with URDF robot descriptions
 
 ### Module 3: NVIDIA Isaac (2000+ words, 4 code examples)
 
-- [ ] T023 [US1] Create `frontend/docs/module-3-nvidia-isaac/index.md` with Isaac platform overview
-- [ ] T024 [US1] Create `frontend/docs/module-3-nvidia-isaac/01-isaac-sim.md` with Isaac Sim basics
-- [ ] T025 [US1] Create `frontend/docs/module-3-nvidia-isaac/02-isaac-ros.md` with Isaac ROS integration
+- [x] T023 [US1] Create `frontend/docs/module-3-nvidia-isaac/index.md` with Isaac platform overview
+- [x] T024 [US1] Create `frontend/docs/module-3-nvidia-isaac/01-isaac-sim.md` with Isaac Sim basics
+- [x] T025 [US1] Create `frontend/docs/module-3-nvidia-isaac/02-isaac-ros.md` with Isaac ROS integration
 
 ### Module 4: Vision-Language-Action (2000+ words, 4 code examples)
 
-- [ ] T026 [US1] Create `frontend/docs/module-4-vla/index.md` with VLA concepts overview
-- [ ] T027 [US1] Create `frontend/docs/module-4-vla/01-voice-commands.md` with voice-to-action patterns
-- [ ] T028 [US1] Create `frontend/docs/module-4-vla/02-llm-integration.md` with LLM robot control
+- [x] T026 [US1] Create `frontend/docs/module-4-vla/index.md` with VLA concepts overview
+- [x] T027 [US1] Create `frontend/docs/module-4-vla/01-voice-commands.md` with voice-to-action patterns
+- [x] T028 [US1] Create `frontend/docs/module-4-vla/02-llm-integration.md` with LLM robot control
 
 ---
 
@@ -101,19 +104,19 @@
 > **Independent Test**: Press Ctrl+K, type "ROS2 nodes", verify results appear within 2 seconds and link correctly
 > **Acceptance**: FR-005, SC-004
 
-- [ ] T029 [US2] Configure search plugin in `frontend/docusaurus.config.ts` themes array
-- [ ] T030 [US2] Verify search indexes all content and returns results for "ROS2", "Gazebo", "URDF" keywords
+- [x] T029 [US2] Configure search plugin in `frontend/docusaurus.config.ts` themes array
+- [x] T030 [US2] Verify search indexes all content and returns results for "ROS2", "Gazebo", "URDF" keywords
 
 ---
 
 ## Phase 5: User Story 3 - Mobile View (P2)
 
-> **Goal**: Site is usable on mobile devices (375px minimum)
-> **Independent Test**: Open site at 375px width, verify content fits, sidebar toggles, code scrolls horizontally
+> **Goal**: Site is usable on mobile devices (320px minimum per constitution)
+> **Independent Test**: Open site at 320px width, verify content fits, sidebar toggles, code scrolls horizontally
 > **Acceptance**: FR-008, SC-008
 
-- [ ] T031 [US3] Add mobile responsive CSS overrides in `frontend/src/css/custom.css`
-- [ ] T032 [US3] Verify mobile navigation hamburger menu works in browser responsive mode
+- [x] T031 [US3] Add mobile responsive CSS overrides in `frontend/src/css/custom.css`
+- [x] T032 [US3] Verify mobile navigation hamburger menu works in browser responsive mode
 
 ---
 
@@ -123,17 +126,46 @@
 > **Independent Test**: Click theme toggle, verify colors change, refresh page, verify preference remembered
 > **Acceptance**: FR-009
 
-- [ ] T033 [US4] Configure colorMode in `frontend/docusaurus.config.ts` with respectPrefersColorScheme
-- [ ] T034 [US4] Verify dark mode toggle appears in navbar and persists across page refreshes
+- [x] T033 [US4] Configure colorMode in `frontend/docusaurus.config.ts` with respectPrefersColorScheme
+- [x] T034 [US4] Verify dark mode toggle appears in navbar and persists across page refreshes
 
 ---
 
-## Phase 7: Polish & Deployment
+## Phase 7: Visual Assets (P2 - Differentiator)
+
+> Generate conceptual diagrams and icons using image-generation skill
+
+### AI-Generated Diagrams (Gemini API)
+
+- [ ] T035 [P] Generate ROS2 pub/sub diagram using `/sp.diagram ROS2 publisher subscriber communication`
+- [ ] T036 [P] Generate ROS2 services diagram using `/sp.diagram ROS2 service client server communication`
+- [ ] T037 [P] Generate Gazebo simulation architecture using `/sp.diagram --style architecture Gazebo simulation components`
+- [ ] T038 [P] Generate Isaac Sim platform diagram using `/sp.diagram --style architecture NVIDIA Isaac Sim platform layers`
+- [ ] T039 [P] Generate VLA pipeline diagram using `/sp.diagram --style workflow Voice to robot action VLA pipeline`
+- [ ] T040 Embed generated diagrams in corresponding chapters with alt text and captions
+
+### Hand-Crafted SVG Icons (image-generation skill)
+
+- [x] T043 [P] Create ROS2 module icon (`ros2-icon.svg`) showing pub/sub pattern with nodes and topic
+- [x] T044 [P] Create Simulation module icon (`simulation-icon.svg`) showing 3D virtual world with robot
+- [x] T045 [P] Create Isaac module icon (`isaac-icon.svg`) showing GPU chip with neural network
+- [x] T046 [P] Create VLA module icon (`vla-icon.svg`) showing Vision-Language-Action cycle
+- [x] T047 [P] Create Intro icon (`intro-icon.svg`) showing humanoid robot with AI brain
+- [x] T048 [P] Create Industry Tools feature icon (`industry-tools-icon.svg`) showing gear + wrench + nodes
+- [x] T049 [P] Create GPU Simulation feature icon (`gpu-simulation-icon.svg`) showing GPU card + 3D rendering
+- [x] T050 [P] Create Cutting-Edge AI feature icon (`cutting-edge-ai-icon.svg`) showing brain + neural network
+- [x] T051 Update `index.tsx` to use module icons with `useBaseUrl` hook
+- [x] T052 Update `HomepageFeatures/index.tsx` to use feature icons with `useBaseUrl` hook
+- [x] T053 Add hover animations for icons in CSS
+
+---
+
+## Phase 8: Polish & Deployment
 
 > Cross-cutting concerns and final verification
 
-- [ ] T035 Run `npm run build` and verify no broken links or build errors
-- [ ] T036 Deploy to GitHub Pages and verify site loads at published URL
+- [x] T041 Run `npm run build` and verify no broken links or build errors
+- [ ] T042 Deploy to GitHub Pages and verify site loads at published URL
 
 ---
 
@@ -158,7 +190,13 @@ T010 ─┬─► T011 (intro) ────────────────�
                                          T033-T034 (dark mode)
                                               │
                                               ▼
-                                         T035 ──► T036
+                                         T035-T039 (diagrams) [parallel]
+                                              │
+                                              ▼
+                                         T040 (embed diagrams)
+                                              │
+                                              ▼
+                                         T041 ──► T042
 ```
 
 ## Parallel Execution Opportunities
@@ -189,12 +227,13 @@ T012 & T013 & T014 & T015
 ### MVP Scope (Demo-Ready)
 1. **Phase 1-2**: Setup + Foundational (T001-T010)
 2. **Phase 3 partial**: Intro + Module 1 ROS2 only (T011, T012, T016-T019)
-3. **Phase 7**: Build + Deploy (T035-T036)
+3. **Phase 7**: AI Diagrams (T035-T040) - at least 2 diagrams
+4. **Phase 8**: Build + Deploy (T041-T042)
 
-This delivers a working book with 1 complete chapter for demo purposes.
+This delivers a working book with 1 complete chapter and AI-generated diagrams for demo purposes.
 
 ### Full Scope
-Complete all phases in order. Estimated: 32 tasks across 7 phases.
+Complete all phases in order. Estimated: 42 tasks across 8 phases.
 
 ---
 
@@ -202,13 +241,18 @@ Complete all phases in order. Estimated: 32 tasks across 7 phases.
 
 Before marking feature complete:
 
-- [ ] All 4 chapters have 2000+ words each
-- [ ] All code examples have syntax highlighting
-- [ ] All images have alt text
-- [ ] Search returns results for key terms
-- [ ] Site works on 375px mobile viewport
-- [ ] Dark mode toggle works and persists
+- [x] All 4 chapters have 2000+ words each
+- [x] All code examples have syntax highlighting
+- [x] All images have alt text
+- [ ] AI-generated diagrams embedded in relevant chapters
+- [x] Module icons display on landing page with conceptual meaning
+- [x] Feature icons display in HomepageFeatures section
+- [x] Icons use `useBaseUrl` hook for proper path resolution
+- [x] Icons have hover animations
+- [x] Search returns results for key terms
+- [x] Site works on 320px mobile viewport
+- [x] Dark mode toggle works and persists
 - [ ] Lighthouse accessibility score 85+
-- [ ] Build produces no errors
+- [x] Build produces no errors
 - [ ] Site deployed to GitHub Pages
 

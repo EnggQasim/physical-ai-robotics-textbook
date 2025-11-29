@@ -1,0 +1,36 @@
+<svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- ROS2: Nodes communicating via Topics (Pub/Sub pattern) -->
+
+  <!-- Publisher Node (left) -->
+  <circle cx="12" cy="32" r="10" fill="#1a1a1a" stroke="#76b900" stroke-width="2"/>
+  <text x="12" y="36" font-size="8" fill="#76b900" text-anchor="middle" font-family="Arial">P</text>
+
+  <!-- Topic (center) - message queue -->
+  <rect x="26" y="26" width="12" height="12" rx="2" fill="#76b900"/>
+  <line x1="29" y1="30" x2="35" y2="30" stroke="#fff" stroke-width="1.5"/>
+  <line x1="29" y1="34" x2="35" y2="34" stroke="#fff" stroke-width="1.5"/>
+
+  <!-- Subscriber Node (right) -->
+  <circle cx="52" cy="32" r="10" fill="#1a1a1a" stroke="#76b900" stroke-width="2"/>
+  <text x="52" y="36" font-size="8" fill="#76b900" text-anchor="middle" font-family="Arial">S</text>
+
+  <!-- Arrows showing data flow -->
+  <path d="M22 32 L26 32" stroke="#76b900" stroke-width="2" marker-end="url(#arrowGreen)"/>
+  <path d="M38 32 L42 32" stroke="#76b900" stroke-width="2" marker-end="url(#arrowGreen)"/>
+
+  <!-- Second subscriber (bottom) -->
+  <circle cx="52" cy="52" r="8" fill="#1a1a1a" stroke="#76b900" stroke-width="1.5"/>
+  <text x="52" y="55" font-size="6" fill="#76b900" text-anchor="middle" font-family="Arial">S</text>
+  <path d="M35 38 L48 48" stroke="#76b900" stroke-width="1.5" marker-end="url(#arrowGreen)"/>
+
+  <!-- Second publisher (top) -->
+  <circle cx="12" cy="12" r="8" fill="#1a1a1a" stroke="#76b900" stroke-width="1.5"/>
+  <text x="12" y="15" font-size="6" fill="#76b900" text-anchor="middle" font-family="Arial">P</text>
+  <path d="M18 16 L29 26" stroke="#76b900" stroke-width="1.5" marker-end="url(#arrowGreen)"/>
+
+  <defs>
+    <marker id="arrowGreen" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="4" markerHeight="4" orient="auto">
+      <path d="M0 0 L10 5 L0 10 Z" fill="#76b900"/>
+    </marker>
+  </defs>
+</svg>

@@ -1,0 +1,47 @@
+<svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Cutting-Edge AI: Brain with neural network and VLA flow -->
+
+  <!-- Brain outline -->
+  <path d="M32 8 C20 8 12 16 12 26 C12 32 14 36 18 40 C16 44 16 50 20 54 C24 58 30 58 32 56 C34 58 40 58 44 54 C48 50 48 44 46 40 C50 36 52 32 52 26 C52 16 44 8 32 8" fill="#1a1a1a" stroke="#76b900" stroke-width="2"/>
+
+  <!-- Brain center divide -->
+  <path d="M32 12 C32 12 32 52 32 52" stroke="#333" stroke-width="1"/>
+
+  <!-- Left brain folds -->
+  <path d="M18 22 Q24 20 26 26" stroke="#76b900" stroke-width="1.5" fill="none" opacity="0.6"/>
+  <path d="M16 32 Q22 30 26 34" stroke="#76b900" stroke-width="1.5" fill="none" opacity="0.6"/>
+  <path d="M20 42 Q26 40 28 46" stroke="#76b900" stroke-width="1.5" fill="none" opacity="0.6"/>
+
+  <!-- Right brain folds -->
+  <path d="M46 22 Q40 20 38 26" stroke="#76b900" stroke-width="1.5" fill="none" opacity="0.6"/>
+  <path d="M48 32 Q42 30 38 34" stroke="#76b900" stroke-width="1.5" fill="none" opacity="0.6"/>
+  <path d="M44 42 Q38 40 36 46" stroke="#76b900" stroke-width="1.5" fill="none" opacity="0.6"/>
+
+  <!-- Neural nodes (active neurons) -->
+  <circle cx="22" cy="24" r="3" fill="#76b900"/>
+  <circle cx="42" cy="24" r="3" fill="#76b900"/>
+  <circle cx="26" cy="36" r="2.5" fill="#76b900" opacity="0.8"/>
+  <circle cx="38" cy="36" r="2.5" fill="#76b900" opacity="0.8"/>
+  <circle cx="32" cy="28" r="4" fill="#76b900"/>
+  <circle cx="24" cy="48" r="2" fill="#76b900" opacity="0.6"/>
+  <circle cx="40" cy="48" r="2" fill="#76b900" opacity="0.6"/>
+
+  <!-- Neural connections -->
+  <line x1="22" y1="24" x2="32" y2="28" stroke="#76b900" stroke-width="1.5"/>
+  <line x1="42" y1="24" x2="32" y2="28" stroke="#76b900" stroke-width="1.5"/>
+  <line x1="26" y1="36" x2="32" y2="28" stroke="#76b900" stroke-width="1"/>
+  <line x1="38" y1="36" x2="32" y2="28" stroke="#76b900" stroke-width="1"/>
+  <line x1="22" y1="24" x2="26" y2="36" stroke="#76b900" stroke-width="1" opacity="0.5"/>
+  <line x1="42" y1="24" x2="38" y2="36" stroke="#76b900" stroke-width="1" opacity="0.5"/>
+  <line x1="26" y1="36" x2="24" y2="48" stroke="#76b900" stroke-width="1" opacity="0.5"/>
+  <line x1="38" y1="36" x2="40" y2="48" stroke="#76b900" stroke-width="1" opacity="0.5"/>
+
+  <!-- AI "thinking" pulse -->
+  <circle cx="32" cy="28" r="6" stroke="#76b900" stroke-width="1" fill="none" opacity="0.4">
+    <animate attributeName="r" values="6;10;6" dur="1.5s" repeatCount="indefinite"/>
+    <animate attributeName="opacity" values="0.4;0.1;0.4" dur="1.5s" repeatCount="indefinite"/>
+  </circle>
+
+  <!-- Sparkle (cutting-edge) -->
+  <path d="M54 12 L56 16 L60 14 L56 18 L58 22 L54 18 L50 20 L54 16 Z" fill="#76b900" opacity="0.8"/>
+</svg>
