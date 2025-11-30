@@ -152,3 +152,30 @@
     border-radius: 8px;
   }
 }
+
+/* ===========================================
+   RTL (Urdu) Support for Homepage
+   =========================================== */
+
+:global(html[dir='rtl']) .heroContent {
+  flex-direction: row-reverse;
+}
+
+:global(html[dir='rtl']) .heroText {
+  text-align: right;
+}
+
+:global(html[dir='rtl']) .moduleCard {
+  text-align: right;
+}
+
+:global(html[dir='rtl']) .moduleCard h3,
+:global(html[dir='rtl']) .moduleCard p {
+  text-align: right;
+}
+
+@media screen and (max-width: 996px) {
+  :global(html[dir='rtl']) .heroContent {
+    flex-direction: column-reverse;
+  }
+}

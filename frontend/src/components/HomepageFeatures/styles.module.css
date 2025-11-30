@@ -20,3 +20,13 @@
 .featureIcon img:hover {
   transform: scale(1.1);
 }
+
+/* RTL Support for Features */
+:global(html[dir='rtl']) .features {
+  direction: rtl;
+}
+
+:global(html[dir='rtl']) .features h3,
+:global(html[dir='rtl']) .features p {
+  text-align: right;
+}

@@ -270,3 +270,59 @@ html[dir='rtl'] .table-of-contents__link {
   padding-right: 0.75rem;
   padding-left: 0;
 }
+
+/* Hero section RTL */
+html[dir='rtl'] .hero {
+  text-align: right;
+}
+
+html[dir='rtl'] .hero__title,
+html[dir='rtl'] .hero__subtitle {
+  text-align: right;
+}
+
+/* Buttons RTL */
+html[dir='rtl'] .button {
+  flex-direction: row-reverse;
+}
+
+/* General text alignment for RTL */
+html[dir='rtl'] h1,
+html[dir='rtl'] h2,
+html[dir='rtl'] h3,
+html[dir='rtl'] h4,
+html[dir='rtl'] h5,
+html[dir='rtl'] h6,
+html[dir='rtl'] p {
+  text-align: right;
+}
+
+/* Container row reverse for RTL */
+html[dir='rtl'] .row {
+  flex-direction: row-reverse;
+}
+
+/* Card content RTL */
+html[dir='rtl'] .card {
+  text-align: right;
+}
+
+/* Admonitions RTL */
+html[dir='rtl'] .admonition {
+  text-align: right;
+  border-left: none;
+  border-right: 5px solid var(--ifm-color-info);
+  padding-right: 1rem;
+  padding-left: 0;
+}
+
+html[dir='rtl'] .admonition-heading {
+  flex-direction: row-reverse;
+}
+
+/* Mobile adjustments for RTL */
+@media (max-width: 996px) {
+  html[dir='rtl'] .navbar__items {
+    flex-direction: row;
+  }
+}
