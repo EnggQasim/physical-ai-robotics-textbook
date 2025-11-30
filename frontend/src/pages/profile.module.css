@@ -150,6 +150,148 @@
   font-size: 0.9rem;
 }
 
+/* Preferences Section */
+.preferencesSection {
+  padding: 1.5rem 2rem;
+  border-top: 1px solid var(--ifm-color-emphasis-200);
+}
+
+.sectionHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.sectionHeader h2 {
+  margin: 0;
+  font-size: 1.1rem;
+}
+
+.editButton {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 6px 12px;
+  border: 1px solid var(--ifm-color-emphasis-300);
+  border-radius: 6px;
+  background: transparent;
+  font-size: 0.85rem;
+  color: var(--ifm-color-emphasis-700);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.editButton:hover {
+  border-color: var(--ifm-color-primary);
+  color: var(--ifm-color-primary);
+}
+
+.preferencesGrid {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.prefItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.prefBadge {
+  padding: 4px 12px;
+  background: var(--ifm-color-primary-lightest);
+  color: var(--ifm-color-primary-dark);
+  border-radius: 16px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  text-transform: capitalize;
+}
+
+.interestTags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  justify-content: flex-end;
+}
+
+.interestTag {
+  padding: 2px 8px;
+  background: var(--ifm-color-emphasis-100);
+  border-radius: 12px;
+  font-size: 0.75rem;
+  color: var(--ifm-color-emphasis-700);
+}
+
+.noPreferences {
+  text-align: center;
+  padding: 1rem;
+  color: var(--ifm-color-emphasis-600);
+}
+
+.noPreferences p {
+  margin-bottom: 1rem;
+}
+
+.setupButton {
+  padding: 8px 16px;
+  background: var(--ifm-color-primary);
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.setupButton:hover {
+  background: var(--ifm-color-primary-dark);
+}
+
+.loadingText {
+  color: var(--ifm-color-emphasis-500);
+  font-style: italic;
+}
+
+/* Progress Section */
+.progressSection {
+  padding: 1.5rem 2rem;
+  border-top: 1px solid var(--ifm-color-emphasis-200);
+}
+
+.progressSection h2 {
+  margin: 0 0 1rem;
+  font-size: 1.1rem;
+}
+
+.progressStats {
+  display: flex;
+  gap: 2rem;
+}
+
+.statItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1rem;
+  background: var(--ifm-color-emphasis-100);
+  border-radius: 8px;
+  min-width: 100px;
+}
+
+.statValue {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--ifm-color-primary);
+}
+
+.statLabel {
+  font-size: 0.75rem;
+  color: var(--ifm-color-emphasis-600);
+  text-align: center;
+}
+
 /* Actions Section */
 .actions {
   padding: 1.5rem 2rem;

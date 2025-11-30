@@ -1,10 +1,18 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Layout from '@theme/Layout';
 import { useAuth } from '@site/src/components/Auth';
+import { usePersonalization } from '@site/src/components/Personalization';
 import styles from './profile.module.css';
 
 export default function ProfilePage(): JSX.Element {
   const { user, isLoading, isAuthenticated, signOut } = useAuth();
+  const {
+    preferences,
+    progress,
+    setShowOnboarding,
+    isLoading: isLoadingPrefs
+  } = usePersonalization();
+  const [showPreferences, setShowPreferences] = useState(false);
 
   if (isLoading) {
     return (
@@ -121,6 +129,81 @@ export default function ProfilePage(): JSX.Element {
               </div>
             )}
           </div>
+
+          {/* Learning Preferences Section */}
+          <div className={styles.preferencesSection}>
+            <div className={styles.sectionHeader}>
+              <h2>Learning Preferences</h2>
+              {preferences && (
+                <button
+                  className={styles.editButton}
+                  onClick={() => setShowOnboarding(true)}
+                >
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                    <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7" />
+                    <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z" />
+                  </svg>
+                  Edit
+                </button>
+              )}
+            </div>
+
+            {isLoadingPrefs ? (
+              <div className={styles.loadingText}>Loading preferences...</div>
+            ) : preferences ? (
+              <div className={styles.preferencesGrid}>
+                <div className={styles.prefItem}>
+                  <span className={styles.label}>Role</span>
+                  <span className={styles.prefBadge}>{preferences.role}</span>
+                </div>
+                <div className={styles.prefItem}>
+                  <span className={styles.label}>Experience Level</span>
+                  <span className={styles.prefBadge}>{preferences.experience_level}</span>
+                </div>
+                {preferences.interests && preferences.interests.length > 0 && (
+                  <div className={styles.prefItem}>
+                    <span className={styles.label}>Interests</span>
+                    <div className={styles.interestTags}>
+                      {preferences.interests.map(interest => (
+                        <span key={interest} className={styles.interestTag}>{interest}</span>
+                      ))}
+                    </div>
+                  </div>
+                )}
+              </div>
+            ) : (
+              <div className={styles.noPreferences}>
+                <p>You haven't set up your learning preferences yet.</p>
+                <button
+                  className={styles.setupButton}
+                  onClick={() => setShowOnboarding(true)}
+                >
+                  Set Up Preferences
+                </button>
+              </div>
+            )}
+          </div>
+
+          {/* Reading Progress Section */}
+          {progress && Object.keys(progress.chapters).length > 0 && (
+            <div className={styles.progressSection}>
+              <h2>Reading Progress</h2>
+              <div className={styles.progressStats}>
+                <div className={styles.statItem}>
+                  <span className={styles.statValue}>
+                    {Object.values(progress.chapters).filter(c => c.completed).length}
+                  </span>
+                  <span className={styles.statLabel}>Chapters Completed</span>
+                </div>
+                <div className={styles.statItem}>
+                  <span className={styles.statValue}>
+                    {Math.round(progress.total_time_seconds / 60)}
+                  </span>
+                  <span className={styles.statLabel}>Minutes Read</span>
+                </div>
+              </div>
+            </div>
+          )}
 
           <div className={styles.actions}>
             <button

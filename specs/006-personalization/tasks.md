@@ -18,8 +18,8 @@
 | US2: Difficulty | 2 tasks |
 | US3: Recommendations | 2 tasks |
 | US4: Progress | 1 task |
-| **Completed** | **8 tasks** |
-| **Remaining** | **15 tasks** |
+| **Completed** | **17 tasks** |
+| **Remaining** | **6 tasks** |
 
 ## User Story Mapping
 
@@ -59,11 +59,11 @@
 
 > Personalization UI
 
-- [ ] T009 Create OnboardingModal component (role, level selection)
-- [ ] T010 Create SimplifiedToggle component for content switching
-- [ ] T011 Create ProgressIndicator component for sidebar
-- [ ] T012 Create RecommendedNext component for chapter end
-- [ ] T013 Add preference management to Profile page
+- [X] T009 Create OnboardingModal component (role, level selection)
+- [X] T010 Create SimplifiedToggle component for content switching
+- [X] T011 Create ProgressIndicator component for sidebar
+- [X] T012 Create RecommendedNext component for chapter end
+- [X] T013 Add preference management to Profile page
 
 ---
 
@@ -71,8 +71,8 @@
 
 > First-time user onboarding
 
-- [ ] T014 Trigger onboarding modal on first sign-in
-- [ ] T015 Save preferences and close modal on completion
+- [X] T014 Trigger onboarding modal on first sign-in
+- [X] T015 Save preferences and close modal on completion
 
 ---
 
@@ -80,8 +80,8 @@
 
 > Content adaptation based on level
 
-- [ ] T016 Pre-write simplified explanations for key concepts
-- [ ] T017 Implement content switching based on user level
+- [ ] T016 Pre-write simplified explanations for key concepts (optional - using GPT-4o generation)
+- [X] T017 Implement content switching based on user level (SimplifiedToggle component)
 
 ---
 
@@ -89,8 +89,8 @@
 
 > Personalized next content suggestions
 
-- [ ] T018 Generate recommendations based on role and progress
-- [ ] T019 Display recommendations at chapter end
+- [X] T018 Generate recommendations based on role and progress
+- [X] T019 Display recommendations at chapter end (RecommendedNext component)
 
 ---
 
@@ -98,7 +98,7 @@
 
 > Chapter completion tracking
 
-- [ ] T020 Track time on page and mark sections as viewed
+- [X] T020 Track time on page and mark sections as viewed (ProgressIndicator component)
 
 ---
 
