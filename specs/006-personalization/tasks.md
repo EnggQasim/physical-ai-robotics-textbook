@@ -104,11 +104,11 @@
 
 ## Phase 8: Deployment
 
-> Production deployment
+> Production deployment (blocked on HuggingFace Space rebuild)
 
-- [ ] T021 Deploy personalization service
-- [ ] T022 Verify onboarding flow on production
-- [ ] T023 Test progress sync across devices
+- [ ] T021 Deploy personalization service (awaiting HF sync)
+- [ ] T022 Verify onboarding flow on production (awaiting HF sync)
+- [ ] T023 Test progress sync across devices (awaiting HF sync)
 
 ---
 
