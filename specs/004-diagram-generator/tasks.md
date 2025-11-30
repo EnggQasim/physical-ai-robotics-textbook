@@ -17,8 +17,8 @@
 | US2: Animated GIF | 3 tasks |
 | US3: Pre-Generated | 2 tasks |
 | US4: Custom Request | 1 task |
-| **Completed** | **8 tasks** |
-| **Remaining** | **14 tasks** |
+| **Completed** | **10 tasks** |
+| **Remaining** | **12 tasks** |
 
 ## User Story Mapping
 
@@ -106,8 +106,8 @@
 
 > Production deployment
 
-- [ ] T023 Deploy diagram service to cloud
-- [ ] T024 Verify end-to-end diagram generation
+- [X] T023 Deploy diagram service to cloud
+- [X] T024 Verify end-to-end diagram generation
 - [ ] T025 Test diagram display on mobile
 
 ---
