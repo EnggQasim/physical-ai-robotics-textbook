@@ -1,15 +1,25 @@
-"""AI Podcast Generator Service using OpenAI TTS."""
+"""AI Podcast Generator Service with multi-provider TTS support.
+
+Supports:
+- OpenAI TTS (default, reliable)
+- Higgs Audio V2 via HuggingFace (multi-speaker, more expressive)
+"""
 import base64
 import hashlib
 import os
 import io
-from typing import Optional, Dict, Any, List
+from typing import Optional, Dict, Any, List, Literal
 from pathlib import Path
 import json
 from datetime import datetime
 import openai
 
 from app.config import get_settings
+from app.services.higgs_audio import get_higgs_audio_service, PODCAST_VOICES
+
+
+# TTS Provider type
+TTSProvider = Literal["openai", "higgs"]
 
 
 # Pre-defined podcast metadata for chapters
@@ -59,6 +69,7 @@ class PodcastService:
         settings = get_settings()
         self.client = openai.OpenAI(api_key=settings.openai_api_key)
         self.chat_model = settings.chat_model
+        self.higgs_service = get_higgs_audio_service()
 
         # Cache directory for generated podcasts
         self.cache_dir = Path(__file__).parent.parent.parent.parent / "frontend" / "static" / "audio" / "podcasts"
@@ -137,12 +148,43 @@ Generate the podcast script:"""
 
         return response.content
 
+    async def generate_audio_higgs(
+        self,
+        script: str,
+        host_voice: str = "en_woman",
+        expert_voice: str = "chadwick"
+    ) -> bytes:
+        """
+        Generate multi-speaker audio using Higgs Audio V2.
+
+        This method generates separate audio for each speaker segment
+        and combines them for a more natural podcast feel.
+
+        Args:
+            script: Podcast script with HOST:/EXPERT: prefixes
+            host_voice: Voice preset for HOST speaker
+            expert_voice: Voice preset for EXPERT speaker
+
+        Returns:
+            Combined audio data as bytes
+        """
+        audio_data, segment_info = await self.higgs_service.generate_multi_speaker(
+            script=script,
+            host_voice=host_voice,
+            expert_voice=expert_voice
+        )
+
+        return audio_data
+
     async def generate_podcast(
         self,
         chapter_id: str,
         chapter_content: str,
         chapter_title: str,
-        force_regenerate: bool = False
+        force_regenerate: bool = False,
+        tts_provider: TTSProvider = "openai",
+        host_voice: str = "en_woman",
+        expert_voice: str = "chadwick"
     ) -> Dict[str, Any]:
         """
         Generate a complete podcast for a chapter.
@@ -152,12 +194,15 @@ Generate the podcast script:"""
             chapter_content: Text content to convert
             chapter_title: Title of the chapter
             force_regenerate: Force regeneration even if cached
+            tts_provider: TTS provider to use ("openai" or "higgs")
+            host_voice: Voice for HOST speaker (Higgs only)
+            expert_voice: Voice for EXPERT speaker (Higgs only)
 
         Returns:
             Dict with podcast URL, title, duration, and metadata
         """
-        # Check cache
-        cache_key = self._get_cache_key(chapter_id + chapter_content[:500])
+        # Include provider in cache key to allow both versions
+        cache_key = self._get_cache_key(chapter_id + chapter_content[:500] + tts_provider)
         if not force_regenerate and cache_key in self.cache.get("podcasts", {}):
             cached = self.cache["podcasts"][cache_key]
             return {
@@ -167,6 +212,7 @@ Generate the podcast script:"""
                 "title": cached["title"],
                 "duration": cached.get("duration", 300),
                 "created_at": cached.get("created_at"),
+                "tts_provider": cached.get("tts_provider", "openai"),
                 "cached": True
             }
 
@@ -174,11 +220,22 @@ Generate the podcast script:"""
             # Step 1: Generate script
             script = await self.generate_script(chapter_content, chapter_title)
 
-            # Step 2: Generate audio (using 'alloy' voice for host-like sound)
-            audio_data = await self.generate_audio(script, voice="alloy")
+            # Step 2: Generate audio based on provider
+            if tts_provider == "higgs":
+                # Use Higgs Audio for multi-speaker TTS
+                audio_data = await self.generate_audio_higgs(
+                    script,
+                    host_voice=host_voice,
+                    expert_voice=expert_voice
+                )
+                file_ext = "wav"  # Higgs returns WAV
+            else:
+                # Default to OpenAI TTS
+                audio_data = await self.generate_audio(script, voice="alloy")
+                file_ext = "mp3"
 
             # Step 3: Save audio file
-            filename = f"{cache_key}.mp3"
+            filename = f"{cache_key}.{file_ext}"
             filepath = self.cache_dir / filename
 
             with open(filepath, "wb") as f:
@@ -197,7 +254,12 @@ Generate the podcast script:"""
                 "duration": duration,
                 "script": script[:500] + "...",  # Store preview
                 "created_at": datetime.now().isoformat(),
-                "file_size": len(audio_data)
+                "file_size": len(audio_data),
+                "tts_provider": tts_provider,
+                "voices": {
+                    "host": host_voice if tts_provider == "higgs" else "alloy",
+                    "expert": expert_voice if tts_provider == "higgs" else "alloy"
+                }
             }
             self._save_cache()
 
@@ -208,6 +270,7 @@ Generate the podcast script:"""
                 "title": chapter_title,
                 "duration": duration,
                 "created_at": datetime.now().isoformat(),
+                "tts_provider": tts_provider,
                 "cached": False
             }
 
@@ -215,7 +278,8 @@ Generate the podcast script:"""
             return {
                 "success": False,
                 "error": str(e),
-                "url": None
+                "url": None,
+                "tts_provider": tts_provider
             }
 
     def get_chapter_podcast_info(self, chapter_id: str) -> Optional[Dict[str, Any]]:

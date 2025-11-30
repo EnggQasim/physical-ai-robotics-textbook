@@ -1,9 +1,10 @@
 """Podcast generation API endpoints."""
 from fastapi import APIRouter, HTTPException, BackgroundTasks
 from pydantic import BaseModel, Field
-from typing import Optional, Dict, Any, List
+from typing import Optional, Dict, Any, List, Literal
 
-from app.services.podcast import get_podcast_service, CHAPTER_PODCASTS
+from app.services.podcast import get_podcast_service, CHAPTER_PODCASTS, TTSProvider
+from app.services.higgs_audio import get_higgs_audio_service, VOICE_PRESETS
 
 
 router = APIRouter(prefix="/podcast", tags=["podcast"])
@@ -15,6 +16,9 @@ class PodcastGenerateRequest(BaseModel):
     chapter_content: str = Field(..., description="Chapter text content")
     chapter_title: str = Field(..., description="Chapter title")
     force_regenerate: bool = Field(False, description="Force regeneration even if cached")
+    tts_provider: TTSProvider = Field("openai", description="TTS provider: 'openai' or 'higgs'")
+    host_voice: str = Field("en_woman", description="Voice for HOST speaker (Higgs only)")
+    expert_voice: str = Field("chadwick", description="Voice for EXPERT speaker (Higgs only)")
 
 
 class PodcastResponse(BaseModel):
@@ -27,6 +31,20 @@ class PodcastResponse(BaseModel):
     created_at: Optional[str] = None
     cached: bool = False
     error: Optional[str] = None
+    tts_provider: Optional[str] = None
+
+
+class VoiceInfo(BaseModel):
+    """Info about an available voice."""
+    name: str
+    description: str
+
+
+class TTSProvidersResponse(BaseModel):
+    """Info about available TTS providers."""
+    providers: List[str]
+    default: str
+    voices: Dict[str, str]
 
 
 class ChapterPodcastInfo(BaseModel):
@@ -49,6 +67,39 @@ class PodcastListItem(BaseModel):
     created_at: str
 
 
+@router.get("/providers", response_model=TTSProvidersResponse)
+async def get_tts_providers() -> TTSProvidersResponse:
+    """
+    Get available TTS providers and voice options.
+
+    Returns info about:
+    - Available providers (openai, higgs)
+    - Default provider
+    - Available voices for Higgs Audio
+    """
+    return TTSProvidersResponse(
+        providers=["openai", "higgs"],
+        default="openai",
+        voices=VOICE_PRESETS
+    )
+
+
+@router.get("/providers/higgs/status")
+async def check_higgs_status() -> Dict[str, Any]:
+    """
+    Check if Higgs Audio HuggingFace Space is available.
+    """
+    higgs_service = get_higgs_audio_service()
+    available = await higgs_service.check_availability()
+
+    return {
+        "provider": "higgs",
+        "available": available,
+        "space_url": "https://huggingface.co/spaces/smola/higgs_audio_v2",
+        "note": "Higgs Audio provides multi-speaker TTS with expressive voices"
+    }
+
+
 @router.post("/generate", response_model=PodcastResponse)
 async def generate_podcast(request: PodcastGenerateRequest) -> PodcastResponse:
     """
@@ -58,13 +109,19 @@ async def generate_podcast(request: PodcastGenerateRequest) -> PodcastResponse:
     - **chapter_content**: Full text content of the chapter
     - **chapter_title**: Display title for the chapter
     - **force_regenerate**: Set to true to regenerate even if cached
+    - **tts_provider**: TTS provider ('openai' or 'higgs')
+    - **host_voice**: Voice for HOST speaker (Higgs only)
+    - **expert_voice**: Voice for EXPERT speaker (Higgs only)
     """
     service = get_podcast_service()
     result = await service.generate_podcast(
         chapter_id=request.chapter_id,
         chapter_content=request.chapter_content,
         chapter_title=request.chapter_title,
-        force_regenerate=request.force_regenerate
+        force_regenerate=request.force_regenerate,
+        tts_provider=request.tts_provider,
+        host_voice=request.host_voice,
+        expert_voice=request.expert_voice
     )
     return PodcastResponse(**result)
 

@@ -9,14 +9,15 @@
 
 | Metric | Value |
 |--------|-------|
-| Total Tasks | 24 |
+| Total Tasks | 29 |
 | Setup Phase | 4 tasks |
 | Backend Core | 6 tasks |
 | Frontend Widget | 6 tasks |
 | US1: Generate Podcast | 4 tasks |
 | US2: Pre-Generated | 2 tasks |
+| Higgs Audio Integration | 5 tasks |
 | US3: Playback Controls | 2 tasks |
-| **Completed** | **20 tasks** |
+| **Completed** | **25 tasks** |
 | **Remaining** | **4 tasks** |
 
 ## User Story Mapping
@@ -84,6 +85,18 @@
 
 - [ ] T021 Pre-generate podcasts for main chapters (1-4)
 - [X] T022 Display available podcast info for chapters
+
+---
+
+## Phase 5.5: Higgs Audio Integration (P2)
+
+> Multi-speaker TTS via HuggingFace Gradio API
+
+- [X] T022a Research Higgs Audio HuggingFace integration options
+- [X] T022b Create HiggsAudioService for Gradio API integration
+- [X] T022c Update podcast service to support multiple TTS providers
+- [X] T022d Add API endpoints for TTS provider selection (/providers, /providers/higgs/status)
+- [X] T022e Implement multi-speaker audio generation (HOST/EXPERT voices)
 
 ---
 
