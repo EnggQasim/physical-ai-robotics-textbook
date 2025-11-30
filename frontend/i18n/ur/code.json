@@ -1,0 +1,110 @@
+{
+  "theme.common.skipToMainContent": {
+    "message": "مرکزی مواد پر جائیں",
+    "description": "Skip to main content"
+  },
+  "theme.common.editThisPage": {
+    "message": "اس صفحے میں ترمیم کریں",
+    "description": "Edit this page"
+  },
+  "theme.common.headingLinkTitle": {
+    "message": "براہ راست لنک برائے {heading}",
+    "description": "Heading link title"
+  },
+  "theme.NotFound.title": {
+    "message": "صفحہ نہیں ملا",
+    "description": "Page not found title"
+  },
+  "theme.NotFound.p1": {
+    "message": "ہم وہ نہیں ڈھونڈ سکے جو آپ تلاش کر رہے تھے۔",
+    "description": "Page not found description"
+  },
+  "theme.docs.sidebar.collapseButtonTitle": {
+    "message": "سائڈبار بند کریں",
+    "description": "Collapse sidebar button title"
+  },
+  "theme.docs.sidebar.expandButtonTitle": {
+    "message": "سائڈبار کھولیں",
+    "description": "Expand sidebar button title"
+  },
+  "theme.docs.paginator.previous": {
+    "message": "پچھلا",
+    "description": "Previous page"
+  },
+  "theme.docs.paginator.next": {
+    "message": "اگلا",
+    "description": "Next page"
+  },
+  "theme.docs.tagDocListPageTitle": {
+    "message": "دستاویزات جن میں \"{tagName}\" ٹیگ ہے",
+    "description": "Tag doc list page title"
+  },
+  "theme.DocSidebarItem.toggleCollapsedCategoryAriaLabel": {
+    "message": "'{label}' زمرے کو ٹوگل کریں",
+    "description": "Toggle collapsed category aria label"
+  },
+  "theme.SearchBar.label": {
+    "message": "تلاش کریں",
+    "description": "Search bar label"
+  },
+  "theme.SearchBar.seeAll": {
+    "message": "تمام نتائج دیکھیں",
+    "description": "See all results"
+  },
+  "theme.SearchPage.documentsFound.one": {
+    "message": "1 دستاویز ملی",
+    "description": "One document found"
+  },
+  "theme.SearchPage.documentsFound.other": {
+    "message": "{count} دستاویزات ملیں",
+    "description": "Multiple documents found"
+  },
+  "theme.TOCCollapsible.toggleButtonLabel": {
+    "message": "اس صفحے پر",
+    "description": "Toggle button label for TOC"
+  },
+  "theme.colorToggle.ariaLabel": {
+    "message": "ڈارک موڈ اور لائٹ موڈ کے درمیان ٹوگل کریں (فی الحال {mode})",
+    "description": "Aria label for color toggle"
+  },
+  "theme.colorToggle.ariaLabel.mode.dark": {
+    "message": "ڈارک موڈ",
+    "description": "Dark mode"
+  },
+  "theme.colorToggle.ariaLabel.mode.light": {
+    "message": "لائٹ موڈ",
+    "description": "Light mode"
+  },
+  "theme.navbar.mobileSidebarSecondaryMenu.backButtonLabel": {
+    "message": "← مین مینو پر واپس جائیں",
+    "description": "Back button label"
+  },
+  "theme.tags.tagsListLabel": {
+    "message": "ٹیگز:",
+    "description": "Tags list label"
+  },
+  "theme.admonition.caution": {
+    "message": "احتیاط",
+    "description": "Caution admonition"
+  },
+  "theme.admonition.danger": {
+    "message": "خطرہ",
+    "description": "Danger admonition"
+  },
+  "theme.admonition.info": {
+    "message": "معلومات",
+    "description": "Info admonition"
+  },
+  "theme.admonition.note": {
+    "message": "نوٹ",
+    "description": "Note admonition"
+  },
+  "theme.admonition.tip": {
+    "message": "مشورہ",
+    "description": "Tip admonition"
+  },
+  "theme.admonition.warning": {
+    "message": "انتباہ",
+    "description": "Warning admonition"
+  }
+}

@@ -17,8 +17,8 @@
 | US2: Translated Content | 3 tasks |
 | US3: On-Demand | 2 tasks |
 | US4: Side-by-Side | 1 task |
-| **Completed** | **0 tasks** |
-| **Remaining** | **22 tasks** |
+| **Completed** | **4 tasks** |
+| **Remaining** | **18 tasks** |
 
 ## User Story Mapping
 
@@ -35,10 +35,10 @@
 
 > Project initialization and Docusaurus i18n
 
-- [ ] T001 Configure Docusaurus i18n plugin for Urdu locale
-- [ ] T002 Add Urdu font (Jameel Noori Nastaleeq) to project
-- [ ] T003 Create RTL CSS styles for Urdu mode
-- [ ] T004 Set up interface strings file (en.json, ur.json)
+- [X] T001 Configure Docusaurus i18n plugin for Urdu locale
+- [X] T002 Add Urdu font (Jameel Noori Nastaleeq) to project
+- [X] T003 Create RTL CSS styles for Urdu mode
+- [X] T004 Set up interface strings file (en.json, ur.json)
 
 ---
 

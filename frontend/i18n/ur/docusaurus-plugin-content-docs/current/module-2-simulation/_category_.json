@@ -1,0 +1,11 @@
+{
+  "label": "روبوٹ سمولیشن",
+  "position": 3,
+  "description": "Gazebo اور URDF روبوٹ ڈسکرپشنز کے ساتھ روبوٹ سمولیشن سیکھیں",
+  "collapsed": false,
+  "link": {
+    "type": "generated-index",
+    "title": "روبوٹ سمولیشن",
+    "description": "Gazebo، URDF، اور فزکس سمولیشن کا استعمال کرتے ہوئے روبوٹس بنائیں اور سمولیٹ کریں۔"
+  }
+}

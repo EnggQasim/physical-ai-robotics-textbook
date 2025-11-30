@@ -1,0 +1,11 @@
+{
+  "label": "NVIDIA Isaac پلیٹ فارم",
+  "position": 4,
+  "description": "GPU-accelerated روبوٹکس سمولیشن اور AI کے لیے NVIDIA Isaac کا فائدہ اٹھائیں",
+  "collapsed": false,
+  "link": {
+    "type": "generated-index",
+    "title": "NVIDIA Isaac پلیٹ فارم",
+    "description": "Isaac Sim، Isaac ROS، اور GPU-accelerated روبوٹکس ڈویلپمنٹ کا جائزہ لیں۔"
+  }
+}

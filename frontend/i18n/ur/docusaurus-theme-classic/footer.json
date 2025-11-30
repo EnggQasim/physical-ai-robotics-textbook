@@ -1,0 +1,46 @@
+{
+  "link.title.Chapters": {
+    "message": "ابواب",
+    "description": "The title of the footer links column with title=Chapters"
+  },
+  "link.title.More Chapters": {
+    "message": "مزید ابواب",
+    "description": "The title of the footer links column with title=More Chapters"
+  },
+  "link.title.Resources": {
+    "message": "وسائل",
+    "description": "The title of the footer links column with title=Resources"
+  },
+  "link.item.label.Introduction": {
+    "message": "تعارف",
+    "description": "Footer link label Introduction"
+  },
+  "link.item.label.ROS2 Fundamentals": {
+    "message": "ROS2 بنیادی باتیں",
+    "description": "Footer link label ROS2 Fundamentals"
+  },
+  "link.item.label.Robot Simulation": {
+    "message": "روبوٹ سمولیشن",
+    "description": "Footer link label Robot Simulation"
+  },
+  "link.item.label.NVIDIA Isaac": {
+    "message": "NVIDIA Isaac",
+    "description": "Footer link label NVIDIA Isaac"
+  },
+  "link.item.label.Vision-Language-Action": {
+    "message": "وژن-لینگویج-ایکشن",
+    "description": "Footer link label Vision-Language-Action"
+  },
+  "link.item.label.GitHub": {
+    "message": "گِٹ ہب",
+    "description": "Footer link label GitHub"
+  },
+  "link.item.label.Panaversity": {
+    "message": "پناورسٹی",
+    "description": "Footer link label Panaversity"
+  },
+  "copyright": {
+    "message": "کاپی رائٹ © 2025 فزیکل اے آئی کتاب۔ پناورسٹی ہیکاتھون کے لیے بنایا گیا۔",
+    "description": "The footer copyright"
+  }
+}

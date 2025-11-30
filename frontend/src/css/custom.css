@@ -148,3 +148,125 @@ pre code {
   background-color: #9b59b6;
   color: white;
 }
+
+/* ===========================================
+   Urdu Language & RTL Support
+   =========================================== */
+
+/* Import Noto Nastaliq Urdu font from Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Nastaliq+Urdu:wght@400;500;600;700&display=swap');
+
+/* RTL Layout Support */
+html[lang='ur'],
+html[dir='rtl'] {
+  direction: rtl;
+  --ifm-font-family-base: 'Noto Nastaliq Urdu', 'Jameel Noori Nastaleeq', 'Segoe UI', Tahoma, sans-serif;
+}
+
+/* Urdu text styling */
+[lang='ur'] {
+  font-family: 'Noto Nastaliq Urdu', 'Jameel Noori Nastaleeq', 'Segoe UI', Tahoma, sans-serif;
+  line-height: 2;
+  font-size: 1.1em;
+}
+
+/* RTL-specific adjustments */
+html[dir='rtl'] .navbar__items {
+  flex-direction: row-reverse;
+}
+
+html[dir='rtl'] .navbar__brand {
+  margin-right: 0;
+  margin-left: 1rem;
+}
+
+html[dir='rtl'] .menu__link {
+  text-align: right;
+  padding-right: 12px;
+  padding-left: 8px;
+}
+
+html[dir='rtl'] .breadcrumbs__link {
+  padding-right: 0.5rem;
+  padding-left: 0;
+}
+
+html[dir='rtl'] .pagination-nav__sublabel {
+  text-align: right;
+}
+
+/* Keep code blocks LTR in RTL mode */
+html[dir='rtl'] pre,
+html[dir='rtl'] code,
+html[dir='rtl'] .prism-code {
+  direction: ltr;
+  text-align: left;
+}
+
+/* Markdown content in RTL */
+html[dir='rtl'] .markdown {
+  text-align: right;
+}
+
+html[dir='rtl'] .markdown ul,
+html[dir='rtl'] .markdown ol {
+  padding-right: 2rem;
+  padding-left: 0;
+}
+
+html[dir='rtl'] .markdown li {
+  text-align: right;
+}
+
+/* Keep images and diagrams LTR */
+html[dir='rtl'] img,
+html[dir='rtl'] svg,
+html[dir='rtl'] figure {
+  direction: ltr;
+}
+
+/* Technical terms styling */
+.tech-term {
+  display: inline;
+}
+
+.tech-term-ur {
+  font-family: 'Noto Nastaliq Urdu', sans-serif;
+}
+
+.tech-term-en {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-size: 0.9em;
+  color: var(--ifm-color-primary);
+  margin-left: 4px;
+}
+
+html[dir='rtl'] .tech-term-en {
+  margin-left: 0;
+  margin-right: 4px;
+}
+
+/* Footer RTL adjustments */
+html[dir='rtl'] .footer__links {
+  flex-direction: row-reverse;
+}
+
+html[dir='rtl'] .footer__col {
+  text-align: right;
+}
+
+/* Search box RTL */
+html[dir='rtl'] .DocSearch-Button {
+  flex-direction: row-reverse;
+}
+
+/* Table of Contents RTL */
+html[dir='rtl'] .table-of-contents {
+  text-align: right;
+  padding-right: 0;
+}
+
+html[dir='rtl'] .table-of-contents__link {
+  padding-right: 0.75rem;
+  padding-left: 0;
+}

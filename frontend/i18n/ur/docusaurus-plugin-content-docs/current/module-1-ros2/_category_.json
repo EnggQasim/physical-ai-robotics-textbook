@@ -1,0 +1,11 @@
+{
+  "label": "ROS2 بنیادی باتیں",
+  "position": 2,
+  "description": "روبوٹ آپریٹنگ سسٹم 2 سیکھیں - جدید روبوٹکس کی بنیاد",
+  "collapsed": false,
+  "link": {
+    "type": "generated-index",
+    "title": "ROS2 بنیادی باتیں",
+    "description": "ROS2 تصورات میں مہارت حاصل کریں: نوڈز، ٹاپکس، سروسز، ایکشنز، اور rclpy کے ساتھ Python انٹیگریشن۔"
+  }
+}
