@@ -30,6 +30,17 @@ class Settings(BaseSettings):
     # Chat model
     chat_model: str = "gpt-4o-mini"
 
+    # Authentication (OAuth)
+    github_client_id: Optional[str] = None
+    github_client_secret: Optional[str] = None
+    google_client_id: Optional[str] = None
+    google_client_secret: Optional[str] = None
+    jwt_secret: Optional[str] = None
+    session_expire_days: int = 7
+
+    # Database (Neon PostgreSQL for auth)
+    database_url: Optional[str] = None
+
     class Config:
         env_file = ".env"
         env_file_encoding = "utf-8"

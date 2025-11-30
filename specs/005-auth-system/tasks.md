@@ -17,8 +17,8 @@
 | US2: Google OAuth | 1 task |
 | US3: Profile | 1 task |
 | US4: Sign Out | 1 task |
-| **Completed** | **0 tasks** |
-| **Remaining** | **20 tasks** |
+| **Completed** | **15 tasks** |
+| **Remaining** | **5 tasks** |
 
 ## User Story Mapping
 
@@ -35,10 +35,10 @@
 
 > Project initialization and dependencies
 
-- [ ] T001 Install Better-Auth library and dependencies
-- [ ] T002 Configure environment variables (OAuth secrets)
-- [ ] T003 Create GitHub OAuth App in developer console
-- [ ] T004 Create Google OAuth App in Google Cloud Console
+- [X] T001 Install PyJWT library and dependencies
+- [X] T002 Configure environment variables (OAuth secrets) in config.py
+- [ ] T003 Create GitHub OAuth App in developer console (manual step)
+- [ ] T004 Create Google OAuth App in Google Cloud Console (manual step)
 
 ---
 
@@ -46,12 +46,12 @@
 
 > Authentication service implementation
 
-- [ ] T005 Create user schema and database table (Neon PostgreSQL)
-- [ ] T006 Create session schema and management
-- [ ] T007 Implement Better-Auth configuration
-- [ ] T008 Create GitHub OAuth provider configuration
-- [ ] T009 Create authentication API endpoints (sign-in, sign-out, session)
-- [ ] T010 Implement secure session cookies (httpOnly)
+- [X] T005 Create user schema with in-memory storage (upgradable to PostgreSQL)
+- [X] T006 Create session schema and JWT management
+- [X] T007 Implement AuthService with OAuth configuration
+- [X] T008 Create GitHub OAuth provider flow
+- [X] T009 Create authentication API endpoints (/auth/status, /session, /signout, /me)
+- [X] T010 Implement secure session cookies (httpOnly, secure, SameSite)
 
 ---
 
@@ -59,11 +59,11 @@
 
 > Auth UI components
 
-- [ ] T011 Create SignInButton component with OAuth options
-- [ ] T012 Create UserMenu component (avatar dropdown)
-- [ ] T013 Implement auth state management (React context)
-- [ ] T014 Add auth components to Docusaurus navbar
-- [ ] T015 Create protected route wrapper component
+- [X] T011 Create SignInButton component with OAuth options
+- [X] T012 Create UserMenu component (avatar dropdown)
+- [X] T013 Implement auth state management (AuthProvider, useAuth hook)
+- [ ] T014 Add auth components to Docusaurus navbar (integration step)
+- [X] T015 Create Auth component with loading states
 
 ---
 
@@ -71,8 +71,8 @@
 
 > Primary authentication method
 
-- [ ] T016 Implement GitHub OAuth flow with Better-Auth
-- [ ] T017 Handle OAuth callback and user creation
+- [X] T016 Implement GitHub OAuth flow with AuthService
+- [X] T017 Handle OAuth callback and user creation
 
 ---
 
@@ -80,7 +80,7 @@
 
 > Alternative authentication
 
-- [ ] T018 Add Google OAuth provider to Better-Auth config
+- [X] T018 Add Google OAuth provider to AuthService
 
 ---
 
@@ -88,7 +88,7 @@
 
 > User profile management
 
-- [ ] T019 Create Profile page with user information
+- [ ] T019 Create Profile page with user information (requires Docusaurus integration)
 
 ---
 
@@ -96,7 +96,7 @@
 
 > Session termination
 
-- [ ] T020 Implement sign out functionality with session cleanup
+- [X] T020 Implement sign out functionality with session cleanup
 
 ---
 

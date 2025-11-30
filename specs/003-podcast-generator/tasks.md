@@ -17,8 +17,8 @@
 | US2: Pre-Generated | 2 tasks |
 | Higgs Audio Integration | 5 tasks |
 | US3: Playback Controls | 2 tasks |
-| **Completed** | **25 tasks** |
-| **Remaining** | **4 tasks** |
+| **Completed** | **26 tasks** |
+| **Remaining** | **3 tasks** |
 
 ## User Story Mapping
 
@@ -122,9 +122,9 @@
 
 > Production deployment
 
-- [ ] T027 Deploy podcast service to cloud
-- [ ] T028 Verify end-to-end podcast generation flow
-- [ ] T029 Test player on mobile devices
+- [X] T027 Deploy podcast service to cloud (via GitHub → HuggingFace Spaces sync)
+- [ ] T028 Verify end-to-end podcast generation flow (awaiting HF rebuild)
+- [ ] T029 Test player on mobile devices (manual testing)
 
 ---
 

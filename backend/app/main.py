@@ -3,7 +3,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from contextlib import asynccontextmanager
 from app.config import get_settings
-from app.routers import chat_router, health_router, diagram_router, podcast_router
+from app.routers import chat_router, health_router, diagram_router, podcast_router, auth_router
 from app.services.vector_store import get_vector_store
 from app.services.indexer import index_all_content
 
@@ -62,6 +62,7 @@ app.include_router(health_router)
 app.include_router(chat_router, prefix="/api")
 app.include_router(diagram_router, prefix="/api")
 app.include_router(podcast_router, prefix="/api")
+app.include_router(auth_router, prefix="/api")
 
 
 @app.get("/")

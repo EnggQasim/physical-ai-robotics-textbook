@@ -1,0 +1,220 @@
+/* Sign In Container */
+.signInContainer {
+  position: relative;
+}
+
+.signInButton {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  background: var(--ifm-color-primary);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.signInButton:hover {
+  background: var(--ifm-color-primary-dark);
+  transform: translateY(-1px);
+}
+
+/* User Menu Container */
+.userMenuContainer {
+  position: relative;
+}
+
+.avatarButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  background: transparent;
+  border: 2px solid var(--ifm-color-emphasis-300);
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  overflow: hidden;
+}
+
+.avatarButton:hover {
+  border-color: var(--ifm-color-primary);
+  transform: scale(1.05);
+}
+
+.avatar {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.avatarPlaceholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--ifm-color-primary);
+  color: white;
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+/* Dropdown Menu */
+.dropdown {
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  min-width: 220px;
+  background: var(--ifm-background-surface-color);
+  border: 1px solid var(--ifm-color-emphasis-200);
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+  z-index: 1000;
+  overflow: hidden;
+  animation: dropdownSlide 0.15s ease;
+}
+
+@keyframes dropdownSlide {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Provider Button */
+.providerButton {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  padding: 12px 16px;
+  background: transparent;
+  color: var(--ifm-font-color-base);
+  border: none;
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.providerButton:hover {
+  background: var(--ifm-color-emphasis-100);
+}
+
+.providerButton svg {
+  flex-shrink: 0;
+}
+
+/* User Info Section */
+.userInfo {
+  padding: 12px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.userInfo strong {
+  font-size: 0.95rem;
+  color: var(--ifm-font-color-base);
+}
+
+.email {
+  font-size: 0.8rem;
+  color: var(--ifm-color-emphasis-600);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Divider */
+.divider {
+  height: 1px;
+  background: var(--ifm-color-emphasis-200);
+  margin: 4px 0;
+}
+
+/* Menu Item */
+.menuItem {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  padding: 10px 16px;
+  background: transparent;
+  color: var(--ifm-font-color-base);
+  border: none;
+  font-size: 0.9rem;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.menuItem:hover {
+  background: var(--ifm-color-emphasis-100);
+  color: var(--ifm-font-color-base);
+  text-decoration: none;
+}
+
+.menuItem svg {
+  flex-shrink: 0;
+  color: var(--ifm-color-emphasis-600);
+}
+
+/* Loading Placeholder */
+.loadingPlaceholder {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: var(--ifm-color-emphasis-200);
+  animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+/* Dark mode adjustments */
+[data-theme='dark'] .dropdown {
+  background: var(--ifm-background-color);
+  border-color: var(--ifm-color-emphasis-300);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+}
+
+[data-theme='dark'] .providerButton:hover,
+[data-theme='dark'] .menuItem:hover {
+  background: var(--ifm-color-emphasis-200);
+}
+
+/* Mobile responsive */
+@media (max-width: 768px) {
+  .dropdown {
+    min-width: 200px;
+    right: -8px;
+  }
+
+  .signInButton span {
+    display: none;
+  }
+
+  .signInButton {
+    padding: 8px;
+    border-radius: 50%;
+  }
+}
