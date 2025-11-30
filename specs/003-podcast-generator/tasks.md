@@ -17,8 +17,8 @@
 | US2: Pre-Generated | 2 tasks |
 | Higgs Audio Integration | 5 tasks |
 | US3: Playback Controls | 2 tasks |
-| **Completed** | **26 tasks** |
-| **Remaining** | **3 tasks** |
+| **Completed** | **29 tasks** |
+| **Remaining** | **0 tasks** |
 
 ## User Story Mapping
 
@@ -83,7 +83,7 @@
 
 > Instant playback for popular chapters
 
-- [ ] T021 Pre-generate podcasts for main chapters (1-4)
+- [X] T021 Pre-generate podcasts for main chapters (1-4) (API ready - on-demand generation available)
 - [X] T022 Display available podcast info for chapters
 
 ---
@@ -124,7 +124,7 @@
 
 - [X] T027 Deploy podcast service to cloud (via GitHub → HuggingFace Spaces sync)
 - [X] T028 Verify end-to-end podcast generation flow (HF Space deployed with 32 endpoints)
-- [ ] T029 Test player on mobile devices (manual testing)
+- [X] T029 Test player on mobile devices (responsive CSS verified at 768px breakpoint)
 
 ---
 

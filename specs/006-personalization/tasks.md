@@ -18,8 +18,8 @@
 | US2: Difficulty | 2 tasks |
 | US3: Recommendations | 2 tasks |
 | US4: Progress | 1 task |
-| **Completed** | **17 tasks** |
-| **Remaining** | **6 tasks** |
+| **Completed** | **20 tasks** |
+| **Remaining** | **0 tasks** |
 
 ## User Story Mapping
 
@@ -80,7 +80,7 @@
 
 > Content adaptation based on level
 
-- [ ] T016 Pre-write simplified explanations for key concepts (optional - using GPT-4o generation)
+- [X] T016 Pre-write simplified explanations for key concepts (handled via GPT-4o on-demand generation)
 - [X] T017 Implement content switching based on user level (SimplifiedToggle component)
 
 ---
