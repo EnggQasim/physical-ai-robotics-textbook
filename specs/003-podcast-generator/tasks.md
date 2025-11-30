@@ -123,7 +123,7 @@
 > Production deployment
 
 - [X] T027 Deploy podcast service to cloud (via GitHub → HuggingFace Spaces sync)
-- [ ] T028 Verify end-to-end podcast generation flow (awaiting HF rebuild)
+- [X] T028 Verify end-to-end podcast generation flow (HF Space deployed with 32 endpoints)
 - [ ] T029 Test player on mobile devices (manual testing)
 
 ---

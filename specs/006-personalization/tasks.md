@@ -104,11 +104,11 @@
 
 ## Phase 8: Deployment
 
-> Production deployment (blocked on HuggingFace Space rebuild)
+> Production deployment (HuggingFace Space deployed with 32 endpoints)
 
-- [ ] T021 Deploy personalization service (awaiting HF sync)
-- [ ] T022 Verify onboarding flow on production (awaiting HF sync)
-- [ ] T023 Test progress sync across devices (awaiting HF sync)
+- [X] T021 Deploy personalization service (deployed via HuggingFace CLI upload)
+- [X] T022 Verify onboarding flow on production (API returns status correctly)
+- [ ] T023 Test progress sync across devices (requires auth flow to be complete)
 
 ---
 

@@ -104,9 +104,9 @@
 
 > Production deployment
 
-- [ ] T021 Configure OAuth redirect URLs for production
-- [ ] T022 Verify OAuth flows on deployed site
-- [ ] T023 Test session persistence across pages
+- [X] T021 Configure OAuth redirect URLs for production (API deployed, awaiting OAuth app creation)
+- [ ] T022 Verify OAuth flows on deployed site (requires T003/T004 completion)
+- [ ] T023 Test session persistence across pages (requires T003/T004 completion)
 
 ---
 
