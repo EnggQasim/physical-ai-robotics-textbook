@@ -206,16 +206,51 @@ html[dir='rtl'] .prism-code {
 /* Markdown content in RTL */
 html[dir='rtl'] .markdown {
   text-align: right;
+  direction: rtl;
 }
 
 html[dir='rtl'] .markdown ul,
 html[dir='rtl'] .markdown ol {
   padding-right: 2rem;
   padding-left: 0;
+  margin-right: 0;
+  margin-left: 0;
+  list-style-position: inside;
+}
+
+html[dir='rtl'] .markdown ul {
+  list-style-type: disc;
+}
+
+html[dir='rtl'] .markdown ol {
+  list-style-type: arabic-indic;
 }
 
 html[dir='rtl'] .markdown li {
   text-align: right;
+  direction: rtl;
+}
+
+html[dir='rtl'] .markdown li::marker {
+  unicode-bidi: isolate;
+}
+
+/* Headings RTL with proper alignment */
+html[dir='rtl'] .markdown h1,
+html[dir='rtl'] .markdown h2,
+html[dir='rtl'] .markdown h3,
+html[dir='rtl'] .markdown h4,
+html[dir='rtl'] .markdown h5,
+html[dir='rtl'] .markdown h6 {
+  text-align: right;
+  direction: rtl;
+}
+
+/* Heading anchor links on the right for RTL */
+html[dir='rtl'] .hash-link {
+  margin-left: 0;
+  margin-right: 0.5rem;
+  float: right;
 }
 
 /* Keep images and diagrams LTR */
@@ -325,4 +360,97 @@ html[dir='rtl'] .admonition-heading {
   html[dir='rtl'] .navbar__items {
     flex-direction: row;
   }
+}
+
+/* Sidebar RTL */
+html[dir='rtl'] .theme-doc-sidebar-container {
+  border-left: 1px solid var(--ifm-toc-border-color);
+  border-right: none;
+}
+
+html[dir='rtl'] .menu {
+  direction: rtl;
+  text-align: right;
+}
+
+html[dir='rtl'] .menu__list {
+  padding-right: 0;
+}
+
+html[dir='rtl'] .menu__list .menu__list {
+  padding-right: 1rem;
+  padding-left: 0;
+}
+
+html[dir='rtl'] .menu__caret {
+  transform: rotate(180deg);
+}
+
+html[dir='rtl'] .menu__link--sublist-caret::after {
+  transform: rotate(180deg);
+}
+
+/* Breadcrumbs RTL */
+html[dir='rtl'] .breadcrumbs {
+  direction: rtl;
+}
+
+html[dir='rtl'] .breadcrumbs__item:not(:last-child)::after {
+  content: '\\';
+  margin: 0 0.5rem;
+}
+
+/* Pagination RTL */
+html[dir='rtl'] .pagination-nav {
+  flex-direction: row-reverse;
+}
+
+html[dir='rtl'] .pagination-nav__link--prev .pagination-nav__label::before {
+  content: '←';
+}
+
+html[dir='rtl'] .pagination-nav__link--next .pagination-nav__label::after {
+  content: '→';
+}
+
+/* Tables RTL */
+html[dir='rtl'] table {
+  direction: rtl;
+}
+
+html[dir='rtl'] th,
+html[dir='rtl'] td {
+  text-align: right;
+}
+
+/* Doc item wrapper RTL */
+html[dir='rtl'] .docItemContainer {
+  direction: rtl;
+}
+
+/* Article content RTL */
+html[dir='rtl'] article {
+  direction: rtl;
+  text-align: right;
+}
+
+/* TOC (Table of Contents) on the right side for RTL */
+html[dir='rtl'] .col--3 {
+  order: -1;
+}
+
+/* Doc page layout RTL */
+html[dir='rtl'] .docMainContainer {
+  direction: rtl;
+}
+
+/* Collapsible sidebar items RTL */
+html[dir='rtl'] .theme-doc-sidebar-item-category > .menu__list-item-collapsible {
+  flex-direction: row-reverse;
+}
+
+/* Doc version badge RTL */
+html[dir='rtl'] .badge {
+  margin-right: 0;
+  margin-left: 8px;
 }
