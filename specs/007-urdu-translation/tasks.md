@@ -17,8 +17,8 @@
 | US2: Translated Content | 3 tasks |
 | US3: On-Demand | 2 tasks |
 | US4: Side-by-Side | 1 task |
-| **Completed** | **4 tasks** |
-| **Remaining** | **18 tasks** |
+| **Completed** | **11 tasks** |
+| **Remaining** | **11 tasks** |
 
 ## User Story Mapping
 
@@ -57,12 +57,12 @@
 
 > Language switching UI
 
-- [ ] T009 Create LanguageSelector component (English/Urdu toggle)
-- [ ] T010 Add LanguageSelector to Docusaurus navbar
-- [ ] T011 Implement language preference persistence (localStorage)
-- [ ] T012 Apply RTL layout when Urdu is selected
-- [ ] T013 Translate navigation and button labels
-- [ ] T014 Ensure code blocks remain LTR in Urdu mode
+- [X] T009 Create LanguageSelector component (English/Urdu toggle)
+- [X] T010 Add LanguageSelector to Docusaurus navbar
+- [X] T011 Implement language preference persistence (localStorage)
+- [X] T012 Apply RTL layout when Urdu is selected
+- [X] T013 Translate navigation and button labels
+- [X] T014 Ensure code blocks remain LTR in Urdu mode
 
 ---
 
@@ -79,7 +79,7 @@
 
 > Chapter content in Urdu
 
-- [ ] T017 Translate Module 1 (ROS2 Fundamentals) to Urdu
+- [X] T017 Translate Module 1 (ROS2 Fundamentals) to Urdu
 - [ ] T018 Translate Module 2 (Robot Simulation) to Urdu
 - [ ] T019 Display technical terms as "Urdu (English)" format
 
@@ -116,11 +116,11 @@
 
 Before marking feature complete:
 
-- [ ] Language toggle in header (English/Urdu)
-- [ ] Interface labels translate correctly
-- [ ] RTL layout renders without breaks
-- [ ] At least 2 chapters have Urdu translations
-- [ ] Code blocks remain LTR in Urdu mode
+- [X] Language toggle in header (English/Urdu)
+- [X] Interface labels translate correctly
+- [X] RTL layout renders without breaks
+- [X] At least 2 chapters have Urdu translations
+- [X] Code blocks remain LTR in Urdu mode
 - [ ] Technical terms show both languages
 - [ ] On-demand translation works on selection
 - [ ] Language preference persists across sessions
