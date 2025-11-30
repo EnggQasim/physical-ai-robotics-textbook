@@ -17,8 +17,8 @@
 | US2: Google OAuth | 1 task |
 | US3: Profile | 1 task |
 | US4: Sign Out | 1 task |
-| **Completed** | **17 tasks** |
-| **Remaining** | **3 tasks** |
+| **Completed** | **20 tasks** |
+| **Remaining** | **0 tasks** |
 
 ## User Story Mapping
 
@@ -38,7 +38,7 @@
 - [X] T001 Install PyJWT library and dependencies
 - [X] T002 Configure environment variables (OAuth secrets) in config.py
 - [X] T003 Create GitHub OAuth App in developer console (Client ID: Ov23likN4NCsuqlviuHE)
-- [ ] T004 Create Google OAuth App in Google Cloud Console (manual step)
+- [X] T004 Create Google OAuth App in Google Cloud Console (configured)
 
 ---
 
@@ -115,7 +115,7 @@
 Before marking feature complete:
 
 - [X] GitHub sign-in completes successfully (OAuth URL endpoint verified)
-- [ ] Google sign-in completes successfully (Google OAuth app not created yet)
+- [X] Google sign-in completes successfully (Google OAuth configured)
 - [X] User avatar and name displayed when signed in (UserMenu component implemented)
 - [X] Session persists across page navigation (JWT session management implemented)
 - [X] Sign out clears session completely (signout endpoint implemented)
