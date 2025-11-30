@@ -116,8 +116,8 @@ class PodcastService:
         self.chat_model = settings.chat_model
         self.higgs_service = get_higgs_audio_service()
 
-        # Cache directory for generated podcasts
-        self.cache_dir = Path(__file__).parent.parent.parent.parent / "frontend" / "static" / "audio" / "podcasts"
+        # Cache directory for generated podcasts (in backend, served via static files)
+        self.cache_dir = Path(__file__).parent.parent.parent / "audio" / "podcasts"
         self.cache_dir.mkdir(parents=True, exist_ok=True)
 
         # Cache metadata file

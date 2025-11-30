@@ -1,7 +1,9 @@
 """FastAPI application for Physical AI Textbook RAG Chatbot."""
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.staticfiles import StaticFiles
 from contextlib import asynccontextmanager
+from pathlib import Path
 from app.config import get_settings
 from app.routers import chat_router, health_router, diagram_router, podcast_router, auth_router, personalization_router, translation_router
 from app.services.vector_store import get_vector_store
@@ -65,6 +67,12 @@ app.include_router(podcast_router, prefix="/api")
 app.include_router(auth_router, prefix="/api")
 app.include_router(personalization_router, prefix="/api")
 app.include_router(translation_router, prefix="/api")
+
+# Mount static files for podcast audio
+# Create audio directory if it doesn't exist
+audio_dir = Path(__file__).parent.parent / "audio" / "podcasts"
+audio_dir.mkdir(parents=True, exist_ok=True)
+app.mount("/audio", StaticFiles(directory=str(audio_dir.parent)), name="audio")
 
 
 @app.get("/")

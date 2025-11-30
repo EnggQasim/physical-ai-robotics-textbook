@@ -147,7 +147,11 @@ export default function PodcastPlayer({
         if (response.ok) {
           const data = await response.json();
           if (data.has_generated_podcast && data.podcast?.url) {
-            setPodcastUrl(data.podcast.url);
+            // Prepend API URL to relative path for audio files
+            const fullUrl = data.podcast.url.startsWith('http')
+              ? data.podcast.url
+              : `${API_URL}${data.podcast.url}`;
+            setPodcastUrl(fullUrl);
             if (data.podcast.personalization) {
               setPodcastInfo(data.podcast.personalization);
             }
@@ -193,7 +197,9 @@ export default function PodcastPlayer({
       const data: PodcastData = await response.json();
 
       if (data.success && data.url) {
-        setPodcastUrl(data.url);
+        // Prepend API URL to relative path for audio files
+        const fullUrl = data.url.startsWith('http') ? data.url : `${API_URL}${data.url}`;
+        setPodcastUrl(fullUrl);
         setPodcastInfo(data.personalization || null);
         setShowControls(true);
       } else {
