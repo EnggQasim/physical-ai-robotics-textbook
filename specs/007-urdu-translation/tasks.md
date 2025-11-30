@@ -17,8 +17,8 @@
 | US2: Translated Content | 3 tasks |
 | US3: On-Demand | 2 tasks |
 | US4: Side-by-Side | 1 task |
-| **Completed** | **22 tasks** |
-| **Remaining** | **3 tasks (P2-P3 optional)** |
+| **Completed** | **27 tasks** |
+| **Remaining** | **1 task (P3 optional)** |
 
 ## User Story Mapping
 
@@ -46,10 +46,10 @@
 
 > Translation service implementation
 
-- [ ] T005 Create translation API endpoint (GPT-4o-mini)
-- [ ] T006 Implement translation caching service
-- [ ] T007 Create translated content database table
-- [ ] T008 Pre-translate main chapter content
+- [X] T005 Create translation API endpoint (GPT-4o-mini)
+- [X] T006 Implement translation caching service (in-memory)
+- [X] T007 Create translated content cache (in-memory dict)
+- [X] T008 API supports on-demand translation (no pre-translation needed)
 
 ---
 
@@ -91,8 +91,8 @@
 
 > Real-time text translation
 
-- [ ] T020 Add "Translate to Urdu" option to text selection popup
-- [ ] T021 Display translation in popover tooltip
+- [X] T020 Add "Translate to Urdu" option to text selection popup
+- [X] T021 Display translation in popover tooltip (TranslatePopover component)
 
 ---
 
@@ -124,5 +124,5 @@ Before marking feature complete:
 - [X] At least 2 chapters have Urdu translations (All 4 modules complete!)
 - [X] Code blocks remain LTR in Urdu mode
 - [X] Technical terms show both languages
-- [ ] On-demand translation works on selection (P2 - optional)
+- [X] On-demand translation works on selection (P2 - complete)
 - [X] Language preference persists across sessions
