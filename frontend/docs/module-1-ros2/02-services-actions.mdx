@@ -4,6 +4,8 @@ title: "Services and Actions"
 description: "Request-response patterns with ROS2 services and long-running tasks with actions"
 ---
 
+import DiagramViewer from '@site/src/components/DiagramViewer';
+
 # ROS2 Services and Actions
 
 While topics are great for continuous data streams, many robotics tasks require **request-response** communication or **long-running operations with feedback**. That's where **services** and **actions** come in.
@@ -27,8 +29,11 @@ While topics are great for continuous data streams, many robotics tasks require 
 
 Services provide **synchronous request-response** communication:
 
-![ROS2 Service-Client Communication](/img/generated/ros2/service-diagram.svg)
-*Figure: ROS2 Service-Client Pattern - A client sends a request to a service server and waits for the response.*
+<DiagramViewer
+  concept="ros2-service"
+  title="ROS2 Service-Client Pattern"
+  alt="Diagram showing ROS2 Service-Client Communication - A client sends a request to a service server and waits for the response."
+/>
 
 ### Service Characteristics
 

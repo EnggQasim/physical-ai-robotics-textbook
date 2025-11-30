@@ -17,8 +17,8 @@
 | US2: Animated GIF | 3 tasks |
 | US3: Pre-Generated | 2 tasks |
 | US4: Custom Request | 1 task |
-| **Completed** | **10 tasks** |
-| **Remaining** | **12 tasks** |
+| **Completed** | **17 tasks** |
+| **Remaining** | **5 tasks** |
 
 ## User Story Mapping
 
@@ -57,11 +57,11 @@
 
 > DiagramViewer React component
 
-- [ ] T009 Create DiagramViewer component with expand/zoom
-- [ ] T010 Implement lazy loading for diagrams
-- [ ] T011 Add generation loading indicator
-- [ ] T012 Create modal view for full-screen diagrams
-- [ ] T013 Add download button (PNG/SVG)
+- [X] T009 Create DiagramViewer component with expand/zoom
+- [X] T010 Implement lazy loading for diagrams
+- [X] T011 Add generation loading indicator
+- [X] T012 Create modal view for full-screen diagrams
+- [X] T013 Add download button (PNG/SVG)
 
 ---
 
@@ -69,9 +69,9 @@
 
 > AI-generated concept visualizations
 
-- [ ] T014 Add "Visualize This" button to technical sections
-- [ ] T015 Implement diagram generation with concept extraction
-- [ ] T016 Display generated diagram inline with content
+- [X] T014 Add "Visualize This" button to technical sections
+- [X] T015 Implement diagram generation with concept extraction
+- [X] T016 Display generated diagram inline with content
 
 ---
 
@@ -116,11 +116,11 @@
 
 Before marking feature complete:
 
-- [ ] "Visualize This" button on technical sections
-- [ ] Diagrams accurately represent concepts
+- [X] "Visualize This" button on technical sections
+- [X] Diagrams accurately represent concepts
 - [ ] Animated GIFs show clear progression
-- [ ] Pre-generated diagrams display inline
-- [ ] Full-screen modal view works
-- [ ] Download produces valid PNG
-- [ ] Mobile responsive diagram display
-- [ ] Alt text for all diagrams
+- [X] Pre-generated diagrams display inline
+- [X] Full-screen modal view works
+- [X] Download produces valid PNG
+- [X] Mobile responsive diagram display
+- [X] Alt text for all diagrams

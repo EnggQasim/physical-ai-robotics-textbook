@@ -4,6 +4,8 @@ title: "Nodes and Topics"
 description: "Understanding ROS2 nodes and the publish-subscribe pattern with topics"
 ---
 
+import DiagramViewer from '@site/src/components/DiagramViewer';
+
 # ROS2 Nodes and Topics
 
 In this section, you'll learn about ROS2's fundamental building blocks: **nodes** and **topics**. These concepts form the backbone of any ROS2 application.
@@ -110,8 +112,11 @@ Every ROS2 node follows this lifecycle:
 - **Subscribers** receive messages from a topic
 - **Multiple-to-multiple**: Any number of publishers and subscribers
 
-![ROS2 Publisher-Subscriber Pattern](/img/generated/ros2/pubsub-diagram.svg)
-*Figure: ROS2 Publisher-Subscriber Communication Pattern - Publishers send data to a named topic, and subscribers receive data from that topic.*
+<DiagramViewer
+  concept="ros2-pubsub"
+  title="ROS2 Publisher-Subscriber Pattern"
+  alt="Diagram showing ROS2 Publisher-Subscriber Communication Pattern - Publishers send data to a named topic, and subscribers receive data from that topic."
+/>
 
 ### Topic Characteristics
 
