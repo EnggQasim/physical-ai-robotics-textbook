@@ -74,7 +74,9 @@ export function AuthProvider({ children }: { children: React.ReactNode }): JSX.E
   }, [refreshSession]);
 
   const signInWithGitHub = async () => {
-    const redirectUri = `${window.location.origin}/auth/callback`;
+    // Use the base URL from Docusaurus config (handles both dev and prod)
+    const baseUrl = window.location.origin + '/physical-ai-robotics-textbook';
+    const redirectUri = `${baseUrl}/auth/callback`;
     const response = await fetch(
       `${API_URL}/api/auth/github/url?redirect_uri=${encodeURIComponent(redirectUri)}`
     );
@@ -86,7 +88,9 @@ export function AuthProvider({ children }: { children: React.ReactNode }): JSX.E
   };
 
   const signInWithGoogle = async () => {
-    const redirectUri = `${window.location.origin}/auth/callback`;
+    // Use the base URL from Docusaurus config (handles both dev and prod)
+    const baseUrl = window.location.origin + '/physical-ai-robotics-textbook';
+    const redirectUri = `${baseUrl}/auth/callback`;
     const response = await fetch(
       `${API_URL}/api/auth/google/url?redirect_uri=${encodeURIComponent(redirectUri)}`
     );
