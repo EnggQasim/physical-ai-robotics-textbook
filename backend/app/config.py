@@ -10,6 +10,10 @@ class Settings(BaseSettings):
     # OpenAI
     openai_api_key: str
 
+    # Google Gemini
+    gemini_api_key: Optional[str] = None
+    gemini_model: str = "gemini-2.0-flash-exp"
+
     # Qdrant (optional for in-memory mode)
     qdrant_url: Optional[str] = None
     qdrant_api_key: Optional[str] = None

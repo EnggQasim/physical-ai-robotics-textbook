@@ -17,8 +17,8 @@
 | US2: Animated GIF | 3 tasks |
 | US3: Pre-Generated | 2 tasks |
 | US4: Custom Request | 1 task |
-| **Completed** | **0 tasks** |
-| **Remaining** | **22 tasks** |
+| **Completed** | **8 tasks** |
+| **Remaining** | **14 tasks** |
 
 ## User Story Mapping
 
@@ -35,9 +35,9 @@
 
 > Project initialization and dependencies
 
-- [ ] T001 Create backend diagram service directory structure
-- [ ] T002 Install dependencies (Gemini API, image processing libs)
-- [ ] T003 Configure environment variables (Gemini API key)
+- [X] T001 Create backend diagram service directory structure
+- [X] T002 Install dependencies (Gemini API, image processing libs)
+- [X] T003 Configure environment variables (Gemini API key)
 
 ---
 
@@ -45,11 +45,11 @@
 
 > Diagram generation pipeline
 
-- [ ] T004 Create Pydantic schemas for diagram request/response
-- [ ] T005 Implement Gemini API integration for image generation
-- [ ] T006 Create diagram caching service (avoid regeneration)
+- [X] T004 Create Pydantic schemas for diagram request/response
+- [X] T005 Implement Gemini API integration for image generation
+- [X] T006 Create diagram caching service (avoid regeneration)
 - [ ] T007 Implement GIF generation pipeline with frame assembly
-- [ ] T008 Create diagram generation API endpoint
+- [X] T008 Create diagram generation API endpoint
 
 ---
 
@@ -89,8 +89,8 @@
 
 > Embedded diagrams for key concepts
 
-- [ ] T020 Embed pre-generated diagrams in main chapters
-- [ ] T021 Add alt text for accessibility
+- [X] T020 Embed pre-generated diagrams in main chapters
+- [X] T021 Add alt text for accessibility
 
 ---
 
