@@ -1,0 +1,46 @@
+name: Sync Backend to HuggingFace
+
+on:
+  push:
+    branches:
+      - master
+    paths:
+      - 'backend/**'
+
+jobs:
+  sync-to-huggingface:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Git
+        run: |
+          git config --global user.email "github-actions@github.com"
+          git config --global user.name "GitHub Actions"
+
+      - name: Clone HuggingFace Space
+        env:
+          HF_TOKEN: ${{ secrets.HF_TOKEN }}
+        run: |
+          git clone https://mqasim077:$HF_TOKEN@huggingface.co/spaces/mqasim077/physical-ai-textbook-api hf-space
+
+      - name: Sync backend files to HuggingFace
+        run: |
+          # Copy backend files to HuggingFace space root
+          cp -r backend/app hf-space/
+          cp -r backend/content hf-space/ 2>/dev/null || true
+          cp backend/Dockerfile hf-space/
+          cp backend/requirements.txt hf-space/
+          cp backend/README.md hf-space/ 2>/dev/null || true
+
+      - name: Push to HuggingFace
+        env:
+          HF_TOKEN: ${{ secrets.HF_TOKEN }}
+        run: |
+          cd hf-space
+          git add .
+          git diff --staged --quiet || git commit -m "Sync from GitHub: ${{ github.sha }}"
+          git push https://mqasim077:$HF_TOKEN@huggingface.co/spaces/mqasim077/physical-ai-textbook-api main
