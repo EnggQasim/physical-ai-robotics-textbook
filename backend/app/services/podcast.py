@@ -271,14 +271,69 @@ Generate the debate-style podcast script:"""
         Generate audio from script using OpenAI TTS.
 
         Voices available: alloy, echo, fable, onyx, nova, shimmer
-        """
-        response = self.client.audio.speech.create(
-            model="tts-1",
-            voice=voice,
-            input=script
-        )
 
-        return response.content
+        Note: OpenAI TTS has a 4096 character limit per request.
+        For longer scripts, we chunk the text and combine audio.
+        """
+        MAX_CHARS = 4000  # Leave some margin below 4096 limit
+
+        # If script is short enough, generate directly
+        if len(script) <= MAX_CHARS:
+            response = self.client.audio.speech.create(
+                model="tts-1",
+                voice=voice,
+                input=script
+            )
+            return response.content
+
+        # For longer scripts, chunk by paragraphs/sentences
+        chunks = self._chunk_text(script, MAX_CHARS)
+        audio_chunks = []
+
+        for chunk in chunks:
+            response = self.client.audio.speech.create(
+                model="tts-1",
+                voice=voice,
+                input=chunk
+            )
+            audio_chunks.append(response.content)
+
+        # Combine audio chunks (simple concatenation for MP3)
+        return b''.join(audio_chunks)
+
+    def _chunk_text(self, text: str, max_chars: int) -> List[str]:
+        """
+        Split text into chunks at sentence boundaries.
+        """
+        chunks = []
+        current_chunk = ""
+
+        # Split by sentences (rough approximation)
+        sentences = text.replace('\n\n', '\n').split('. ')
+
+        for sentence in sentences:
+            sentence = sentence.strip()
+            if not sentence:
+                continue
+
+            # Add period back if it was removed
+            if not sentence.endswith(('.', '!', '?', ':')):
+                sentence += '.'
+
+            # Check if adding this sentence would exceed limit
+            if len(current_chunk) + len(sentence) + 1 <= max_chars:
+                current_chunk += (' ' if current_chunk else '') + sentence
+            else:
+                # Save current chunk and start new one
+                if current_chunk:
+                    chunks.append(current_chunk.strip())
+                current_chunk = sentence
+
+        # Add final chunk
+        if current_chunk:
+            chunks.append(current_chunk.strip())
+
+        return chunks if chunks else [text[:max_chars]]
 
     async def generate_audio_higgs(
         self,
