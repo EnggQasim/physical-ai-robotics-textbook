@@ -8,7 +8,11 @@ import ReactFlow, {
   BackgroundVariant,
   useNodesState,
   useEdgesState,
+  useReactFlow,
+  ReactFlowProvider,
   NodeTypes,
+  getNodesBounds,
+  getViewportForBounds,
 } from 'reactflow';
 import { toPng } from 'html-to-image';
 import 'reactflow/dist/style.css';
@@ -178,21 +182,50 @@ export default function MindMapViewer({
   };
 
   const handleExport = async () => {
-    if (!reactFlowWrapper.current) return;
+    if (!reactFlowWrapper.current || nodes.length === 0) return;
 
     setIsExporting(true);
     try {
-      // Find the react-flow viewport element
-      const viewport = reactFlowWrapper.current.querySelector('.react-flow__viewport');
-      if (!viewport) {
+      // Calculate bounds of all nodes
+      const nodesBounds = getNodesBounds(nodes);
+      const imageWidth = 1920;
+      const imageHeight = 1080;
+
+      // Get viewport that fits all nodes
+      const viewport = getViewportForBounds(
+        nodesBounds,
+        imageWidth,
+        imageHeight,
+        0.5,
+        2,
+        0.2
+      );
+
+      // Find the viewport element and apply the calculated transform
+      const viewportElement = reactFlowWrapper.current.querySelector('.react-flow__viewport') as HTMLElement;
+      if (!viewportElement) {
         throw new Error('Could not find mind map viewport');
       }
 
-      const dataUrl = await toPng(viewport as HTMLElement, {
+      // Store original transform
+      const originalTransform = viewportElement.style.transform;
+
+      // Apply the calculated viewport transform for export
+      viewportElement.style.transform = `translate(${viewport.x}px, ${viewport.y}px) scale(${viewport.zoom})`;
+
+      const dataUrl = await toPng(viewportElement, {
         backgroundColor: '#ffffff',
         quality: 1.0,
-        pixelRatio: 2,
+        width: imageWidth,
+        height: imageHeight,
+        style: {
+          width: `${imageWidth}px`,
+          height: `${imageHeight}px`,
+        },
       });
+
+      // Restore original transform
+      viewportElement.style.transform = originalTransform;
 
       const link = document.createElement('a');
       link.download = `mindmap-${chapterId}.png`;
