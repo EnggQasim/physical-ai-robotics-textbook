@@ -1,4 +1,5 @@
 import type {ReactNode} from 'react';
+import {useEffect, useRef, useState} from 'react';
 import clsx from 'clsx';
 import Link from '@docusaurus/Link';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
@@ -7,14 +8,54 @@ import Layout from '@theme/Layout';
 import Translate, {translate} from '@docusaurus/Translate';
 import HomepageFeatures from '@site/src/components/HomepageFeatures';
 import Heading from '@theme/Heading';
+import * as THREE from 'three';
 
 import styles from './index.module.css';
 
 function HomepageHeader() {
   const {siteConfig} = useDocusaurusContext();
   const heroImage = useBaseUrl('/img/hero-robot.svg');
+  const vantaRef = useRef<HTMLDivElement>(null);
+  const [vantaEffect, setVantaEffect] = useState<any>(null);
+
+  useEffect(() => {
+    // Dynamically import Vanta to avoid SSR issues
+    const loadVanta = async () => {
+      if (!vantaEffect && vantaRef.current) {
+        try {
+          const VANTA = await import('vanta/dist/vanta.net.min');
+          const effect = VANTA.default({
+            el: vantaRef.current,
+            THREE: THREE,
+            mouseControls: true,
+            touchControls: true,
+            gyroControls: false,
+            minHeight: 200.0,
+            minWidth: 200.0,
+            scale: 1.0,
+            scaleMobile: 1.0,
+            color: 0x76b900,        // NVIDIA green for points
+            backgroundColor: 0x1a4d00, // Darker green background
+            points: 12.0,
+            maxDistance: 22.0,
+            spacing: 18.0,
+            showDots: true,
+          });
+          setVantaEffect(effect);
+        } catch (error) {
+          console.error('Failed to load Vanta effect:', error);
+        }
+      }
+    };
+    loadVanta();
+
+    return () => {
+      if (vantaEffect) vantaEffect.destroy();
+    };
+  }, [vantaEffect]);
+
   return (
-    <header className={clsx('hero hero--primary', styles.heroBanner)}>
+    <header className={clsx('hero hero--primary', styles.heroBanner)} ref={vantaRef}>
       <div className="container">
         <div className={styles.heroContent}>
           <div className={styles.heroText}>

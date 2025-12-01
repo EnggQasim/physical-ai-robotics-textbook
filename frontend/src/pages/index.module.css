@@ -8,6 +8,23 @@
   text-align: center;
   position: relative;
   overflow: hidden;
+  min-height: 450px;
+}
+
+/* Ensure content is above Vanta canvas */
+.heroBanner > .container {
+  position: relative;
+  z-index: 1;
+}
+
+/* Vanta canvas styles */
+.heroBanner :global(canvas) {
+  position: absolute !important;
+  top: 0;
+  left: 0;
+  width: 100% !important;
+  height: 100% !important;
+  z-index: 0;
 }
 
 .heroContent {
