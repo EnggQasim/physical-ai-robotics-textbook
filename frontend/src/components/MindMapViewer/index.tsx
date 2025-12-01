@@ -99,9 +99,9 @@ function convertToReactFlowNodes(mindmap: MindMapData): { nodes: Node[]; edges: 
     id: edge.id,
     source: edge.source,
     target: edge.target,
-    type: 'smoothstep',
+    type: 'default', // Bezier curves for organic look
     animated: false,
-    style: { stroke: '#9ca3af', strokeWidth: 2 },
+    style: { stroke: '#9ca3af', strokeWidth: 3 },
   }));
 
   return getLayoutedElements(nodes, edges, 'TB');
@@ -367,17 +367,15 @@ export default function MindMapViewer({
           proOptions={proOptions}
           defaultViewport={{ x: 0, y: 0, zoom: 0.8 }}
         >
-          <Background variant={BackgroundVariant.Dots} gap={16} size={1} color="#e5e7eb" />
+          <Background variant={BackgroundVariant.Dots} gap={20} size={1} color="#e5e7eb" />
           <Controls showInteractive={false} />
           <MiniMap
             nodeColor={(node) => {
-              const level = node.data?.level ?? 1;
-              if (level === 0) return '#76b900';
-              if (level === 1) return '#1a73e8';
-              return '#6b7280';
+              // Use the node's assigned color for minimap
+              return node.data?.color || '#76b900';
             }}
-            maskColor="rgba(0, 0, 0, 0.1)"
-            style={{ backgroundColor: '#f9fafb' }}
+            maskColor="rgba(0, 0, 0, 0.08)"
+            style={{ backgroundColor: '#fafafa' }}
           />
         </ReactFlow>
       </div>
