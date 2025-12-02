@@ -1,321 +1,459 @@
 #!/usr/bin/env python3
 """
-Generate animated GIF showing human learning from book and building a robot.
-Stages:
-1. Human reading Physical AI book
-2. Human starts building robot (parts appear)
-3. Robot assembly in progress
-4. Robot completed and powered on
-5. Robot working like a human (walking, waving)
+Educational Journey GIF: From Learning to Creation
+Based on research from:
+- Educational Voice animated infographics guidelines
+- Graphics for Learning (Ruth Clark & Chopeta Lyons)
+- UAF Center for Teaching and Learning GIF guidelines
+
+Best Practices Applied:
+- 6 clear stages (10-20 seconds total at ~2.5 sec/stage)
+- Visual hierarchy with highlighted active elements
+- Color coding: Green (success), Blue (learning), Orange (building)
+- Progress indicators for each stage
+- Clear text labels with step numbers
+- Smooth transitions between stages
 """
 
 from PIL import Image, ImageDraw, ImageFont
 import math
 import os
 
-# Configuration
-WIDTH, HEIGHT = 800, 500
-FRAMES = 60
-FPS = 12
+# Configuration - Educational GIF best practices
+WIDTH, HEIGHT = 900, 550  # Wider for better storytelling
+FRAMES = 72  # 6 stages x 12 frames = ~15 seconds at 5 FPS
+FPS = 5  # Slower for comprehension
 DURATION = int(1000 / FPS)
 
-# Colors - NVIDIA theme
-BG_COLOR = (26, 26, 26)  # #1a1a1a
-GREEN = (118, 185, 0)    # #76b900
-DARK_GREEN = (80, 130, 0)
+# Color Scheme (Research-based educational palette)
+BG_COLOR = (20, 25, 30)       # Dark slate background
+PRIMARY_GREEN = (118, 185, 0)  # NVIDIA green - success/completion
+SECONDARY_BLUE = (66, 133, 244)  # Google blue - learning/info
+ACCENT_ORANGE = (255, 152, 0)   # Orange - building/progress
 WHITE = (255, 255, 255)
-GRAY = (100, 100, 100)
-DARK_GRAY = (50, 50, 50)
-LIGHT_GRAY = (150, 150, 150)
+LIGHT_GRAY = (200, 200, 200)
+MEDIUM_GRAY = (120, 120, 120)
+DARK_GRAY = (60, 60, 60)
+HIGHLIGHT = (255, 235, 59)  # Yellow highlight for active elements
 
-def draw_human(draw, x, y, scale=1.0, reading=False, building=False, celebrating=False):
-    """Draw a simple human figure"""
+# Stage definitions for clear storytelling
+STAGES = [
+    {"name": "DISCOVER", "subtitle": "Open the Physical AI Book", "color": SECONDARY_BLUE, "icon": "book"},
+    {"name": "LEARN", "subtitle": "Master ROS2, Gazebo, Isaac & VLA", "color": SECONDARY_BLUE, "icon": "brain"},
+    {"name": "GATHER", "subtitle": "Collect Robot Components", "color": ACCENT_ORANGE, "icon": "parts"},
+    {"name": "BUILD", "subtitle": "Assemble Your Humanoid Robot", "color": ACCENT_ORANGE, "icon": "tools"},
+    {"name": "ACTIVATE", "subtitle": "Power On & Initialize AI", "color": PRIMARY_GREEN, "icon": "power"},
+    {"name": "ACHIEVE", "subtitle": "Your Robot Works Autonomously!", "color": PRIMARY_GREEN, "icon": "success"},
+]
+
+
+def draw_rounded_rect(draw, coords, fill, outline=None, radius=10, width=2):
+    """Draw a rounded rectangle"""
+    x1, y1, x2, y2 = coords
+    # Simple approximation with regular rectangle for PIL compatibility
+    draw.rectangle(coords, fill=fill, outline=outline, width=width)
+
+
+def draw_stage_indicator(draw, current_stage, total_stages=6):
+    """Draw progress dots at the bottom"""
+    dot_spacing = 50
+    start_x = WIDTH // 2 - (total_stages - 1) * dot_spacing // 2
+    y = HEIGHT - 45
+
+    for i in range(total_stages):
+        x = start_x + i * dot_spacing
+        if i < current_stage:
+            # Completed
+            draw.ellipse([x-8, y-8, x+8, y+8], fill=PRIMARY_GREEN)
+            draw.text((x, y), "✓", fill=WHITE, anchor="mm")
+        elif i == current_stage:
+            # Current (highlighted)
+            draw.ellipse([x-10, y-10, x+10, y+10], fill=HIGHLIGHT, outline=WHITE, width=2)
+            draw.text((x, y), str(i+1), fill=BG_COLOR, anchor="mm")
+        else:
+            # Upcoming
+            draw.ellipse([x-8, y-8, x+8, y+8], fill=DARK_GRAY, outline=MEDIUM_GRAY, width=1)
+            draw.text((x, y), str(i+1), fill=MEDIUM_GRAY, anchor="mm")
+
+
+def draw_header(draw, stage_num, stage_info, frame_in_stage):
+    """Draw the header with stage info"""
+    # Stage number badge
+    badge_x, badge_y = 60, 45
+    draw.ellipse([badge_x-25, badge_y-25, badge_x+25, badge_y+25],
+                 fill=stage_info["color"], outline=WHITE, width=2)
+    draw.text((badge_x, badge_y), str(stage_num + 1), fill=WHITE, anchor="mm")
+
+    # Stage name with animation
+    pulse = math.sin(frame_in_stage * 0.5) * 0.1 + 1.0
+    draw.text((130, 35), stage_info["name"], fill=stage_info["color"], anchor="lm")
+    draw.text((130, 60), stage_info["subtitle"], fill=LIGHT_GRAY, anchor="lm")
+
+    # Decorative line
+    draw.line([130, 80, 130 + len(stage_info["subtitle"]) * 7, 80],
+              fill=stage_info["color"], width=2)
+
+
+def draw_human_student(draw, x, y, scale=1.0, pose="standing", highlight=False):
+    """Draw a friendly human student figure"""
     s = scale
-    # Head
-    draw.ellipse([x-15*s, y-60*s, x+15*s, y-30*s], fill=LIGHT_GRAY, outline=WHITE, width=2)
+    outline_color = HIGHLIGHT if highlight else WHITE
+    outline_width = 3 if highlight else 2
+
+    # Head (circle)
+    draw.ellipse([x-18*s, y-85*s, x+18*s, y-50*s],
+                 fill=LIGHT_GRAY, outline=outline_color, width=outline_width)
+
+    # Simple face
+    # Eyes
+    draw.ellipse([x-10*s, y-75*s, x-4*s, y-68*s], fill=BG_COLOR)
+    draw.ellipse([x+4*s, y-75*s, x+10*s, y-68*s], fill=BG_COLOR)
+    # Smile
+    draw.arc([x-8*s, y-70*s, x+8*s, y-58*s], 0, 180, fill=BG_COLOR, width=2)
+
     # Body
-    draw.rectangle([x-20*s, y-30*s, x+20*s, y+30*s], fill=GRAY, outline=WHITE, width=2)
-    # Legs
-    draw.rectangle([x-18*s, y+30*s, x-5*s, y+70*s], fill=GRAY, outline=WHITE, width=2)
-    draw.rectangle([x+5*s, y+30*s, x+18*s, y+70*s], fill=GRAY, outline=WHITE, width=2)
+    draw.rectangle([x-22*s, y-50*s, x+22*s, y+15*s],
+                   fill=SECONDARY_BLUE, outline=outline_color, width=outline_width)
 
-    if reading:
-        # Arms holding book
-        draw.rectangle([x-35*s, y-20*s, x-20*s, y+10*s], fill=GRAY, outline=WHITE, width=2)
-        draw.rectangle([x+20*s, y-20*s, x+35*s, y+10*s], fill=GRAY, outline=WHITE, width=2)
-    elif building:
-        # Arms extended (working)
-        draw.rectangle([x+20*s, y-25*s, x+60*s, y-10*s], fill=GRAY, outline=WHITE, width=2)
-        draw.rectangle([x+20*s, y+0*s, x+55*s, y+15*s], fill=GRAY, outline=WHITE, width=2)
-    elif celebrating:
+    if pose == "reading":
+        # Arms in front (holding book)
+        draw.rectangle([x-40*s, y-35*s, x-22*s, y-5*s], fill=LIGHT_GRAY, outline=outline_color, width=2)
+        draw.rectangle([x+22*s, y-35*s, x+40*s, y-5*s], fill=LIGHT_GRAY, outline=outline_color, width=2)
+    elif pose == "thinking":
+        # Hand on chin
+        draw.rectangle([x-40*s, y-45*s, x-22*s, y-20*s], fill=LIGHT_GRAY, outline=outline_color, width=2)
+        draw.rectangle([x+22*s, y-35*s, x+35*s, y+10*s], fill=LIGHT_GRAY, outline=outline_color, width=2)
+    elif pose == "building":
+        # Arms extended to work
+        draw.rectangle([x+22*s, y-40*s, x+65*s, y-25*s], fill=LIGHT_GRAY, outline=outline_color, width=2)
+        draw.rectangle([x+22*s, y-15*s, x+55*s, y+0*s], fill=LIGHT_GRAY, outline=outline_color, width=2)
+    elif pose == "celebrating":
         # Arms raised
-        draw.rectangle([x-40*s, y-50*s, x-25*s, y-20*s], fill=GRAY, outline=WHITE, width=2)
-        draw.rectangle([x+25*s, y-50*s, x+40*s, y-20*s], fill=GRAY, outline=WHITE, width=2)
+        draw.rectangle([x-45*s, y-70*s, x-22*s, y-40*s], fill=LIGHT_GRAY, outline=outline_color, width=2)
+        draw.rectangle([x+22*s, y-70*s, x+45*s, y-40*s], fill=LIGHT_GRAY, outline=outline_color, width=2)
     else:
-        # Arms at side
-        draw.rectangle([x-35*s, y-25*s, x-20*s, y+20*s], fill=GRAY, outline=WHITE, width=2)
-        draw.rectangle([x+20*s, y-25*s, x+35*s, y+20*s], fill=GRAY, outline=WHITE, width=2)
+        # Arms at sides
+        draw.rectangle([x-40*s, y-45*s, x-22*s, y+10*s], fill=LIGHT_GRAY, outline=outline_color, width=2)
+        draw.rectangle([x+22*s, y-45*s, x+40*s, y+10*s], fill=LIGHT_GRAY, outline=outline_color, width=2)
 
-def draw_book(draw, x, y, scale=1.0, open_amount=0.8):
-    """Draw the Physical AI book"""
+    # Legs
+    draw.rectangle([x-18*s, y+15*s, x-5*s, y+60*s], fill=DARK_GRAY, outline=outline_color, width=2)
+    draw.rectangle([x+5*s, y+15*s, x+18*s, y+60*s], fill=DARK_GRAY, outline=outline_color, width=2)
+
+
+def draw_book(draw, x, y, scale=1.0, open_progress=0, highlight=False):
+    """Draw the Physical AI textbook"""
     s = scale
-    w = 60 * s
-    h = 80 * s
+    outline_color = HIGHLIGHT if highlight else PRIMARY_GREEN
+
+    w, h = 70*s, 90*s
 
     # Book cover
-    draw.rectangle([x-w/2, y-h/2, x+w/2, y+h/2], fill=DARK_GREEN, outline=GREEN, width=3)
+    draw.rectangle([x-w/2, y-h/2, x+w/2, y+h/2],
+                   fill=(30, 60, 30), outline=outline_color, width=3)
 
-    # Book title
-    draw.rectangle([x-w/2+8, y-h/2+10, x+w/2-8, y-h/2+35], fill=BG_COLOR)
+    # Title area
+    draw.rectangle([x-w/2+8, y-h/2+10, x+w/2-8, y-h/2+40], fill=PRIMARY_GREEN)
+    draw.text((x, y-h/2+25), "PHYSICAL", fill=WHITE, anchor="mm")
+    draw.text((x, y-h/2+50), "AI", fill=PRIMARY_GREEN, anchor="mm")
 
-    # Pages (if open)
-    if open_amount > 0:
-        page_offset = int(10 * open_amount * s)
-        draw.rectangle([x-w/2+5, y-h/2+5, x-w/2+5+page_offset, y+h/2-5], fill=WHITE)
+    # Spine
+    draw.line([x-w/2+3, y-h/2+3, x-w/2+3, y+h/2-3], fill=outline_color, width=2)
 
-def draw_robot(draw, x, y, scale=1.0, assembly_progress=1.0, powered=False, walking_frame=0):
-    """Draw robot at various assembly stages"""
+    # Pages visible if open
+    if open_progress > 0:
+        page_width = int(15 * open_progress * s)
+        draw.rectangle([x+w/2, y-h/2+5, x+w/2+page_width, y+h/2-5], fill=WHITE)
+
+
+def draw_knowledge_bubbles(draw, x, y, progress, topics):
+    """Draw floating knowledge topic bubbles"""
+    visible = int(progress * len(topics))
+
+    for i, topic in enumerate(topics[:visible]):
+        angle = (i / len(topics)) * math.pi - math.pi/2
+        radius = 100 + i * 20
+        bx = x + int(math.cos(angle + progress * 0.5) * radius)
+        by = y + int(math.sin(angle + progress * 0.5) * radius * 0.6)
+
+        # Bubble
+        text_width = len(topic) * 8 + 20
+        draw.ellipse([bx-text_width/2, by-15, bx+text_width/2, by+15],
+                     fill=DARK_GRAY, outline=SECONDARY_BLUE, width=2)
+        draw.text((bx, by), topic, fill=WHITE, anchor="mm")
+
+
+def draw_robot_parts(draw, x, y, visible_parts, highlight_part=-1):
+    """Draw scattered robot parts"""
+    parts = [
+        {"name": "HEAD", "offset": (-80, -60), "size": (50, 45), "color": DARK_GRAY},
+        {"name": "TORSO", "offset": (0, 20), "size": (65, 70), "color": DARK_GRAY},
+        {"name": "ARM L", "offset": (-100, 30), "size": (20, 55), "color": DARK_GRAY},
+        {"name": "ARM R", "offset": (100, 30), "size": (20, 55), "color": DARK_GRAY},
+        {"name": "LEG L", "offset": (-50, 90), "size": (22, 60), "color": DARK_GRAY},
+        {"name": "LEG R", "offset": (50, 90), "size": (22, 60), "color": DARK_GRAY},
+    ]
+
+    for i, part in enumerate(parts[:visible_parts]):
+        px = x + part["offset"][0]
+        py = y + part["offset"][1]
+        w, h = part["size"]
+
+        outline = HIGHLIGHT if i == highlight_part else ACCENT_ORANGE
+        draw.rectangle([px-w/2, py-h/2, px+w/2, py+h/2],
+                       fill=part["color"], outline=outline, width=3 if i == highlight_part else 2)
+        draw.text((px, py), part["name"], fill=outline, anchor="mm")
+
+
+def draw_robot(draw, x, y, scale=1.0, assembly=1.0, powered=False, anim_frame=0):
+    """Draw the humanoid robot at various assembly stages"""
     s = scale
 
-    # Assembly stages
-    if assembly_progress < 0.2:
-        return  # Nothing yet
+    glow_color = PRIMARY_GREEN if powered else DARK_GRAY
+    outline = PRIMARY_GREEN if powered else ACCENT_ORANGE
 
-    # Legs (first to appear)
-    if assembly_progress >= 0.2:
-        alpha = min(1.0, (assembly_progress - 0.2) / 0.15)
-        leg_color = tuple(int(c * alpha) for c in GREEN)
+    # Only draw parts based on assembly progress
+    if assembly < 0.15:
+        return
 
-        # Walking animation
-        leg_offset = int(math.sin(walking_frame * 0.5) * 8) if powered else 0
-
-        draw.rectangle([x-25*s, y+20*s, x-8*s, y+70*s+leg_offset], fill=BG_COLOR, outline=GREEN, width=2)
-        draw.rectangle([x+8*s, y+20*s, x+25*s, y+70*s-leg_offset], fill=BG_COLOR, outline=GREEN, width=2)
-        # Feet
-        draw.rectangle([x-30*s, y+65*s+leg_offset, x-5*s, y+80*s+leg_offset], fill=DARK_GRAY, outline=GREEN, width=2)
-        draw.rectangle([x+5*s, y+65*s-leg_offset, x+30*s, y+80*s-leg_offset], fill=DARK_GRAY, outline=GREEN, width=2)
+    # Legs (first)
+    if assembly >= 0.15:
+        leg_offset = int(math.sin(anim_frame * 0.4) * 8) if powered else 0
+        # Left leg
+        draw.rectangle([x-28*s, y+25*s, x-8*s, y+80*s+leg_offset], fill=BG_COLOR, outline=outline, width=2)
+        draw.rectangle([x-32*s, y+75*s+leg_offset, x-5*s, y+90*s+leg_offset], fill=DARK_GRAY, outline=outline, width=2)
+        # Right leg
+        draw.rectangle([x+8*s, y+25*s, x+28*s, y+80*s-leg_offset], fill=BG_COLOR, outline=outline, width=2)
+        draw.rectangle([x+5*s, y+75*s-leg_offset, x+32*s, y+90*s-leg_offset], fill=DARK_GRAY, outline=outline, width=2)
 
     # Torso
-    if assembly_progress >= 0.35:
-        draw.rectangle([x-30*s, y-30*s, x+30*s, y+25*s], fill=BG_COLOR, outline=GREEN, width=2)
+    if assembly >= 0.35:
+        draw.rectangle([x-35*s, y-30*s, x+35*s, y+30*s], fill=BG_COLOR, outline=outline, width=2)
         # Chest panel
-        draw.rectangle([x-20*s, y-20*s, x+20*s, y+10*s], fill=DARK_GRAY, outline=GREEN, width=1)
+        draw.rectangle([x-25*s, y-20*s, x+25*s, y+15*s], fill=DARK_GRAY, outline=glow_color, width=1)
+
         if powered:
             # Glowing indicators
-            for i, cx in enumerate([-12, 0, 12]):
-                draw.ellipse([x+cx*s-4, y-10*s-4, x+cx*s+4, y-10*s+4], fill=GREEN)
+            for i, cx in enumerate([-15, 0, 15]):
+                color = [PRIMARY_GREEN, SECONDARY_BLUE, ACCENT_ORANGE][i]
+                pulse = int(math.sin(anim_frame * 0.5 + i) * 2) + 5
+                draw.ellipse([x+cx*s-pulse, y-5*s-pulse, x+cx*s+pulse, y-5*s+pulse], fill=color)
 
     # Arms
-    if assembly_progress >= 0.5:
-        wave_offset = int(math.sin(walking_frame * 0.3) * 15) if powered else 0
+    if assembly >= 0.55:
+        wave = int(math.sin(anim_frame * 0.3) * 10) if powered else 0
 
         # Left arm
-        draw.rectangle([x-50*s, y-25*s, x-30*s, y+15*s], fill=BG_COLOR, outline=GREEN, width=2)
-        draw.rectangle([x-55*s, y+10*s, x-35*s, y+40*s-wave_offset], fill=BG_COLOR, outline=GREEN, width=2)
+        draw.rectangle([x-55*s, y-25*s, x-35*s, y+20*s], fill=BG_COLOR, outline=outline, width=2)
+        draw.rectangle([x-60*s, y+15*s-wave, x-40*s, y+50*s-wave], fill=BG_COLOR, outline=outline, width=2)
 
         # Right arm (waving if powered)
-        if powered and walking_frame % 20 > 10:
-            # Raised arm
-            draw.rectangle([x+30*s, y-25*s, x+50*s, y+5*s], fill=BG_COLOR, outline=GREEN, width=2)
-            draw.rectangle([x+35*s, y-55*s, x+55*s, y-20*s], fill=BG_COLOR, outline=GREEN, width=2)
-            # Hand waving
-            draw.ellipse([x+38*s, y-65*s, x+52*s, y-50*s], fill=DARK_GRAY, outline=GREEN, width=2)
+        if powered and anim_frame % 24 > 12:
+            draw.rectangle([x+35*s, y-25*s, x+55*s, y+5*s], fill=BG_COLOR, outline=outline, width=2)
+            draw.rectangle([x+40*s, y-60*s, x+60*s, y-20*s], fill=BG_COLOR, outline=outline, width=2)
+            # Hand
+            draw.ellipse([x+42*s, y-72*s, x+58*s, y-58*s], fill=DARK_GRAY, outline=outline, width=2)
         else:
-            draw.rectangle([x+30*s, y-25*s, x+50*s, y+15*s], fill=BG_COLOR, outline=GREEN, width=2)
-            draw.rectangle([x+35*s, y+10*s, x+55*s, y+40*s+wave_offset], fill=BG_COLOR, outline=GREEN, width=2)
+            draw.rectangle([x+35*s, y-25*s, x+55*s, y+20*s], fill=BG_COLOR, outline=outline, width=2)
+            draw.rectangle([x+40*s, y+15*s+wave, x+60*s, y+50*s+wave], fill=BG_COLOR, outline=outline, width=2)
 
-    # Head (last to appear)
-    if assembly_progress >= 0.7:
+    # Head
+    if assembly >= 0.75:
         # Neck
-        draw.rectangle([x-10*s, y-40*s, x+10*s, y-28*s], fill=DARK_GRAY, outline=GREEN, width=1)
+        draw.rectangle([x-12*s, y-42*s, x+12*s, y-28*s], fill=DARK_GRAY, outline=glow_color, width=1)
         # Head
-        draw.rectangle([x-25*s, y-80*s, x+25*s, y-38*s], fill=BG_COLOR, outline=GREEN, width=2)
-        # Face visor
-        draw.rectangle([x-18*s, y-72*s, x+18*s, y-50*s], fill=DARK_GRAY, outline=GREEN, width=1)
+        draw.rectangle([x-30*s, y-90*s, x+30*s, y-40*s], fill=BG_COLOR, outline=outline, width=2)
+        # Visor
+        draw.rectangle([x-22*s, y-82*s, x+22*s, y-55*s], fill=(20, 30, 40), outline=glow_color, width=1)
 
         # Eyes
         if powered:
-            eye_blink = walking_frame % 30 < 3
-            eye_height = 2 if eye_blink else 6
-            draw.ellipse([x-12*s-5, y-65*s-eye_height, x-12*s+5, y-65*s+eye_height], fill=GREEN)
-            draw.ellipse([x+12*s-5, y-65*s-eye_height, x+12*s+5, y-65*s+eye_height], fill=GREEN)
+            blink = anim_frame % 36 < 3
+            eye_h = 3 if blink else 8
+            draw.ellipse([x-14*s-6, y-70*s-eye_h, x-14*s+6, y-70*s+eye_h], fill=PRIMARY_GREEN)
+            draw.ellipse([x+14*s-6, y-70*s-eye_h, x+14*s+6, y-70*s+eye_h], fill=PRIMARY_GREEN)
             # Eye shine
-            draw.ellipse([x-12*s-2, y-65*s-2, x-12*s+2, y-65*s+2], fill=WHITE)
-            draw.ellipse([x+12*s-2, y-65*s-2, x+12*s+2, y-65*s+2], fill=WHITE)
+            draw.ellipse([x-14*s-2, y-70*s-2, x-14*s+2, y-70*s+2], fill=WHITE)
+            draw.ellipse([x+14*s-2, y-70*s-2, x+14*s+2, y-70*s+2], fill=WHITE)
         else:
-            draw.ellipse([x-12*s-5, y-65*s-5, x-12*s+5, y-65*s+5], fill=DARK_GRAY)
-            draw.ellipse([x+12*s-5, y-65*s-5, x+12*s+5, y-65*s+5], fill=DARK_GRAY)
+            draw.ellipse([x-14*s-6, y-70*s-6, x-14*s+6, y-70*s+6], fill=DARK_GRAY)
+            draw.ellipse([x+14*s-6, y-70*s-6, x+14*s+6, y-70*s+6], fill=DARK_GRAY)
 
         # Antenna
-        draw.line([x, y-80*s, x, y-95*s], fill=GREEN, width=3)
+        draw.line([x, y-90*s, x, y-108*s], fill=outline, width=3)
         if powered:
-            pulse = int(math.sin(walking_frame * 0.5) * 3) + 6
-            draw.ellipse([x-pulse, y-100*s-pulse, x+pulse, y-100*s+pulse], fill=GREEN)
+            pulse = int(math.sin(anim_frame * 0.5) * 4) + 8
+            draw.ellipse([x-pulse, y-115*s-pulse, x+pulse, y-115*s+pulse], fill=PRIMARY_GREEN)
         else:
-            draw.ellipse([x-5, y-100*s-5, x+5, y-100*s+5], fill=DARK_GRAY)
+            draw.ellipse([x-6, y-115*s-6, x+6, y-115*s+6], fill=DARK_GRAY)
 
-def draw_parts(draw, x, y, visible_parts):
-    """Draw robot parts scattered (before assembly)"""
-    parts = [
-        ("Head", x-60, y-40, 40, 35),
-        ("Arm", x+50, y-30, 15, 40),
-        ("Arm", x+80, y+10, 15, 40),
-        ("Torso", x-40, y+30, 50, 45),
-        ("Leg", x+30, y+50, 18, 45),
-        ("Leg", x+60, y+60, 18, 45),
-    ]
 
-    for i, (name, px, py, w, h) in enumerate(parts):
-        if i < visible_parts:
-            draw.rectangle([px-w/2, py-h/2, px+w/2, py+h/2], fill=DARK_GRAY, outline=GREEN, width=2)
+def draw_progress_bar(draw, x, y, width, progress, label, color):
+    """Draw an animated progress bar"""
+    height = 25
 
-def draw_text(draw, text, x, y, color=GREEN, size="normal"):
-    """Draw text at position"""
-    draw.text((x, y), text, fill=color, anchor="mm")
-
-def draw_progress_bar(draw, x, y, width, progress, label=""):
-    """Draw a progress bar"""
-    height = 20
     # Background
-    draw.rectangle([x, y, x+width, y+height], fill=DARK_GRAY, outline=GREEN, width=1)
-    # Progress
-    fill_width = int(width * progress)
+    draw.rectangle([x, y, x+width, y+height], fill=DARK_GRAY, outline=MEDIUM_GRAY, width=1)
+
+    # Fill
+    fill_width = int((width - 4) * progress)
     if fill_width > 0:
-        draw.rectangle([x+2, y+2, x+2+fill_width-4, y+height-2], fill=GREEN)
-    # Label
-    if label:
-        draw.text((x + width/2, y + height + 15), label, fill=WHITE, anchor="mm")
+        draw.rectangle([x+2, y+2, x+2+fill_width, y+height-2], fill=color)
+
+    # Label and percentage
+    draw.text((x + width/2, y + height + 18), label, fill=WHITE, anchor="mm")
+    draw.text((x + width + 15, y + height/2), f"{int(progress*100)}%", fill=color, anchor="lm")
+
+
+def draw_success_effects(draw, x, y, frame):
+    """Draw celebratory effects"""
+    # Radiating lines
+    for i in range(8):
+        angle = (i / 8) * math.pi * 2 + frame * 0.1
+        length = 60 + math.sin(frame * 0.5 + i) * 20
+        ex = x + int(math.cos(angle) * length)
+        ey = y + int(math.sin(angle) * length)
+        draw.line([x, y, ex, ey], fill=PRIMARY_GREEN, width=2)
+
+    # Stars
+    for i in range(5):
+        angle = (i / 5) * math.pi * 2 + frame * 0.15
+        dist = 100 + i * 15
+        sx = x + int(math.cos(angle) * dist)
+        sy = y + int(math.sin(angle) * dist)
+        size = 6 + int(math.sin(frame * 0.3 + i) * 3)
+        draw.polygon([
+            (sx, sy-size), (sx+size//2, sy-size//3), (sx+size, sy),
+            (sx+size//2, sy+size//3), (sx, sy+size),
+            (sx-size//2, sy+size//3), (sx-size, sy), (sx-size//2, sy-size//3)
+        ], fill=HIGHLIGHT, outline=WHITE)
+
 
 def create_frame(frame_num, total_frames):
-    """Create a single frame of the animation"""
+    """Create a single frame with proper educational staging"""
     img = Image.new('RGB', (WIDTH, HEIGHT), BG_COLOR)
     draw = ImageDraw.Draw(img)
 
-    # Calculate animation phase (0-5)
-    progress = frame_num / total_frames
+    # Calculate which stage and progress within stage
+    frames_per_stage = total_frames // len(STAGES)
+    current_stage = min(frame_num // frames_per_stage, len(STAGES) - 1)
+    frame_in_stage = frame_num % frames_per_stage
+    stage_progress = frame_in_stage / frames_per_stage
 
-    # Phase durations
-    # 0.00-0.15: Reading book
-    # 0.15-0.25: Transition to building
-    # 0.25-0.60: Building robot (parts appearing, assembly)
-    # 0.60-0.75: Robot powering on
-    # 0.75-1.00: Robot working like human
+    stage_info = STAGES[current_stage]
 
-    # Title
-    draw.text((WIDTH/2, 30), "From Learning to Creation", fill=GREEN, anchor="mm")
+    # Draw header
+    draw_header(draw, current_stage, stage_info, frame_in_stage)
 
-    # Draw scene based on phase
-    if progress < 0.15:
-        # Phase 1: Reading
-        phase_progress = progress / 0.15
-        draw.text((WIDTH/2, HEIGHT-40), "Step 1: Learning Physical AI", fill=WHITE, anchor="mm")
+    # Draw stage indicators
+    draw_stage_indicator(draw, current_stage, len(STAGES))
 
-        # Human reading book
-        draw_human(draw, 250, 280, scale=1.2, reading=True)
-        draw_book(draw, 250, 230, scale=1.5, open_amount=0.5 + phase_progress * 0.3)
+    # Main content area
+    content_y = 280
 
-        # Knowledge bubbles appearing
-        if phase_progress > 0.3:
-            draw.text((350, 150), "ROS2", fill=GREEN, anchor="mm")
-        if phase_progress > 0.5:
-            draw.text((400, 180), "Gazebo", fill=GREEN, anchor="mm")
-        if phase_progress > 0.7:
-            draw.text((380, 220), "Isaac", fill=GREEN, anchor="mm")
-        if phase_progress > 0.9:
-            draw.text((420, 250), "VLA", fill=GREEN, anchor="mm")
+    # Stage-specific content
+    if current_stage == 0:  # DISCOVER
+        # Human finds the book
+        human_x = 200 + int(stage_progress * 50)
+        draw_human_student(draw, human_x, content_y, scale=1.0, pose="standing", highlight=True)
+        draw_book(draw, 400, content_y - 20, scale=1.2, open_progress=0, highlight=stage_progress > 0.5)
 
-    elif progress < 0.25:
-        # Phase 2: Transition
-        phase_progress = (progress - 0.15) / 0.10
-        draw.text((WIDTH/2, HEIGHT-40), "Step 2: Starting to Build", fill=WHITE, anchor="mm")
+        # Arrow pointing to book
+        if stage_progress > 0.3:
+            draw.polygon([(320, content_y-30), (350, content_y-50), (350, content_y-10)],
+                        fill=SECONDARY_BLUE)
 
-        # Human moving to building position
-        human_x = 250 - int(100 * phase_progress)
-        draw_human(draw, human_x, 280, scale=1.2, building=phase_progress > 0.5)
-
-        # Book fading/moving
-        if phase_progress < 0.5:
-            draw_book(draw, 250, 230, scale=1.5 - phase_progress, open_amount=0.8)
-
-        # Parts starting to appear
-        draw_parts(draw, 500, 280, int(phase_progress * 3))
-
-    elif progress < 0.60:
-        # Phase 3: Building
-        phase_progress = (progress - 0.25) / 0.35
-        draw.text((WIDTH/2, HEIGHT-40), "Step 3: Assembling the Robot", fill=WHITE, anchor="mm")
-
-        # Human building
-        draw_human(draw, 150, 280, scale=1.2, building=True)
-
-        # Robot being assembled
-        assembly = min(1.0, phase_progress * 1.2)
-        draw_robot(draw, 550, 300, scale=1.0, assembly_progress=assembly, powered=False)
+    elif current_stage == 1:  # LEARN
+        # Human reading and knowledge appearing
+        draw_human_student(draw, 200, content_y, scale=1.0, pose="reading")
+        draw_book(draw, 200, content_y - 60, scale=1.0, open_progress=stage_progress)
+        draw_knowledge_bubbles(draw, 450, content_y - 30, stage_progress,
+                              ["ROS2", "Gazebo", "Isaac Sim", "VLA Models"])
 
         # Progress bar
-        draw_progress_bar(draw, 300, HEIGHT-80, 200, assembly, f"Assembly: {int(assembly*100)}%")
+        draw_progress_bar(draw, 550, content_y + 60, 200, stage_progress, "Knowledge", SECONDARY_BLUE)
 
-        # Sparks/work indicators
-        if int(frame_num * 3) % 4 < 2:
-            spark_x = 450 + int(phase_progress * 100)
-            spark_y = 200 + int(math.sin(frame_num) * 30)
-            draw.ellipse([spark_x-3, spark_y-3, spark_x+3, spark_y+3], fill=GREEN)
+    elif current_stage == 2:  # GATHER
+        # Human collecting parts
+        draw_human_student(draw, 180, content_y, scale=1.0, pose="standing", highlight=stage_progress < 0.3)
+        visible = int(stage_progress * 6) + 1
+        highlight = int(stage_progress * 6) % 6
+        draw_robot_parts(draw, 550, content_y, visible, highlight)
 
-    elif progress < 0.75:
-        # Phase 4: Powering on
-        phase_progress = (progress - 0.60) / 0.15
-        draw.text((WIDTH/2, HEIGHT-40), "Step 4: Activation!", fill=WHITE, anchor="mm")
+        # Arrow from human to parts
+        draw.line([250, content_y, 450, content_y], fill=ACCENT_ORANGE, width=2)
+        draw.polygon([(440, content_y-10), (460, content_y), (440, content_y+10)], fill=ACCENT_ORANGE)
 
-        # Human stepping back
-        draw_human(draw, 150, 280, scale=1.2, celebrating=phase_progress > 0.7)
+    elif current_stage == 3:  # BUILD
+        # Human building robot
+        draw_human_student(draw, 200, content_y, scale=1.0, pose="building")
+        assembly = min(1.0, stage_progress * 1.2)
+        draw_robot(draw, 550, content_y + 20, scale=1.0, assembly=assembly, powered=False, anim_frame=frame_num)
 
-        # Robot powering on (eyes flickering)
-        flicker = phase_progress > 0.3 and (int(frame_num * 2) % 3 != 0 or phase_progress > 0.8)
-        draw_robot(draw, 550, 300, scale=1.0, assembly_progress=1.0, powered=flicker, walking_frame=0)
+        # Progress bar
+        draw_progress_bar(draw, 350, content_y + 120, 250, assembly, "Assembly Progress", ACCENT_ORANGE)
 
-        # Power-on effects
-        if phase_progress > 0.5:
+        # Sparks during building
+        if stage_progress < 0.9:
+            spark_x = 480 + int(stage_progress * 80)
+            spark_y = content_y - 50 + int(math.sin(frame_num * 0.5) * 30)
             for i in range(3):
-                angle = (frame_num * 10 + i * 120) * math.pi / 180
-                px = 550 + int(math.cos(angle) * 80)
-                py = 250 + int(math.sin(angle) * 80)
-                draw.ellipse([px-4, py-4, px+4, py+4], fill=GREEN)
+                sx = spark_x + int(math.cos(frame_num + i * 2) * 10)
+                sy = spark_y + int(math.sin(frame_num + i * 2) * 10)
+                draw.ellipse([sx-3, sy-3, sx+3, sy+3], fill=HIGHLIGHT)
 
-    else:
-        # Phase 5: Robot working
-        phase_progress = (progress - 0.75) / 0.25
-        draw.text((WIDTH/2, HEIGHT-40), "Step 5: Robot Working Like Human!", fill=WHITE, anchor="mm")
+    elif current_stage == 4:  # ACTIVATE
+        # Robot powering on
+        draw_human_student(draw, 200, content_y, scale=1.0, pose="standing")
 
-        # Human watching proudly
-        draw_human(draw, 150, 280, scale=1.2, celebrating=True)
+        # Flicker effect
+        powered = stage_progress > 0.4 and (int(frame_num * 3) % 5 != 0 or stage_progress > 0.8)
+        draw_robot(draw, 550, content_y + 20, scale=1.0, assembly=1.0, powered=powered, anim_frame=frame_num)
 
-        # Robot walking and waving
-        robot_x = 450 + int(math.sin(phase_progress * math.pi * 2) * 50)
-        draw_robot(draw, robot_x, 300, scale=1.0, assembly_progress=1.0, powered=True, walking_frame=frame_num)
+        # Power-on ring effect
+        if stage_progress > 0.3:
+            ring_size = int((stage_progress - 0.3) * 150)
+            alpha = int(255 * (1 - stage_progress))
+            draw.ellipse([550-ring_size, content_y+20-ring_size, 550+ring_size, content_y+20+ring_size],
+                        outline=PRIMARY_GREEN, width=3)
 
-        # Success indicators
-        draw.text((550, 100), "SUCCESS!", fill=GREEN, anchor="mm")
+        # Progress bar
+        draw_progress_bar(draw, 350, content_y + 120, 250, stage_progress, "Initialization", PRIMARY_GREEN)
 
-        # Floating tech labels
-        labels = ["Autonomous", "Intelligent", "Physical AI"]
-        for i, label in enumerate(labels):
-            ly = 130 + i * 25 + int(math.sin(frame_num * 0.2 + i) * 5)
-            draw.text((550, ly), label, fill=WHITE, anchor="mm")
+    elif current_stage == 5:  # ACHIEVE
+        # Success! Robot working
+        draw_human_student(draw, 200, content_y, scale=1.0, pose="celebrating", highlight=True)
+
+        robot_x = 550 + int(math.sin(stage_progress * math.pi * 2) * 30)
+        draw_robot(draw, robot_x, content_y + 20, scale=1.0, assembly=1.0, powered=True, anim_frame=frame_num)
+
+        # Success effects
+        draw_success_effects(draw, 550, content_y - 50, frame_num)
+
+        # Success text
+        draw.text((WIDTH/2, content_y + 140), "YOUR ROBOT IS READY!", fill=PRIMARY_GREEN, anchor="mm")
+
+        # Capability labels
+        capabilities = ["Autonomous", "Intelligent", "Physical AI"]
+        for i, cap in enumerate(capabilities):
+            cy = 100 + i * 30 + int(math.sin(frame_num * 0.2 + i) * 3)
+            draw.text((750, cy), f"✓ {cap}", fill=WHITE, anchor="lm")
 
     # Border
-    draw.rectangle([5, 5, WIDTH-5, HEIGHT-5], outline=GREEN, width=2)
-
-    # Frame counter (subtle)
-    draw.text((WIDTH-50, HEIGHT-20), f"{frame_num+1}/{total_frames}", fill=DARK_GRAY, anchor="mm")
+    draw.rectangle([3, 3, WIDTH-3, HEIGHT-3], outline=stage_info["color"], width=2)
 
     return img
 
+
 def main():
-    print("Creating 'Build Robot Journey' GIF...")
+    print("Creating Enhanced Educational Journey GIF...")
+    print(f"Based on research from Educational Voice, Graphics for Learning")
+    print(f"Stages: {len(STAGES)}, Frames: {FRAMES}, Duration: ~{FRAMES/FPS:.1f} seconds")
 
     frames = []
     for i in range(FRAMES):
-        print(f"  Frame {i+1}/{FRAMES}")
+        stage = i // (FRAMES // len(STAGES))
+        print(f"  Frame {i+1}/{FRAMES} - Stage: {STAGES[min(stage, len(STAGES)-1)]['name']}")
         frame = create_frame(i, FRAMES)
         frames.append(frame)
 
@@ -323,7 +461,7 @@ def main():
     output_dir = os.path.dirname(os.path.abspath(__file__))
     output_path = os.path.join(output_dir, "build-robot-journey.gif")
 
-    # Save GIF
+    # Save GIF with optimized settings
     frames[0].save(
         output_path,
         save_all=True,
@@ -334,10 +472,12 @@ def main():
     )
 
     file_size = os.path.getsize(output_path) / 1024
-    print(f"\nGIF saved to: {output_path}")
-    print(f"Size: {file_size:.1f} KB")
-    print(f"Frames: {FRAMES}")
-    print(f"Duration: {FRAMES * DURATION / 1000:.1f} seconds")
+    print(f"\n✓ GIF saved to: {output_path}")
+    print(f"  Size: {file_size:.1f} KB")
+    print(f"  Frames: {FRAMES}")
+    print(f"  Duration: {FRAMES * DURATION / 1000:.1f} seconds")
+    print(f"  FPS: {FPS}")
+
 
 if __name__ == "__main__":
     main()
